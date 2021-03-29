@@ -4,7 +4,6 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/master.css">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
     <!-- <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet"> -->
     <title>Temperature mixer</title>
@@ -30,15 +29,26 @@
     <meta name="msapplication-TileImage" content="images/favicon-144.png">
     <meta name="msapplication-config" content="/browserconfig.xml">
     <!-- ****** faviconit.com favicons ****** -->
+    <style media="screen">
+      body {
+        margin: 20%;
+      }
+      .container {
+        display: grid;
+        justify-items: end;
+        grid-gap: 20px;
+      }
+    </style>
+    <script type="text/javascript" defer> </script>
   </head>
 
   <body>
     <h1>Oups!</h1>
     <h3> 404! 404! Nothing to see here!</h3>
-    <br>
-    <a href="http://madshorn.operamail.com"> <strong>Home</strong> </a>
-    <br>
-    <img src="../images/404.png" alt="Oups! 404 art by Jette Horn Brorholt" height="400" width="252">
-    <script src="scripts/main.js" defer></script>
+    <div class="container">
+      <img src="../images/404.png" alt="Oups! 404 art by Jette Horn Brorholt" height="400" width="252">
+
+      <a href="http://madshorn.dk"> <strong>Home</strong> </a>
+    </div>
   </body>
 </html>
