@@ -1,0 +1,1108 @@
+* {
+    box-sizing: border-box;  /* Include margin, padding and border in box sizes */
+  }
+
+body {
+  max-width: 400px;
+  min-width: 340px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+}
+
+button:hover,
+button:focus {
+  /* transform: scaleY(1.2); */
+  transform: rotateX(10deg);
+  border: 1px solid rgb(255, 50, 255);
+}
+
+/* button.addTaskButton {
+position: absolute;
+bottom: 225px;
+left: 310px;
+border: 3px solid rgba(154, 219, 240, .9);
+background-color: rgba(154, 219, 240, .6);
+border-radius: 25px;
+z-index: 999;
+} */
+
+/* div {
+  text-align: left;
+  border: 1px solid rgb(96, 139, 168);
+  border-radius: 4px;
+  background-color: rgba(154, 219, 240, .35);
+} */
+
+h1 {
+  margin: unset;
+  grid-area: header1;
+}
+
+h2 {
+  margin: 0px;
+  grid-area: header2;
+}
+
+input {
+  width: auto;
+  padding-left: 8px;
+  border-radius: 10px;
+}
+
+p {
+  font-size: 10px;
+}
+
+/* @keyframes infoAnimation {
+  0% {border: 1px solid rgb(96, 139, 168);}
+  50% {border: 1px solid rgb(255, 0, 0);}
+  100% {border: 1px solid rgb(96, 139, 168);}
+} */
+
+html {
+  background-color: white;
+}
+
+.button-disabled{
+  cursor: not-allowed;
+  K  /* pointer-events: none; */
+  border: none;
+}
+
+.centerWrapper {
+  display: grid;
+  grid-template-columns: 24% 45% 10% 6% 6%;
+  grid-template-rows: auto auto;
+  grid-gap: .3rem;
+  background-color: transparent;
+  border: none;
+  overflow-y: scroll;
+  grid-template-areas:
+  '. . . . .'
+  '. chooseBox . . .'
+}
+
+.monthCenterWrapper {
+  display: grid;
+  grid-template-columns: 6px 40px auto 40px 6px;
+  grid-template-rows: auto auto;
+  grid-gap: .6rem;
+  background-color: transparent;
+  border: none;
+  overflow-y: scroll;
+  grid-template-areas:
+  '. clear inputbox moveToDay .'
+  '. putback monthChooseBox . .'
+}
+
+.container1 {
+  display: grid;
+  grid-template-columns: 12% 65% 5% 11%;
+  grid-template-rows: auto auto auto;
+  grid-gap: .3rem;
+  background-color: transparent;
+  border: none;
+  overflow-y: scroll;
+  grid-template-areas:
+  'month header1 info storage'
+  '. hearts . .'
+  '. messages . .';
+}
+
+/* add view css below */
+
+/* Har denne en funktion? */
+::placeholder {
+  color: #788793; /* Lighter gray*/
+  color: rgb(150, 150, 150);
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  grid-template-rows: 50px;
+}
+
+.timeButtons {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-between;
+  /* display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: 50px; */
+}
+
+.addContainer1 {
+  display: grid;
+  grid-template-columns: 5% auto 5%;
+  grid-template-rows: auto auto auto;
+  grid-template-areas:
+  '. header1 .'
+  '. header2 .'
+  '. messages .';
+  /* margin-top: -10px; */
+}
+
+.addContainer2 {
+  display: grid;
+  grid-template-columns: 51% 51%;
+  /* column-gap: .2rem; */
+  background-color: transparent;
+  border: none;
+  grid-template-areas:
+  'input table'
+}
+
+.topic {
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  border-radius: 10px;
+  background-color: rgba(154, 219, 240, .25);
+  width: 90%;
+}
+
+/* Old .topic trying to compress addView above virtual keyboard */
+/* .topic {
+  padding: 7px;
+  margin-bottom: -15px;
+  border-radius: 10px;
+  background-color: rgba(154, 219, 240, .25);
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+} */
+
+.hearts {
+  font-size: 1.4em;
+}
+
+.durationContainer {
+  display: grid;
+  grid-template-columns: 50% 45% 5%;
+  grid-gap: .6rem;
+  background-color: transparent;
+  border: none;
+  grid-template-areas:
+  'input table .'
+}
+
+.timeContainer {
+  display: grid;
+  grid-template-columns: 40% 54% 5%;
+  grid-gap: .6rem;
+  background-color: transparent;
+  border: none;
+  grid-template-areas:
+  'input table .'
+}
+
+.add {
+  text-align: center;
+  /* width: 10%; */
+  height: 22px;
+  font-size: 0.6em;
+  background-image: linear-gradient(#9898ff, #9adbf0, #9adbf0, #9adbf0, #9898ff);
+  border: 1px solid rgb(96, 139, 168);
+  border-radius: 10px;
+}
+
+
+.timeAdjusterTop {
+  width: 30px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  background-image: none; /* linear-gradient(#9898ff, #9adbf0, #9adbf0, #9adbf0, #9adbf0); */
+  background-color: rgba(0, 0, 0, 0);
+  position: relative;
+  z-index: 10;
+  top: 3px;
+  border-bottom: none;
+}
+
+.timeAdjusterMiddle {
+  width: 30px;
+  height: 45px;
+  border-radius: 10px;
+  background-image: linear-gradient(#9898ff, #9adbf0, #9adbf0, #9adbf0, #9898ff);
+  background-color: rgba(0, 0, 0, 0);
+  position: relative;
+  top: -20px;
+  z-index: 5;
+  border: none;
+}
+
+.timeAdjusterBottom {
+  width: 30px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  background-image: none; /* linear-gradient(#9adbf0, #9adbf0, #9adbf0, #9abdf0, #9898ff); */
+  background-color: rgba(0, 0, 0, 0);
+  position: relative;
+  z-index: 10;
+  top: -43px;
+  border-top: none;
+}
+
+.text {
+  font-weight: bold;
+  margin-bottom: 4px;
+  margin-top: 5px;
+}
+
+.backgroundUp {
+  width: 30px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  background-image: linear-gradient(#9898ff, #9adbf0, #9adbf0, #9adbf0, #9adbf0);
+  position: relative;
+  top: 0px;
+  z-index: 1;
+  border-bottom: none;
+}
+
+.backgroundDown {
+  width: 30px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  background-image: linear-gradient(#9adbf0, #9adbf0, #9adbf0, #9adbf0, #9898ff);
+  position: relative;
+  top: -48px;
+  z-index: 1;
+  border-top: none;
+}
+
+/* #page {
+  height: 800px;
+} */
+
+#gainDiv {
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+#info {
+  width: 22px;
+  border-radius: 20px;
+}
+
+#d1, #g1 {
+  margin-left: 0px;
+}
+
+#dayView {
+  /* position: relative; */ /* Needs to be relative in order for the add-button to have an absolute position with respect to the viewport and not the total page https://css-tricks.com/absolute-relative-fixed-positioining-how-do-they-differ/ */ */
+  /* transition: all 0.4s; */
+
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto auto;
+  grid-gap: .3rem;
+  background-color: white;
+  border: none;
+  overflow-y: scroll;
+  grid-template-areas: 'head' 'wrap' 'cont';
+  position: fixed;
+}
+
+/* #dayView.active {
+  visibility: visible;
+} */
+
+#text1, #text2 {
+  display: flex;
+  grid-area: input;
+  align-self: center;
+  font-weight: bold;
+}
+
+#inputTimeBox {
+  grid-area: input;
+  width: 54px;
+  height: 20px;
+}
+
+#table {
+  grid-area: table;
+  border-collapse: collapse;
+}
+
+#inputTaskBox {
+  width: auto;
+}
+
+#inputDurationBox {
+  width: 60px;
+  /* height: 15px; */
+}
+
+#optional {
+  font-size: 0.6em;
+}
+
+#apply {
+  width: 250px;
+}
+
+#cancel {
+  width: 15%;
+}
+
+#apply, #cancel {
+  font-size: 0.6em;
+  margin-top: 5px;
+}
+
+/* [type=radio] { */
+[name=drain] {
+  position: absolute;
+  opacity: 0%;
+  width: 0px;
+  height: 0px;
+}
+
+/* [type=radio] + img { */
+[name=drain] + img {
+  opacity: 50%;
+}
+
+[name=drain]:checked + img {
+  opacity: 100%;
+  /* background-color: blue; */
+}
+
+#drainBand {
+  background-image: linear-gradient(to right, hsl(255,50%,0%), hsl(255, 50%, 50%));
+  width: 100%;
+}
+
+#gainBand {
+  background-image: linear-gradient(to right, hsl(255,50%,50%), hsl(255, 50%, 100%));
+  width: 100%;
+}
+
+/* add View-css above */
+
+/* month view css below */
+
+#monthView {
+    /* bottom: 780px; */
+    /* left: 300px; */
+    width: 100%;
+    /* height: 0px; */
+    background-color: white;
+    /* visibility: hidden; */
+    transition: all 0.4s cubic-bezier(.54,.38,.6,1.29);
+    position: relative;
+}
+
+/* #monthView.active {
+    bottom: 780px;
+    /* left: 0px; */
+    /* width: 100%;
+    height: 100%;
+    visibility: visible; */
+    /* position: relative; */
+/* } */
+
+
+.monthContainer1 {
+  display: grid;
+  grid-template-columns: 40px auto 45px;
+  grid-template-rows: auto auto auto;
+  grid-gap: .3rem;
+  background-color: transparent;
+  border: none;
+  overflow-y: scroll;
+  grid-template-areas:
+  'track header day'
+  '. messages .';
+}
+
+
+.monthContainer2 {
+  display: grid;
+  grid-template-columns: 5% 80% 5%;
+  grid-template-rows: auto auto;
+  grid-gap: .3rem;
+  /* justify-items: center; */
+  background-color: transparent;
+  border: none;
+  height: 700px;
+  overflow-y: scroll;
+  grid-template-areas:
+  '. taskHeader .'
+  '. taskListing .'
+}
+
+#monthMessage {
+  grid-area: messages;
+}
+
+#monthTaskDiv {
+  display: flex;
+  grid-area: taskListing;
+  flex-direction: column;
+}
+
+.pastDateButton {
+	position: relative;
+	text-align: left;
+	border: 1px solid rgba(154, 219, 240, 1.0);
+	border-radius: 3px; /* Difference */
+	background-color: rgba(154, 219, 240, .25);
+	box-shadow: 0px 0px 3px 2px rgba(154, 219, 240, .25);
+}
+
+.dateButton {
+  position: relative;
+  text-align: left;
+  border: 1px solid rgba(154, 219, 240, 1.0);
+  border-radius:  10px;
+  background-color: rgba(154, 219, 240, .25);
+  box-shadow: 0px 0px 3px 2px rgba(154, 219, 240, .25);
+}
+
+.dateButton .toolTip {
+  visibility: hidden;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -100px;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.dateButton .toolTip::after {
+  content: '';
+  position: absolute;
+  top: 99%;
+  left: 50%;
+  margin-left: -5px;
+  border: solid;
+  border-width: 7px;
+  border-color: rgba(154, 219, 240, 1) transparent transparent transparent;
+}
+
+.dateButton:hover .toolTip {
+  visibility: visible;
+  background-color: rgba(154, 219, 240, 1);
+}
+
+.toolTip:empty {
+   display: none;
+}
+
+.weekend {
+  background-color: rgba(154, 219, 240, .6);
+}
+
+.pastDateButton {
+	background-color: rgba(154, 219, 240, .05);
+  border: 1px solid rgba(121, 145, 153, 0.25);
+}
+
+.pastDateButton.weekend {
+	/* background-color: rgba(160, 179, 185, 0.25);
+  border-color: rgba(160, 179, 185, 1); */
+  border: 3px solid rgb(160, 179, 185);
+}
+
+.todayButton {
+  border: 3px solid rgba(70, 197, 238, 0.83);
+  border-radius: 0px;
+}
+
+.monthName {
+  background-color: white;
+  border: none;
+  margin: 5px;
+}
+
+#track {
+  grid-area: track;
+}
+
+#monthClearButton {
+  grid-area: clear;
+}
+
+#monthInputBox {
+  grid-area: inputbox;
+}
+
+#month {
+  grid-area: month;
+  justify-self: end;
+}
+
+#day {
+  grid-area: day;
+}
+
+#dayChooseBox {
+  grid-area: chooseBox;
+}
+
+#moveToDay {
+  display: none;
+  grid-area: moveToDay;
+}
+
+#moveToDay.active {
+  line-height: 0.8em;
+  padding-top: 5px;
+  display: grid;
+}
+
+#monthViewName {
+  /* Put FuzzyPlan header in right place */
+  justify-content: center;
+  grid-area: header;
+}
+
+#monthChooseBox {
+  display: none;
+  grid-area: monthChooseBox;
+}
+
+#monthChooseBox.active {
+  display: grid;
+}
+
+#putBack {
+  display: none;
+	line-height: 0.8em;
+	padding-top: 2px;
+  grid-area: putback;
+}
+
+#putBack.active {
+  display: grid;
+}
+
+/* month view css above */
+
+/* track view css below */
+.trackContainer1 {
+  display: grid;
+  grid-template-columns: 40px auto 45px;
+  grid-template-rows: auto auto auto;
+  grid-gap: .3rem;
+  background-color: transparent;
+  border: none;
+  overflow-y: scroll;
+  grid-template-areas:
+  '. header1 month1'
+  '. header2 .'
+  '. messages .';
+}
+
+/* .trackContainer2 {
+  display: grid;
+  grid-template-columns: 5px auto 25px 25px;
+  grid-template-rows: auto auto auto;
+  grid-gap: .3rem;
+  background-color: transparent;
+  border: none;
+  overflow-y: scroll;
+  grid-template-areas:
+  '. taskPicker colourPicker .'
+  '. trackedItems trackedItemsColour .';
+} */
+
+#trackMessage {
+  grid-area: messages;
+}
+
+/* #taskPickerDiv {
+  display: flex;
+  flex-direction: column;
+  grid-area: taskPicker;
+}
+
+#colourPickerDiv {
+  display: flex;
+  flex-direction: column;
+  grid-area: colourPicker;
+} */
+
+#trackedItemsDiv {
+  display: flex;
+  flex-direction: column;
+  grid-area: trackedItems;
+}
+
+#trackedItemsColourDiv {
+  display: flex;
+  flex-direction: column;
+  grid-area: trackedItemsColour;
+}
+
+#month1 {
+  grid-area: month1;
+  align-self: center;
+}
+
+#trackViewSpacer {
+  height: 30px;
+}
+
+#deleteTrackedButton {
+  font-size: 0.8em;
+}
+
+/* .trackContainer3 {
+  display: grid;
+  grid-template-columns: 15px auto 25px;
+  grid-template-rows: auto auto auto;
+  grid-gap: .5rem;
+  background-color: transparent;
+  border: none;
+  grid-area: trackedItems;
+  grid-template-areas:
+  '. trackedItemSpan colour'
+} */
+
+/* #trackedItemsDiv {
+  display: flex;
+  flex-direction: column;
+  grid-area: trackedItemSpan;
+} */
+
+#trackViewName {
+  /* Put FuzzyPlan header in right place */
+  justify-content: center;
+  grid-area: header1;
+}
+
+
+#trackView {
+    /* bottom: 3400px; */
+    /* left: 300px; */
+    width: 100%;
+    height: 700px;
+    background-color: white;
+    /* visibility: hidden; */
+    transition: all 0.4s cubic-bezier(.54,.38,.6,1.29);
+    position: relative;
+}
+
+.colourButton {
+  width: 25%;
+  height: 30px;
+}
+
+#colourPickerInputBox {
+  width: 200px;
+}
+/* #trackView.active {
+    bottom: 3400px;
+    /* left: 0px; */
+    /* width: 100%;
+    height: 100%;
+    visibility: visible; */
+    /* position: relative; */
+/* } */
+
+/* track view css above ^^^ */
+
+/* settings view css below */
+
+.inputSettings {
+  width: 40px;
+}
+
+label {  /* Used in settingsView */
+  font-size: 0.9em;
+}
+
+.settingsContainer {
+  display: flex;
+  align-items: center;
+  /* align-content: space-between; */
+  flex-direction: column;
+  /* justify-content: space-between; */
+}
+
+.stressContainer {
+	display: grid;
+	grid-template-columns: auto 30px;
+}
+
+#settingsMessage {
+  grid-area: messages;
+  color: red;
+  white-space: pre;
+}
+
+#noteSpan {
+  white-space: pre;
+}
+
+#stressLevelText {
+  white-space: pre;
+}
+
+/* settings view css above ^^^ */
+
+
+#container {
+  display: grid;
+  grid-template-columns: 1% 10% 1% 83% 1%;
+  grid-template-rows: auto auto auto;
+  grid-gap: .3rem;
+  /* justify-items: center; */
+  background-color: transparent;
+  border: none;
+  height: 640px;  /* Change via @media*/
+  overflow-y: scroll;
+  grid-template-areas:
+  '. . . taskHeader .'
+  'stressBar timeBar . taskListing .'
+  '. . . taskFooter .';
+}
+
+
+.controlButton {
+  /* display: inline-block; */
+  text-align: center;
+  width: auto;
+  height: 22px;
+  border: 1px solid rgb(96, 139, 168);
+  border-radius: 10px;
+  background-image: linear-gradient(#9898ff, #9adbf0, #9adbf0, #9adbf0, #9898ff);
+  font-size: 0.6em;
+  padding-left: 3px;
+}
+
+
+.halfHours1,
+.halfHours2 {
+  background-color: transparent;
+  /* background-color: blue; */
+  padding: 0px;
+  border: none;
+  border-radius: 0px;
+  /* width: 41px; */
+  height: 2.0833%;
+  font-size: 14px;
+  /* text-align: center; */
+  border-top: 1px solid rgba(154, 219, 240, 1.0);
+}
+
+.halfHours1 {
+  height: 1.0417%;
+}
+
+/* .dontTouch {
+  cursor: not-allowed; */
+  /* pointer-events: none; */
+/* } */
+
+.pause {
+  border: none;
+  background-color: rgba(154, 219, 240, .25);
+  box-shadow: 0px 0px 3px 2px rgba(152, 250, 172, 0.56);
+}
+
+.stressDiv {
+  font-size: 14px;
+  height: 1.0417%;
+  width: 10px;
+  color: hsl(255, 100%, 85%);
+  border: none;
+  border-radius: 0px;
+}
+
+.task {
+  text-align: left;
+  border: 1px solid rgb(96, 139, 168);
+  border-radius: 10px;
+  background-color: rgba(154, 219, 240, .6);
+  grid-area: taskListing;
+}
+
+.isFuzzy { /* Needs to come after .task */
+   border: 1px solid rgba(154, 219, 240, 1.0);
+  border-radius: 10px;
+  background-color: rgba(154, 219, 240, .25);
+  box-shadow: 0px 0px 3px 2px rgba(154, 219, 240, .25);
+}
+
+.isGain { /* Needs to come after .isFuzzy and before .isClicked */
+  border: 1px solid rgba(123, 217, 71, 1.0);
+  background-color: rgba(123, 217, 71, .2);
+}
+
+.isClicked { /* Needs to come after .isFuzzy */
+  transform: rotateX(10deg);
+  border: 1px solid rgb(255, 50, 255);
+}
+
+.isNotFuzzy.isGain { /* Needs to come after .isFuzzy */
+  border: 1px solid rgba(123, 217, 71, 1.0);
+  background-color: rgba(123, 217, 71, .3);
+}
+
+.isNullTime { /* Needs to come after .task */
+  background-color: white;
+  border: 1px solid rgba(154, 219, 240, 1.0);
+  border-radius: 10px;
+}
+
+#addTaskButton {
+  position: absolute;
+  bottom: 10%;
+  left: 80%;
+  font-size: x-large;
+  line-height: 0.1em;
+  text-align: center;
+  padding: .1em 0.12em .2em .1em;
+  background-image: linear-gradient(#08e22a, #0bfb31, #0bfb31, #0bfb31, #08e22a);
+  height: 1.7em;
+  width: 1.7em;
+  border-radius: 25px;
+  border: 1px solid rgb(108, 168, 48);
+  z-index: 10;
+}
+
+#addView {  /* Box that help transition to add-view */
+  /* bottom: 0px; */
+  /* left: 300px; */
+  width: 100%;
+  /* height: 0px; */
+  background-color: white;
+  position: absolute;
+  /* visibility: hidden; */
+  transition: all 0.4s cubic-bezier(.54,.38,.6,1.29);
+  position: relative;
+  left: 0px;
+}
+
+/* #addView.active { /* Adding class make animation run */
+  /* bottom: 794px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  visibility: visible;
+  position: relative;
+} */
+
+
+#dummyAdd {
+  background-color: rgba(154, 219, 240, .25);
+  width: 100%;
+  height: 200px;
+}
+
+
+#heart {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  background-color: white;
+  font-size: 14px;
+  grid-area: hearts;
+}
+
+#info {
+  width: 22px;
+  border-radius: 20px;
+  margin-top: 2px;
+  font-size: 0.8em;
+  padding-left: 7px;
+}
+
+#dayMessage {
+  grid-area: messages;
+  color: red;
+  white-space: pre;
+}
+
+/* TODO: There are two #month */
+#month {
+  grid-area: month;
+  justify-self: end;
+  margin-top: 2px;
+  margin-right: 2px;
+}
+
+#name {
+  /* Put FuzzyPlan header in right place */
+  justify-content: center;
+  grid-area: header1;
+}
+
+#nowSpan {
+  border-bottom: 3px solid rgba(255, 0, 255, 1.0);
+  grid-area: timeBar;
+  z-index: 999;
+}
+
+div.tasksToSort {
+  display: grid;
+}
+
+div.tasksToSort #upButton {
+  display: none;
+}
+
+div.tasksToSort #nowButton {
+  display: none;
+}
+
+div.tasksToSort #postpone {
+  line-height: 0.8em;
+  padding-top: 5px;
+  display: grid;
+  justify-self: end;
+  /* background-image: linear-gradient(#18ee4491, #a5ff987a, #a5ff987a, #a5ff987a, #18ee4491) */
+}
+
+#postpone {
+  display: none;
+}
+
+#chooseBox {
+  display: none;
+  grid-area: chooseBox;
+}
+
+#chooseBox.active {
+  display: grid;
+}
+
+.floatingTask {
+  display: flex;
+  flex-flow: column wrap;
+  background-color: rgba(123, 217, 71, .6);
+  border-radius: 10px;
+  cursor: not-allowed;
+  width: 100%;
+}
+
+#settings {
+  width: auto;
+  font-size: 15px;
+  margin-left: 2px;
+}
+
+#storage {
+  grid-area: storage;
+  margin-top: 2px;
+  margin-left: 2px;
+}
+
+#stressDiv {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  border: none;
+  height: 1440px;
+  align-items: center;
+  grid-area: stressBar;
+}
+
+#taskDiv {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  border: none;
+  height: 1440px;
+  width: 100%;
+  grid-area: taskListing;
+}
+
+#timeDiv {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  /* background-color: red; */
+  border: none;
+  width: 100%;
+  height: 1440px;
+  align-items: center;
+  grid-area: timeBar;
+}
+
+
+#zoom {
+  text-align: center;
+  width: auto;
+  font-size: 15px;
+}
+
+
+
+/* storage-view css below */
+
+#stores {
+  display: flex;
+  flex-direction: column;
+}
+
+.storage {
+  width: 250px;
+}
+
+.storageContainer {
+  display: grid;
+  grid-template-columns: 10% auto 10%;
+  grid-template-rows: auto auto;
+  grid-gap: .3rem;
+  background-color: transparent;
+  border: none;
+  overflow-y: scroll;
+  grid-template-areas: '. header1 .' '. messages .';
+}
+
+.storageContainer1 {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.notInUse {
+  background-image: linear-gradient(#c0c0f1,  #d8eaf1, #d8eaf1, #d8eaf1, #c3c3f7);
+  border: none;
+}
+
+.highLighted {
+  border: 1px solid rgb(255, 50, 255);
+}
+
+#storageMessage {
+  grid-area: messages;
+  color: red;
+}
+
+#stores {
+  display: flex;
+  flex-direction: column;
+}
+
+#day1 {
+  align-self: center;
+}
+
+button[id*='memory'] {
+  width: 300px;
+  border-radius: 4px;
+  font-size: 0.8em;
+}
+
+/* storage-view css above ^^^ */
+
+/* @media screen and (max-width: 400px) {
+  html {
+    background-color: black;
+  }
+
+  #container {
+    height: 500px;
+  }
+} */

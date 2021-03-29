@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FuzzyPlan</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
+  </head>
+
+  <body onload="setUpFunc()">
+    <div id="page">
+
+      <!-- Day view ------------------------ -->
+
+      <div id="dayView" class="active">
+        <div class="container1">
+          <button type="button" id="month" class='controlButton'> </button>
+
+          <h1 id='name' align=center>
+            FuzzyPlan
+          </h1>
+
+          <button type="button" class='controlButton' id="info"> </button>
+
+          <button type="button" id="storage" class='controlButton'> </button>
+
+          <span id='heart'></span>
+          <span id='dayMessage' display='none'></span>
+          <br>
+        </div>
+
+        <div class="centerWrapper">
+          <div id="sortTask" class="noTasksToSort">
+            <button type="button" id="postpone" class="controlButton"> </button>
+
+            <button type="button" id='upButton' class="controlButton"> </button>
+
+            <button type="button" id='nowButton' class="controlButton"> </button>
+          </div>
+
+          <input type="text" id='dayInputBox' class="inputBox" autofocus value="">
+
+          <button id="addTaskButton" class="controlButton">+</button>  <!-- This button is placed in lower right corner by CSS -->
+          <!-- <button type="button" class="addTaskButton">&#x270d;</button> --> <!-- Writing Hand -->
+
+          <button type="button" id='clearButton' class="controlButton"> </button>
+
+          <button type="button" id='gotoSettings' class="controlButton"> </button>
+
+          <button type="button" id='zoom' class="controlButton"> </button>
+
+          <div id="dayChooseBox"></div>
+
+        </div>
+
+        <div id='container' class="container2">
+          <div id='stressDiv'> </div>
+          <div id='timeDiv'> </div>
+          <div id='taskDiv'> </div>
+        </div>
+
+      </div>
+
+      <!-- Add-task view ---------------------- -->
+
+      <div id='addView' hidden>
+        <div class="addContainer1">
+          <h1 align='center'>FuzzyPlan</h1>
+          <h2 id="addTaskHeading"align='center' lang="en">Add task</h2>
+          <h2 align='center' lang="da" hidden>Tilføj opgave</h2>
+          <span id='addMessage' display='none'></span>
+        </div>
+
+
+        <div class='topic'>
+          <div>
+            <span id='inputBox_add_text' class="text"> </span>
+            <input type="text" id='inputBox_add' class="inputBox" autofocus value='' tabindex="1">
+          </div>
+        </div>
+
+        <span>   <br>   </span>
+
+        <div class='topic'>
+          <div id="duration" class="durationContainer">
+            <span id='text1'>
+              <span id='inputDurationBox_text' class='text'></span>
+              <input type="text" id='inputDurationBox' class="inputBox" tabindex="2" placeholder="0h30m"> <br>
+            </span>
+            <div class="buttons">
+              <div>
+                <button class='add timeAdjusterTop' type="button" id="durationPlus60m" title='Plus 1 hour'>&#x25B4;</button>
+                <button class='add timeAdjusterMiddle' type="button" id="durationPlus60mMiddle" tabIndex = "-1">1h</button>
+                <button class='add timeAdjusterBottom' type="button" id="durationMinus60m" title='Minus 1 hour'>&#x25BE;</button>
+              </div>
+              <div>
+                <button class='add timeAdjusterTop' type="button" id="durationPlus30m" title='Plus 30 minutes'>&#x25B4;</button>
+                <button class='add timeAdjusterMiddle' type="button" id="durationPlus30mMiddle" tabIndex = "-1">30m</button>
+                <button class='add timeAdjusterBottom' type="button" id="durationMinus30m" title='Minus 30 minutes'>&#x25BE;</button>
+              </div>
+              <div>
+                <button class='add timeAdjusterTop' type="button" id="durationPlus15m" title='Plus 15 minutes'>&#x25B4;</button>
+                <button class='add timeAdjusterMiddle' type="button" id="durationPlus15mMiddle" tabIndex = "-1">15m</button>
+                <button class='add timeAdjusterBottom' type="button" id="durationMinus15m" title='Minus 15 minutes'>&#x25BE;</button>
+              </div>
+              <div>
+                <button class='add timeAdjusterTop' type="button" id="durationPlus5m" title='Plus 5 minutes'>&#x25B4;</button>
+                <button class='add timeAdjusterMiddle' type="button" id="durationPlus5mMiddle" tabIndex = "-1">5m</button>
+                <button class='add timeAdjusterBottom' type="button" id="durationMinus5m" title='Minus 5 minutes'>&#x25BE;</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <span>   <br>   </span>
+
+        <div class='topic'>
+          <div id="time" class="timeContainer">
+            <div class="timeButtons">
+              <span id='inputTimeBoxText' class="text">Task starts at</span>
+              <input id='inputTimeBox' type="text" class="inputBox" tabindex="3" placeholder="12:00">
+              <span id='optional'> </span>
+              <button type="button" id="now" class="controlButton add" tabindex="4"> </button>
+              <button type="button" id="clear" class="controlButton add" tabindex="5"> </button>
+            </div>
+
+            <div class="buttons">
+              <div>
+                <button class='add timeAdjusterTop' type="button" id="timePlus300m" title='Plus 5 hour'>&#x25B4;</button>
+                <td><button class='add timeAdjusterMiddle' type="button" id="timePlus5hMiddle" tabIndex = "-1">5h</button></td>
+                <button class='add timeAdjusterBottom' type="button" id="timeMinus300m" title='Minus 5 hour'>&#x25BE;</button>
+              </div>
+              <div>
+                <button class='add timeAdjusterTop' type="button" id="timePlus60m" title='Plus 1 hour'>&#x25B4;</button>
+                <td><button class='add timeAdjusterMiddle' type="button" id="timePlus1hMiddle" tabIndex = "-1">1h</button></td>
+                <button class='add timeAdjusterBottom' type="button" id="timeMinus60m" title='Minus 1 hour'>&#x25BE;</button>
+              </div>
+              <div>
+                <button class='add timeAdjusterTop' type="button" id="timePlus30m" title='Plus 30 minutes'>&#x25B4;</button>
+                <td><button class='add timeAdjusterMiddle' type="button" id="timePlus30mMiddle" tabIndex = "-1">30m</button></td>
+                <button class='add timeAdjusterBottom' type="button" id="timeMinus30m" title='Minus 30 minutes'>&#x25BE;</button>
+              </div>
+              <div>
+                <button class='add timeAdjusterTop' type="button" id="timePlus15m" title='Plus 15 minutes'>&#x25B4;</button>
+                <td><button class='add timeAdjusterMiddle' type="button" id="timePlus15mMiddle" tabIndex = "-1">15m</button></td>
+                <button class='add timeAdjusterBottom' type="button" id="timeMinus15m" title='Minus 15 minutes'>&#x25BE;</button>
+              </div>
+              <div>
+                <button class='add timeAdjusterTop' type="button" id="timePlus5m" title='Plus 5 minutes'>&#x25B4;</button>
+                <td><button class='add timeAdjusterMiddle' type="button" id="timePlus5mMiddle" tabIndex = "-1">5m</button></td>
+                <button class='add timeAdjusterBottom' type="button" id="timeMinus5m" title='Minus 5 minutes'>&#x25BE;</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <span>   <br>   </span>
+
+        <div class='topic'>
+          <div class="addContainer2">
+
+            <span id="drainLevelText" class="text"> </span>
+            <div id='gainDiv'>
+              <span id="grainLevelText" class="text"></span>
+              <button type="button" id="addInfo" class='controlButton'> </button>
+            </div>
+
+            <div id='drainBand'>
+              <label class="hearts">
+                &nbsp;
+                <input type="radio" id='d1' class="drain" name='drain' value="d1" checked='checked'>
+                <img src="16px-A_SVG_semicircle_heart_empty.svg.png" alt="empty heart" style="width: 16px; height: 16px;">
+              </label>
+              <label class="hearts">
+                <input type="radio" id='d2' class="drain" name='drain' value="d2">
+                <img src="16px-A_SVG_semicircle_heart_empty.svg.png" alt="empty heart" style="width: 16px; height: 16px;">
+              </label>
+              <label class="hearts">
+                <input type="radio" id='d3' class="drain" name='drain' value="d3">
+                <img src="16px-A_SVG_semicircle_heart_empty.svg.png" alt="empty heart" style="width: 16px; height: 16px;">
+              </label>
+              <label class="hearts">
+                <input type="radio" id='d4' class="drain" name='drain' value="d4">
+                <img src="16px-A_SVG_semicircle_heart_empty.svg.png" alt="empty heart" style="width: 16px; height: 16px;">
+              </label>
+              <label class="hearts">
+                <input type="radio" id='d5' class="drain" name='drain' value="d5">
+                <img src="16px-A_SVG_semicircle_heart_empty.svg.png" alt="empty heart" style="width: 16px; height: 16px;">
+              </label>
+            </div>
+
+            <div id='gainBand'>
+              <label class="hearts">
+                <input type="radio" id='g1' class="drain" name='drain' value="g1">
+                <img src="16px-A_SVG_semicircle_heart.svg.png" alt="red heart" style="width: 16px; height: 16px;">
+              </label>
+              <label class="hearts">
+                <input type="radio" id='g2' class="drain" name='drain' value="g2">
+                <img src="16px-A_SVG_semicircle_heart.svg.png" alt="red heart" style="width: 16px; height: 16px;">
+              </label>
+              <label class="hearts">
+                <input type="radio" id='g3' class="drain" name='drain' value="g3">
+                <img src="16px-A_SVG_semicircle_heart.svg.png" alt="red heart" style="width: 16px; height: 16px;">
+              </label>
+              <label class="hearts">
+                <input type="radio" id='g4' class="drain" name='drain' value="g4">
+                <img src="16px-A_SVG_semicircle_heart.svg.png" alt="red heart" style="width: 16px; height: 16px;">
+              </label>
+              <label class="hearts">
+                <input type="radio" id='g5' class="drain" name='drain' value="g5">
+                <img src="16px-A_SVG_semicircle_heart.svg.png" alt="red heart" style="width: 16px; height: 16px;">
+              </label>
+            </div>
+
+          </div>
+
+          <div>
+            <button type="button" id="cancel" class="controlButton add" tabindex="6"></button>
+            <button type="button" id="apply" class="controlButton add" tabindex="7"></button>
+          </div>
+        </div>
+
+        <span>   <br>   </span>
+      </div>
+
+      <!-- Month view ---------------------- -->
+
+      <div id="monthView" hidden>
+        <div class="monthContainer1">
+          <button type="button" id='track' class="controlButton"></button>
+
+          <h1 id='monthViewName' align=center>
+            FuzzyPlan
+          </h1>
+
+          <button type="button" id="day" class='controlButton'></button>
+            <button type="button" class='controlButton' title='Klik for at gå tilbage
+            til dagsvisning (eller swipe til venstre med to fingre hvorsomhelst)' lang="da" hidden>Dag</button>
+          </span>
+
+          <span id='monthMessage' display='none'></span>
+          <br>
+        </div>
+
+        <div class="monthCenterWrapper">
+          <button type="button" id='monthClearButton' class="controlButton"> </button>
+          <input type="text" id='monthInputBox' class="inputBox" autofocus value="">
+
+          <button type="button" id="moveToDay" class="controlButton"> </button>
+
+          <button type="button" id="putBack" class="controlButton"> </button>
+          <div id='monthChooseBox'></div>
+        </div>
+
+        <div id='monthContainer' class="monthContainer2">
+          <div id='monthTaskDiv'> </div>
+        </div>
+      </div>
+
+      <!-- Track view ---------------------- -->
+
+      <div id="trackView" hidden>
+        <div class="trackContainer1">
+          <h1 id='trackViewName' align='center'>
+            FuzzyPlan
+          </h1>
+
+          <h2 id='trackViewHeading' align='center'> </h2>
+
+          <button type="button" id="month1" class='controlButton'> </button>
+
+          <span id='trackMessage' display='none'></span>
+          <br>
+        </div>    <!-- trackContainer1 -->
+
+        <span> <br> </span>
+
+        <div class='topic'>
+          <div>
+            <span id="trackText" class="text" lang="en"></span>
+
+            <input type="text" id='taskPickerInputBox' class="inputBox"
+            autofocus value="" tabindex="1" placeholder="pause">
+          </div>
+        </div>
+
+        <span> <br> </span>
+
+        <div class='topic'>
+          <div>
+            <span id="colourText" class="text"> </span>
+
+            <input type="text" id='colourPickerInputBox' class="inputBox" autofocus
+            value="" tabindex="2" placeholder="magenta/#FF00FF/rgb(255,0,255)">
+            <span id="chosenColour">&nbsp;</span>
+          </div>
+          <div id="colourButtons" hidden></div>
+        </div>
+
+        <span> <br> </span>
+
+        <div id="trackViewSpacer"></div>
+
+        <div class="topic">
+          <span id="trackedItemsText" class="text"> </span>
+          <div id="trackedItemsDiv"></div>
+
+          <span> <br> </span>
+
+          <button type="button" id="deleteTrackedButton" class="controlButton"></button>
+        </div>
+
+      </div>    <!-- trackView -->
+
+      <!-- Storage view ------------------------- -->
+
+      <div id="storageView" hidden>
+        <div class="storageContainer">
+          <h1 id='storageViewName' align='center'>
+            FuzzyPlan
+          </h1>
+
+          <!-- <h2 align='center'>Retrieve or store task lists</h2> -->
+          <span id='day1'>
+            <button type="button" class="controlButton" title="Click to
+            get back to day-view" lang="en">Day</button>
+            <button type="button" class="controlButton" title="Klik for at
+            komme tilbage til dagsvisning" lang="da" hidden>Dag</button>
+          </span>
+          <span id='storageMessage' display='none'></span>
+
+          <br>
+
+        </div>     <!-- storageContainer -->
+
+        <div class="storageContainer1">
+          <div>
+            <h3 id="storageHeadingText">  </h3>
+
+            <button type="button" id="storeList" class='controlButton'> </button>
+
+            <span>   <br>   </span>
+            <span>   <br>   </span>
+            <div id="stores">
+              <span>&nbsp; 1 <button type="button" id="memory1" class='notInUse store controlButton'>Monday</button></span>
+              <span>&nbsp; 2 <button type="button" id="memory2" class='notInUse store controlButton'>Tuesday</button></span>
+              <span>&nbsp; 3 <button type="button" id="memory3" class='notInUse store controlButton'>Wednesday</button></span>
+              <span>&nbsp; 4 <button type="button" id="memory4" class='notInUse store controlButton'>Thursday</button></span>
+              <span>&nbsp; 5 <button type="button" id="memory5" class='notInUse store controlButton'>Friday</button></span>
+              <span>&nbsp; 6 <button type="button" id="memory6" class='notInUse store controlButton'>Saturday</button></span>
+              <span>&nbsp; 7 <button type="button" id="memory7" class='notInUse store controlButton'>Sunday</button></span>
+
+              <span> <br> </span>
+
+              <span>&nbsp; 8 <button type="button" id="memory8" class='notInUse store controlButton'>Monday</button></span>
+              <span>&nbsp; 9 <button type="button" id="memory8" class='notInUse store controlButton'>Tuesday</button></span>
+              <span>10 <button type="button" id="memory10" class='notInUse store controlButton'>Wednesday</button></span>
+              <span>11 <button type="button" id="memory11" class='notInUse store controlButton'>Thursday</button></span>
+              <span>12 <button type="button" id="memory12" class='notInUse store controlButton'>Friday</button></span>
+              <span>13 <button type="button" id="memory13" class='notInUse store controlButton'>Saturday</button></span>
+              <span>14 <button type="button" id="memory14" class='notInUse store controlButton'>Sunday</button></span>
+
+              <span> <br> </span>
+
+              <span>15 <button type="button" id="memory15" class='notInUse store controlButton'>Extra store 1</button></span>
+              <span>16 <button type="button" id="memory16" class='notInUse store controlButton'>Extra store 2</button></span>
+              <span>17 <button type="button" id="memory17" class='notInUse store controlButton'>Extra store 3</button></span>
+
+              <span>   <br>   </span>
+
+              <button type="button" id="trashBin" class='notInUse trashBin controlButton'></button>
+
+              <span>   <br>   </span>
+            </div>   <!-- stores -->
+          </div>
+        </div>     <!-- storageContainer1 -->
+      </div>    <!-- storageView -->
+
+      <!-- Settings view --------------------- -->
+
+      <div id="settingsView" hidden>
+        <div class="container1">
+          <h1 id='name' align=center>
+            FuzzyPlan
+          </h1>
+
+          <button type="button" id='gotoDayFromSettings' class='controlButton'> </button>
+
+          <span id='settingsMessage' display='none'></span>
+
+          <br>
+        </div>    <!-- settingsContainer1 -->
+
+        <div class="settingsContainer">
+
+          <h2 id="settingsHeading" class="text"> </h2>
+
+          <div class="topic">
+            <div>
+              <h4 id="languageHeading" class="text"> </h4>
+
+              <span id='eng'>
+                <input type="radio" id='en' class="language" name='language' value=0 checked='checked'>
+                <img src="./200px-Flag_of_the_United_Kingdom.png" alt="UK flag" height=15px>
+                <label for="en">English </label>
+              </span>
+
+              <br>
+
+              <span id='dan'>
+                <input type="radio" id='da' class="language" name='language' value=1>
+                <img src="./200px-Flag_of_Denmark.png" alt="DK flag" height=15px>
+                <label for="da">&nbsp;&nbsp;Dansk</label>
+              </span>
+
+              <br>
+              <br>
+
+              <button type="button" id="apply0" class='controlButton'> </button>
+            </div>
+          </div>
+
+          <span>   <br>   </span>
+
+          <div class='topic'>
+            <div>
+              <h4 id="taskDurationHeading" class="text"></h4>
+
+              <span id="taskDurationText"></span>
+              <input type="text" id='inputBoxM' class="inputBox inputSettings" value="30">
+
+              <br>
+              <br>
+
+              <button type="button" id="apply1" class='controlButton'> </button>
+            </div>
+          </div>
+
+          <span>   <br>   </span>
+
+          <div class='topic'>
+            <div>
+              <h4 id="playTocText" class="text"></h4>
+
+              <input type="radio" id='off' class="alarm" name='alarm' value="off" checked='checked'>
+              <label for="off" id="tocLabelOff" class="labelText"></label> <br>
+
+              <input type="radio" id='beginning' class="alarm" name='alarm' value="beginning">
+              <label for="beginning" id="tocLabelStart" class="labelText"></label> <br>
+
+              <input type="radio" id='end' class="alarm" name='alarm' value="end">
+              <label for="end" id="tocLabelEnd" class="labelText"></label> <br>
+
+              <input type="radio" id='both' class="alarm" name='alarm' value="both">
+              <label for="both" id="tocLabelBoth" class="labelText"></label> <br>
+
+              <h4 id="playTicText" class="text"></h4>
+
+              <input type="radio" id='off' class="reminder" name='reminder' value="off" checked='checked'>
+              <label for=off"" id="ticLabelOff" class="labelText"></label> <br>
+
+              <input type="radio" id='regularly' class="reminder" name='reminder' value="regularly">
+              <label for="regularly" id="ticLabelEachX" class="labelText"></label> <br>
+
+              <input type="radio" id='rand' class="reminder" name='reminder' value="rand">
+              <label for="rand" id="ticLabelRandom" class="labelText"></label> <br>
+              <br>
+
+              <span id="ticSpanInterval" class="labelText">Time interval X in minutes:</span>
+
+              <input type="text"  id='inputBoxX' class="inputBox" value="10" class="inputBox inputSettings">
+              <br>
+
+            </div>
+
+            <span>   <br>   </span>
+
+            <div>
+              <button type="button" id='apply2' class='controlButton'> </button>
+            </div>
+            <br>
+            <br>
+            <span id="noteSpan" class="labelText"> </span>
+          </div>
+
+          <span>   <br>   </span>
+
+          <div class='topic'>
+            <div class="stressContainer">
+              <h4 id='stressModelHeading' class="text"> </h4>
+              <button type="button" id="settingsInfo" class='controlButton' align='right'> </button>
+            </div>
+
+            <span id="stressLevelText" class="labelText">  </span>
+
+            <input type="text"  id='stressLevel' value="1" class="inputBox inputSettings" title='Set stress level'>
+            <br>
+            <br>
+
+            <span id="stressLevelDoubleText" class="labelText"> </span>
+
+            <input type="text" id='tDouble' value="240" class="inputBox inputSettings" title='Set time for stress level doubling'>
+            <br>
+            <br>
+
+            <button type="button" id='apply3' class='controlButton' lang="en">Apply</button>
+          </div>
+
+          <span> <br> </span>
+
+          <div class='topic'>
+            <h4  id='clearDataHeading' class="text"> </h4>
+
+            <button type="button" id="clearAllData" class='controlButton'></button>
+
+            <button type="button"  id="clearEverything" class='controlButton'></button>
+
+          </div>
+
+          <span>   <br>   </span>
+          <button type="button" id="gotoDayFromSettings1" class='controlButton'> </button>
+          <span>   <br>   </span>
+
+        </div>    <!-- settingsContainer2 -->
+      </div>    <!-- settingsView -->
+
+
+    </div>    <!-- page -->
+    <!-- <p>Supported browsers: Firefox, Vivaldi, Chrome, Ecosia app for Samsung</p> -->
+  </body>
+</html>

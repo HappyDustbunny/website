@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>FuzzyPlan Instructions</title>
+    <style media="screen">
+      h1, h3 {
+        text-align: center;
+      }
+      p {
+        margin-right: 20px;
+        margin-left: 20px;
+      }
+      button {
+        text-align: center;
+        width: 25%;
+        height: 35px;
+        font-size: 14px;
+        background-image: linear-gradient(#9898ff, #9adbf0, #9adbf0, #9adbf0, #9898ff);
+        border: 1px solid rgb(96, 139, 168);
+        border-radius: 5px;
+      }
+      #english  {
+        transform: rotateX(10deg);
+        border: 2px solid rgb(255, 50, 255);
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Instructions</h1>
+    <button type="button" id="english" title="English" alt='English'>
+      <img src="./200px-Flag_of_the_United_Kingdom.png" alt="UK flag" height=25px>
+    </button>
+    <button type="button" id="danish" title="Dansk" alt='Dansk'>
+      <img src="./200px-Flag_of_Denmark.png" alt="DK flag" height=25px>
+    </button>
+      <p>
+        To add a task just write a few word in the inputBox.
+      </p>
+      <p>
+        The default task duration is 30 minutes, but writing <kbd>1h15m Cleaning</kbd>
+        will make the task 1 hour and 15 minutes long.
+        <br>
+        If you know <em>when</em> a task is supposed to take place just
+        write <kbd>1205 Lunch</kbd> if your lunch appointment is at 12:05 or
+        <kbd>745 Breakfast</kbd> if you know you will eat breakfast at 7:45.
+        <br>
+        (AM and PM is not supported as this is the twentyfirst century...)
+        <br>
+        <br>
+        Jump to a different part of the task list by writing the time,
+        say <kbd>700</kbd> or <kbd>1800</kbd> without text.
+        <br>
+        NOTE: The first task MUST have a fixed time. You can insert a
+        15 minute planning period by pressing the "Now" button.
+      </p>
+      <p>
+        Press enter to input a task, or click on the task you
+        want to insert the new task before.
+        Clicking on a white area insert the task in the beginning of
+        the empty area.
+      </p>
+      <p>
+        To swap two tasks, just click them one after another. Fixed tasks
+        can not be swapped.
+        <br>
+        Double click to edit a task.
+      </p>
+      <p>
+        The Clear-button will clear the textbox <em>or</em> the entire task list as
+        indicated by the arrow triangles.
+      </p>
+      <button type="button" id='goBack1'>Go back</button>
+
+
+    <h3 id='stressModel'>Stress model</h3>
+
+      <p>
+        In the left side is a narrow vertical bar that change colour based
+        on a stress model. Black denotes stresslevel 10 and lavender is relaxed
+        (stresslevel 1).
+      </p>
+      <p>
+        The model assumes that tasks drains you at drain level 1 and that
+        unscheduled time makes you relax at gain level 1.
+      </p>
+      <p>
+        To use the stress model more actively assign a
+        drain level (1-5) by writing <kbd>d3 Pay bills</kbd> or
+        <kbd>d5 Getting fired</kbd>.
+        <br>
+        Defalult is 1.
+      </p>
+      <p>
+        When the bar to the left turn from lavender to dark blue
+        you are supposed to add pauses with a gain level from 1-9
+        by writing <kbd>g3 Pause</kbd> or <kbd>g8 Meditation</kbd>.
+        This will bring the stess level down in the model.
+        And hopefully in you too.
+      </p>
+      <p>
+        In the settings (&#x2699;) you can find additional controls for the
+        stress model. You will need to experiment to get settings that
+        reflects your actual stress level.
+        <br>
+        If the model predicts you will be more stressed than you find
+        reasonable, try to raise the time before your stress double with,
+        say, 30 minutes.
+        <br>
+        If you become more stressed than the model predicts, try lowering the
+        number.
+        <br>
+        If you wake up feeling stressed you can reflect this by setting
+        the wake up stress level.
+      </p>
+      <p>
+        The hearts shows your current stresslevel according to the model.
+        <br>
+        10 hearts is relaxed, zero hearts is stressed out.
+      </p>
+      <button type="button" id='goBack2'>Go back</button>
+
+      <script type="text/javascript">
+        document.getElementById('goBack1').addEventListener('click', goBack);
+        document.getElementById('goBack2').addEventListener('click', goBack);
+        document.getElementById('danish').addEventListener('click', goDK);
+        document.getElementById('english').addEventListener('click', goUK);
+
+        document.addEventListener('touchmove', function() {twoFingerNavigation(event);});
+
+        function twoFingerNavigation(event) {
+          if (sessionStorage.touchX && event.touches.length === 1) {
+            sessionStorage.touchX = '';
+          }
+          if (event.touches.length > 1) {
+            if (!sessionStorage.touchX) {
+              sessionStorage.touchX = event.touches[0].screenX;
+            } else if (event.touches[0].screenX - sessionStorage.touchX < 50) { // Left swipe
+              window.location.assign('main.html');
+            } else if (event.touches[0].screenX - sessionStorage.touchX > 50) { // Right swipe
+              window.location.assign('main.html');
+            }
+          }
+        }
+
+        function goBack() {
+          window.location.assign(document.referrer);
+        }
+
+        function goDK() {
+          window.location.assign('instructions_dk.html')
+        }
+
+        function goUK() {
+          window.location.assign('instructions.html')
+        }
+
+      </script>
+  </body>
+</html>

@@ -1,0 +1,376 @@
+* {
+    box-sizing: border-box;  /* Include margin, padding and border in box sizes */
+  }
+
+body {
+  max-width: 400px;
+  min-width: 340px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+}
+
+button:hover,
+button:focus {
+  /* transform: scaleY(1.2); */
+  transform: rotateX(10deg);
+  border: 1px solid rgb(255, 50, 255);
+}
+
+/* button.addTaskButton {
+position: absolute;
+bottom: 225px;
+left: 310px;
+border: 3px solid rgba(154, 219, 240, .9);
+background-color: rgba(154, 219, 240, .6);
+border-radius: 25px;
+z-index: 999;
+} */
+
+/* div {
+  text-align: left;
+  border: 1px solid rgb(96, 139, 168);
+  border-radius: 4px;
+  background-color: rgba(154, 219, 240, .35);
+} */
+
+h1 {
+  margin: unset;
+}
+
+input {
+  width: auto;
+  padding-left: 8px;
+  border-radius: 10px;
+}
+
+p {
+  font-size: 10px;
+}
+
+/* @keyframes infoAnimation {
+  0% {border: 1px solid rgb(96, 139, 168);}
+  50% {border: 1px solid rgb(255, 0, 0);}
+  100% {border: 1px solid rgb(96, 139, 168);}
+} */
+
+html {
+  background-color: white;
+}
+
+@media screen and (min-width: 400px) {
+  html {
+    background-color: black;
+  }
+}
+
+.button-disabled{
+  cursor: not-allowed;
+  K  /* pointer-events: none; */
+  border: none;
+}
+
+.centerWrapper {
+  display: grid;
+  grid-template-columns: 25% auto 11% 6% 6%;
+  grid-template-rows: auto auto;
+  grid-gap: .3rem;
+  background-color: transparent;
+  border: none;
+  overflow-y: scroll;
+  grid-template-areas:
+  '. . . . . .'
+  '. chooseBox . . . .'
+}
+
+.container1 {
+  display: grid;
+  grid-template-columns: 40px auto 25px 40px;
+  grid-template-rows: auto auto auto;
+  grid-gap: .3rem;
+  background-color: transparent;
+  border: none;
+  overflow-y: scroll;
+  grid-template-areas:
+  'month header info storage'
+  '. hearts . .'
+  '. messages . .';
+}
+
+.container2 {
+  display: grid;
+  grid-template-columns: 1% 10% 1% 83% 1%;
+  grid-template-rows: auto auto auto;
+  grid-gap: .3rem;
+  /* justify-items: center; */
+  background-color: transparent;
+  border: none;
+  height: 480px;
+  overflow-y: scroll;
+  grid-template-areas:
+  '. . . taskHeader .'
+  'stressBar timeBar . taskListing .'
+  '. . . taskFooter .';
+}
+
+
+.controlButton {
+  /* display: inline-block; */
+  text-align: center;
+  width: auto;
+  height: 22px;
+  border: 1px solid rgb(96, 139, 168);
+  border-radius: 10px;
+  background-image: linear-gradient(#9898ff, #9adbf0, #9adbf0, #9adbf0, #9898ff);
+  font-size: 0.6em;
+  padding-left: 3px;
+}
+
+
+.halfHours1,
+.halfHours2 {
+  background-color: transparent;
+  /* background-color: blue; */
+  padding: 0px;
+  border: none;
+  border-radius: 0px;
+  /* width: 41px; */
+  height: 2.0833%;
+  font-size: 14px;
+  /* text-align: center; */
+  border-top: 1px solid rgba(154, 219, 240, 1.0);
+}
+
+.halfHours1 {
+  height: 1.0417%;
+}
+
+/* .dontTouch {
+  cursor: not-allowed; */
+  /* pointer-events: none; */
+/* } */
+
+.pause {
+  border: none;
+  background-color: rgba(154, 219, 240, .25);
+  box-shadow: 0px 0px 3px 2px rgba(152, 250, 172, 0.56);
+}
+
+.stressDiv {
+  font-size: 14px;
+  height: 1.0417%;
+  width: 10px;
+  color: hsl(255, 100%, 85%);
+  border: none;
+  border-radius: 0px;
+}
+
+.task {
+  text-align: left;
+  border: 1px solid rgb(96, 139, 168);
+  border-radius: 10px;
+  background-color: rgba(154, 219, 240, .6);
+  grid-area: taskListing;
+}
+
+.isFuzzy { /* Needs to come after .task */
+   border: 1px solid rgba(154, 219, 240, 1.0);
+  border-radius: 10px;
+  background-color: rgba(154, 219, 240, .25);
+  box-shadow: 0px 0px 3px 2px rgba(154, 219, 240, .25);
+}
+
+.isGain { /* Needs to come after .isFuzzy and before .isClicked */
+  border: 1px solid rgba(123, 217, 71, 1.0);
+  background-color: rgba(123, 217, 71, .2);
+}
+
+.isClicked { /* Needs to come after .isFuzzy */
+  transform: rotateX(10deg);
+  border: 1px solid rgb(255, 50, 255);
+}
+
+.isNotFuzzy.isGain { /* Needs to come after .isFuzzy */
+  border: 1px solid rgba(123, 217, 71, 1.0);
+  background-color: rgba(123, 217, 71, .3);
+}
+
+.isNullTime { /* Needs to come after .task */
+  background-color: white;
+  border: 1px solid rgba(154, 219, 240, 1.0);
+  border-radius: 10px;
+}
+
+
+#addTaskButton {
+  position: relative;
+  bottom: 80px;
+  left: 300px;
+  font-size: x-large;
+  line-height: 0.1em;
+  text-align: center;
+  padding: .1em 0.12em .2em .1em;
+  background-image: linear-gradient(#08e22a, #0bfb31, #0bfb31, #0bfb31, #08e22a);
+  height: 1.7em;
+  width: 1.7em;
+  border-radius: 25px;
+  border: 1px solid rgb(108, 168, 48);
+}
+
+#animationBox {  /* Box that help transition to add.html*/
+  width: 0px;
+  height: 0px;
+  background-color: white;
+  /* border: 2px solid black; */
+  position: absolute;
+  transition: width .12s;
+  transition: height .12s;
+  visibility: hidden;
+}
+
+#animationBox.fromLowerRight { /* Adding class make animation run */
+  bottom: 0px;
+  right: 0px;
+  width: 360px;
+  height: 540px;
+  visibility: visible;
+}
+
+#dummyAdd {
+  background-color: rgba(154, 219, 240, .25);
+  width: 100%;
+  height: 200px;
+}
+
+
+#heart {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  background-color: white;
+  font-size: 14px;
+  grid-area: hearts;
+}
+
+#info {
+  width: 22px;
+  border-radius: 20px;
+  margin-top: 2px;
+  font-size: 0.8em;
+  padding-left: 7px;
+}
+
+#message {
+  display: flex;
+  text-align: center;
+  grid-area: messages;
+}
+
+#month {
+  grid-area: month;
+  justify-self: end;
+  margin-top: 2px;
+  margin-right: 2px;
+}
+
+#name {
+  justify-content: center;
+  grid-area: header;
+}
+
+#nowSpan {
+  border-bottom: 3px solid rgba(255, 0, 255, 1.0);
+  grid-area: timeBar;
+  z-index: 999;
+}
+
+div.tasksToSort {
+  display: grid;
+}
+
+div.tasksToSort #upButton {
+  display: none;
+}
+
+div.tasksToSort #nowButton {
+  display: none;
+}
+
+div.tasksToSort #postpone {
+  line-height: 0.8em;
+  padding-top: 5px;
+  display: grid;
+  justify-self: end;
+  /* background-image: linear-gradient(#18ee4491, #a5ff987a, #a5ff987a, #a5ff987a, #18ee4491) */
+}
+
+#postpone {
+  display: none;
+}
+
+#chooseBox {
+  display: none;
+  grid-area: chooseBox;
+}
+
+#chooseBox.active {
+  display: grid;
+}
+
+.floatingTask {
+  display: flex;
+  flex-flow: column wrap;
+  background-color: rgba(123, 217, 71, .6);
+  border-radius: 10px;
+}
+
+#settings {
+  width: auto;
+  font-size: 15px;
+  margin-left: 2px;
+}
+
+#storage {
+  grid-area: storage;
+  margin-top: 2px;
+  margin-left: 2px;
+}
+
+#stressDiv {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  border: none;
+  height: 1440px;
+  align-items: center;
+  grid-area: stressBar;
+}
+
+#taskDiv {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  border: none;
+  height: 1440px;
+  width: 100%;
+  grid-area: taskListing;
+}
+
+#timeDiv {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  /* background-color: red; */
+  border: none;
+  width: 100%;
+  height: 1440px;
+  align-items: center;
+  grid-area: timeBar;
+}
+
+
+#zoom {
+  text-align: center;
+  width: auto;
+  font-size: 15px;
+}

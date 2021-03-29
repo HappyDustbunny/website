@@ -1,0 +1,89 @@
+body {
+font-size: 12pt;
+/* max-width: 650px;
+min-width: 350px; */
+margin-left: auto;
+margin-right: auto;
+}
+
+h1 {font-size: 23pt;
+/* margin-bottom: 0px;
+margin-top: 0px;
+font-style: normal; */
+}
+
+h2 {
+font-size: 12pt;
+/* margin-bottom: 0px;
+margin-top: 0px;
+font-style: normal; */
+}
+
+li,u,p {
+  font-size: 12pt;
+  font-style: normal;
+}
+
+q {
+  font-style: italic;
+}
+
+button {
+  width: 100%;
+}
+
+.controlButton {
+  background: none;
+  border: none;
+  /* padding: 7px;
+  width: auto; */
+}
+
+#foldOutFoldIn {
+  float: right;
+  /* position: absolute;
+  right: 0px; */
+}
+
+.kategori
+{
+  background: none;
+  border: none;
+  display: none;
+}
+
+.recipe {
+  display: block;
+  background: none;
+  border: none;
+  break-before: page;
+}
+
+.ingredienser {
+  background: none;
+  border: none;
+}
+
+.howto {
+  background: none;
+  border: none;
+  break-before: avoid;
+}
+
+.antal {
+  text-align: center;
+  margin-top: 2px;
+}
+
+.slut {
+  background: none;
+  border: none;
+  width: auto;
+  float: right
+}
+
+#printInstructions {
+  display: block;
+  margin-left: 7px;
+  margin-right: 7px;
+}

@@ -1,0 +1,377 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=windows-1252"/>
+		<title>Git command line intro</title>
+		<style type="text/css">
+		header {
+			font-weight: bold;
+			font-size: xx-large;
+		}
+
+		div {
+			line-height: 1.4;
+		}
+
+		p, h5, header {
+		  width: 70%;
+		  margin: auto;
+		}
+
+		h5 {
+			font-size: large;
+		}
+
+		kbd {
+			font-weight: bold;
+			background-color: #D3D3D3;
+		}
+
+		</style>
+	</head>
+
+	<body lang="en-US" link="#000080" vlink="#800000" dir="ltr">
+		<header>
+			Git command line intro
+		</header>
+		<div>
+
+		<p>
+			I&rsquo;ve been using Github for two years, but only had a rudimentary idea about the whole thing.
+		</p>
+		<p>
+			The tutorials were too long and the names too confusing for me to put in the effort to really learn Git.
+		</p>
+		<p>
+			This is an attempt to write the guide I wished I&rsquo;ve found 1&frac12; year ago. And (maybe mostly)
+			to remind myself what to do when I forget :-P
+		</p>
+		<br/>
+		<p>
+			For installation and motivation, look somewhere else.
+		</p>
+		<br/>
+		<h5>
+			Tools
+		</h5>
+		<p>
+			The command line is all you need &ndash; and it is less confusing for beginners in my opinion.
+		</p>
+		<br>
+		<p>
+			On Windows you can use the native command line, but with the Git installation comes a Linux-like
+			command line called <em>Git Bash</em>. I prefer the power of Linux, but it&rsquo;s a matter of taste.
+		</p>
+		<br>
+		<p>
+			A simple thing like being able to clear the window by typing <kbd>clear</kbd> is nice though, and
+		Windows lacks the powerful tool <kbd>grep</kbd> that can search for anything and take regex-expressions.
+		</p>
+		<br/>
+		<h5>
+			Getting started
+		</h5>
+		<p>
+			Once you are in your new project folder (<kbd>mkdir proj,</kbd><kbd> cd proj</kbd>) you can ask Git to track
+		your work by typing <kbd>git init</kbd>.
+		This will make a <em>.git</em> folder you don&rsquo;t need to interact with.
+		</p>
+		<br>
+		<p>
+			Your local repository lives in the <em>.git</em> folder and contains a copy of the entire project
+			throughout it&rsquo;s history. Often it is a good idea with a <em>.gitignore</em> file to tell Git
+			which files not to track.
+		</p>
+		<p>
+			If you set up a virtual environment it will often have a relevant <em>.gitignore </em>file.
+		</p>
+		<p>
+			There are lot of resources on the web that can help build a <em>.gitignore </em>or teach you about
+			syntax if you want to exclude stuff manually.
+		</p>
+		<br>
+		<p><strong>Note:</strong> You&rsquo;ll need to ask the file explorer to <em>Show All Files</em> to see files preceded by a dot
+		like .git, or use the command <em>ls -a</em> in Git Bash.
+		</p>
+		<br>
+		<h5>Using Git</h5>
+		<p>
+			Now you make changes in your project and want Git to save a snapshot.
+		</p>
+		<br>
+		<p>
+			The command <kbd>git status</kbd> will show you if there are changes or not. If there are, add the
+		files worthy of being tracked by typing <kbd>git add &lt;filename&gt;</kbd> or - as everything most
+		likely should be tracked - add all by typing <kbd>git add .</kbd> (The period tells Git to include <em>all</em> changed files).</p>
+		</p>
+		<br>
+		<p>
+			To actual start tracking the files, type <kbd>git commit -m &ldquo;Some description of the changes&rdquo;</kbd>.
+		</p>
+		<p>
+			Omit the <kbd>-m</kbd> flag if your commit message needs to be more than a sentence. You
+		will then be taken to an editor to compose the message.
+		</p>
+		<br>
+		<p>
+			Typically you will want to <em>push</em> your work to Github or
+			another remote repository by <kbd>git push</kbd> after a commit.
+		</p>
+		<br>
+		<p>
+			You can see your previous commits by typing <kbd>git log </kbd>(press <kbd>q</kbd> to exit), though you
+			often will want to format the output by using one or more of these flags <kbd>--oneline</kbd> <kbd>--graph</kbd> <kbd> --7</kbd>.
+		</p>
+		<br>
+		<p>
+			<kbd>git reflog</kbd> gives similar information, but with information about <kbd>head</kbd> status and
+			commit/merge actions rather than commit messages.
+		</p>
+		<br>
+		<p>In Git Bash you can nickname the combination you like the most by making an alias:
+			<kbd>alias graph=&rdquo;git log --oneline --graph  -7&rdquo;</kbd>. This will let <kbd>graph</kbd>
+		have the same effect as typing <kbd>git log --oneline --graph  --7</kbd>.
+		To make aliases permanent you&rsquo;ll have to write them to the file <em>C:\Program Files\Git\etc\profile.d\aliases</em>
+		(for Windows 10). You may have to change permissions for the file and delete the file <em>.bashrc</em>
+		in your home directory (<em>~/.bashrc</em>).
+		</p>
+		<br>
+		<p>
+			Another good alias is <kbd>alias la=&rsquo;ls -a&rsquo;</kbd>,
+		</p>
+		<br>
+		<p>
+			After having committed a few changes you can return to your earlier work by
+			typing <kbd>git checkout 26a47c1</kbd> where the number is the first 7 digits in the long number denoting
+			each commit.
+		</p>
+		<p>
+			If you are using the <kbd>--oneline</kbd> flag only 7 digits will be displayed.
+		</p>
+		<br>
+		<p>
+			To get back to the most recent work type <kbd>git checkout master</kbd>. Try jumping back and forth
+			while having you work open in an adjacent window.
+		</p>
+		<br>
+		<p>
+			To drop work on one machine before pulling newer work from another machine stash your work (save your
+			work like putting it on a shelve for a later that never comes) by <kbd>git stash</kbd>
+			and then type <kbd>git checkout master </kbd>to go back to the version right after the last local commit.
+		</p>
+		<p>
+			The stash can be removed by <kbd>git stash pop</kbd>, but will <em>not</em> be recoverable. Lookup <em>git
+			stash</em> on the internet for safer ways to deal with stashes like <kbd>git stash apply</kbd>.
+		</p>
+		<p>
+			The commands <kbd>git reset</kbd> and <kbd>git revert</kbd> gives yet more flexibility to clean up if you mess up.
+		</p>
+		<br>
+		<h5>Branches</h5>
+		<p>
+			If you change something in your old work you will not be able to commit or save, because this would conflict with
+			later work or rewrite history. In the graph you will note that the label HEAD shows where you are. Jumping
+			back will leave you with <em>&ldquo;a detached head&rdquo;</em>.
+			<br>
+			To be able to work on your old work you&rsquo;ll
+			need to make a branch: <kbd>git branch &lt;newbranchname&gt;</kbd>.
+			<br>
+			<p>
+			This will photocopy all your old work to another branch where you can work as normal.
+			</p>
+			<br>
+			<p>
+			You can jump between branches with checkout: <kbd>git checkout master</kbd> and <kbd>git checkout &lt;newbranchname&gt;</kbd>.
+			</p>
+			<br>
+			<p>
+			Normally branches is made to try something out without ruining <em>master</em>.
+			<br>
+			You can do this yourself or someone you collaborate with can branch out. Brances that work out is then
+			merged back into <em>master.</em>
+			</p>
+			<br>
+			<p>To make Github track a locally created branch write <kbd>git push --set-upstream origin &lt;MyLocalBranch&gt;</kbd> </p>
+		</p>
+		<br>
+		<h5>Merging</h5>
+		<p>
+			When you are satisfied with the branch you merge it back into <em>master</em> by checking out <em>master</em>
+			and type <kbd>git merge </kbd><kbd>&lt;branchname&gt;</kbd>. Basically the changes in the document(s) in the
+			branch is inserted in the relevant documents at <em>master</em>, even if there has been work done on <em>master</em>.
+		</p>
+		<br>
+		<p>If the same lines
+		has been tampered with in both documents, there will be a merge
+		conflict that you will need to resolve manually.
+		</p>
+		<br>
+		<p>
+			There is a lot of tools to compare the text and choose what to keep, but it is possible
+			to edit the documents in a simple editor and just remove the unwanted text and the &lt;&lt;, == and &gt;&gt; by hand.
+		</p>
+		<br>
+		<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</p>
+		<p>Master&rsquo;s
+		text</p>
+		<p>====================</p>
+		<p>Branch&rsquo;s
+		text</p>
+		<p>&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</p>
+		<br>
+		<p>
+			After a merge conflict is resolved (or dropped by <kbd>git merge --abort</kbd>) the relevant file
+			will have to be added and committed as usual.
+		</p>
+		<p>
+			Along the way the command <kbd>git status</kbd> can be helpful (or confusing&hellip;).
+			Git status always tells you what have been changed and what needs to be done.
+		</p>
+		<p>
+			If you don&rsquo;t want the branch in your working tree you can delete it with
+			<kbd>git branch -d &lt;branchname&gt;</kbd>, but normally this is only done with small,
+			short lived local branches.
+		</p>
+		<p>
+			Note: As branches are cheap to make and delete the small, short lived branches absolutely
+			has a use for trying out new stuff without risking wrecking the master branch.
+		</p>
+		<br>
+		<h5>Rebase</h5>
+		<p>
+			Instead of merge that leaves branches, it is possible to rewind time to where the branch started
+			and then commit to the master branch as if the branch was never created.
+		</p>
+		<p>
+			This is done with the command <kbd>rebase</kbd> and it leaves the commit tree a little cleaner.
+		</p>
+		<p>
+			Read more at
+		<a href="https://git-scm.com/book/en/v2/Git-Branching-Rebasing">https://git-scm.com/book/en/v2/Git-Branching-Rebasing</a>
+		</p>
+		<br>
+		<p>
+			To rebase a branch back into <em>master</em> go to the branch with
+		</p>
+		<p align="center">
+			<kbd>gi</kbd><kbd>t branch </kbd><kbd>&lt;</kbd><kbd>branchname</kbd><kbd>&gt;</kbd>
+		</p>
+		<p>and then write</p>
+		<p align="center">
+			<kbd>git rebase master</kbd>.
+		</p>
+		<p>As the branch typically will be a commit or two ahead of <em>master</em> you now go back to master
+		</p>
+		<p align="center">
+			<kbd>git checkout master</kbd>
+		</p>
+		<p>
+			and do a fast-forward merge to get <em>master</em> up to speed
+		</p>
+		<p align="center">
+			<kbd>git merge &lt;branchname&gt;</kbd>
+		</p>
+		<p align="left" >
+			To delete a branch simply type
+		</p>
+		<p align="center">
+		<kbd>git branch -d &lt;branchname&gt;</kbd>
+		</p>
+		<br>
+		<h5>Github</h5>
+		<p>
+			Git is meant to preserve your work and make going back to earlier versions easy, but also
+			to facilitate working together with others.
+		</p>
+		<p>
+			Therefore it is easy to share a common repository in the cloud. Here I will use Github as an example.
+		</p>
+		<p>
+			If you don&rsquo;t have a Github account start by getting one.
+		</p>
+		<br>
+		<p>
+			If you have a local repository on your computer you want to share or backup in the cloud, you start
+			with making a new repository at Github with the name of your project &ndash; but do <em>not</em> add a
+			Read.me or license.
+		</p>
+		<br>
+		<p>
+			Once the Github repository is up click the green <em>Clone or download</em>-button and copy the url.
+		</p>
+		<p>
+			In your terminal you can bind your local repository to the one on Github by typing
+		</p>
+		<p align="center">
+			<kbd>git remote add origin https://github.com/someuser/hello_world.git</kbd>
+		</p>
+		<p>
+			and then push your work to Github by issuing the command
+		</p>
+		<p align="center">
+			<kbd>git push origin master</kbd>
+		</p>
+		<br>
+		<p>
+			To get updates from Github use <kbd>git fetch, git merge</kbd>
+		</p>
+		<br>
+		<p align="left" >
+			Or better: set the local master to follow the master on Github by writing
+		</p>
+		<p align="center">
+			<kbd>git branch --set-upstream-to=origin/master master</kbd>
+		</p>
+		<p align="left" >
+			After that you can get updates by simply write <kbd>git pull</kbd>
+		</p>
+		<p>
+			This will also make <kbd>git push</kbd> the equivalent of <kbd>git push origin master</kbd> if things are set
+			up correctly.
+		</p>
+		<p>
+			Search the net for what to do it if <kbd>git push</kbd> and <kbd>git pull</kbd> does not work.
+		</p>
+		<br>
+		<p align="left">
+			If you want to clone an existing Github repository onto your computer use the green <em>Clone or download</em>-
+			button on the Github page to copy the url and go to the folder where you intend the project to live and type
+		</p>
+		<p align="center">
+			<kbd>git clone https://github.com/someuser/hello_world.git</kbd>
+		</p>
+		<br>
+		<p align="left" >
+			Then go to the project folder with <kbd>cd hello_world</kbd> and start programming.
+		</p>
+		<br/>
+		<br/>
+
+		</p>
+		<h5>Deliberate learning</h5>
+		<p>
+			Make a dummy project to experiment on and revisit your skills regularly.
+		</p>
+		<br>
+		<p>
+			ToDo: make a github project with branches to clone and experiment on.
+		</p>
+		<br>
+		<br>
+		<h5>Various loose ends</h5>
+		<p>Show branches on remote: <kbd>git remote show origin</kbd>
+		</p>
+		<br/>
+		<p>
+			Delete branch on remote (<em>Careful!</em>): <kbd>git push --delete origin &lt;Filename&gt;</kbd>
+		</p>
+		<br/>
+		<p>
+			<a href="https://www.atlassian.com/git/tutorials/resetting-checking-out-and-reverting">How to
+				roll back a commit (or two) </a>
+		</p>
+		<br>
+		<br>
+	</div>
+	</body>
+</html>

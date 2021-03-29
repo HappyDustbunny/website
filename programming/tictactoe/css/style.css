@@ -1,0 +1,21 @@
+
+.bucket {
+  display: grid;
+  grid-template-columns: 150px 150px 150px 150px 150px;
+  grid-template-rows: 150px 150px 150px 150px;
+  grid-gap: 1rem;
+}
+
+body {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item1 {
+  background-color: #1EAAFC;
+  background-image: linear-gradient(135deg, white 0%, rgba(219,224,248,1) 96%, rgba(159,164,178,1) 100%);
+  border: 2px solid rgba(59,64,78,1);
+  border-radius: 5px;
+}

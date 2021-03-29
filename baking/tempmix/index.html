@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/master.css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet"> -->
+    <title>Temperature mixer</title>
+    <!-- ****** faviconit.com favicons ****** -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="icon" sizes="16x16 32x32 64x64" href="images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="196x196" href="images/favicon-192.png">
+    <link rel="icon" type="image/png" sizes="160x160" href="images/favicon-160.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="images/favicon-64.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+    <link rel="apple-touch-icon" href="images/favicon-57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/favicon-114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/favicon-72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="images/favicon-144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="images/favicon-60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="images/favicon-120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="images/favicon-76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="images/favicon-152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png">
+    <meta name="msapplication-TileColor" content="#FFFFFF">
+    <meta name="msapplication-TileImage" content="images/favicon-144.png">
+    <meta name="msapplication-config" content="/browserconfig.xml">
+    <!-- ****** faviconit.com favicons ****** -->
+  </head>
+
+  <body>
+    <!-- <h1>Temperature mixer</h1> -->
+    <form class="Input" action="index.html" method="get" oninput="calc(v1, v2, v3, t1, t2, t3)">
+      <div class="grid-container">
+        <div class="grid-item0">
+          Temperature mixer
+        </div>
+        <div class="grid-item1">
+          Cold&nbsp;water
+        </div>
+        <div class="grid-item2">
+          Hot water
+        </div>
+        <div class="grid-item3">
+          Mix
+        </div>
+        <div class="grid-item4">
+          <input type="text" id="t1" value="10" class="box">  &deg;C
+        </div>
+        <div class="grid-item5">
+          <input type="text" id="t2" value="100" class="box">  &deg;C<br>
+        </div>
+        <div class="grid-item6">
+          <input type="text" id="t3" value="37" class="box">  &deg;C<br>
+        </div>
+        <div class="grid-item7">
+          Volume <br>
+          <input type="text" id="v3" style="color: blue" value="3.2" class="locked-box" disabled> dL<br>
+        </div>
+        <div class="grid-item8">
+          Volume<br>
+          <input type="text" id="v2" style="color: red" value="1.8" class="locked-box" disabled> dL<br>
+        </div>
+        <div class="grid-item9">
+          Volume<br>
+          <input type="text" id="v1" style="color: #4e97ea;" value="5" autofocus class="box"> dL<br>
+        </div>
+        <div class="img1">
+          <img class="beaker" src="images/ColdBeaker.png" alt="ColdBeaker" >
+        </div>
+        <div class="img2">
+          <img class="beaker" src="images/HotBeaker.png" alt="HotBeaker" >
+        </div>
+        <div class="img3">
+          <img class="beaker" src="images/LukewarmBeaker.png" alt="LukewarmBeaker" >
+        </div>
+        <div class="grid-item10">
+          To get water at a given temperature you can mix cold and hot water.
+        </div>
+        <div class="grid-item11">
+          Input final volume and/or temperature to find how much cold and hot water you need.
+        </div>
+        <div class="grid-item12">
+          Tip: By pouring the hot water into the cold water energy loss will tend to be lower.
+        </div>
+      </div>
+      <br>
+    </form>
+    <script src="scripts/main.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FuzzyPlan</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
+  </head>
+
+  <body onload="setUpFunc()">
+
+    <div class="container1">
+      <button type="button" class='controlButton' id="month" title='Click to
+        show month (or just swipe rigth with two fingers anywhere)'>
+        Month
+      </button>
+      <h1 id='name' align=center>
+        FuzzyPlan
+      </h1>
+      <button type="button" class='controlButton' id="info" title="info" title="Information and user manual">
+         ?
+      </button>
+      <button type="button" class='controlButton' id="storage" title='Click to
+        show the storage (or just swipe left with two fingers anywhere)'>
+        Storage
+      </button>
+      <span id='heart'></span>
+      <span id='message' display='none'></span>
+      <br>
+    </div>
+
+    <div class="centerWrapper">
+      <div id="sortTask" class="noTasksToSort">
+        <button type="button" id="postpone" class="controlButton" title="Click to move
+          content of input box to month (postpone task)">
+          &#x25C2;Postpone <!-- Black left-pointing small triangle  -->
+        </button>
+        <button id='upButton' class="controlButton" type="button" title="Press to
+          insert a 15 minute planning period at the chosen wake up time">
+          7:00&#x25b8; <!-- Black Right-Pointing Small Triangle -->
+        </button>
+        <button id='nowButton' class="controlButton" type="button" title='Press to
+          insert a 15 min planning period at current time'>
+          Now&#x25b8; <!-- Black Right-Pointing Small Triangle -->
+        </button>
+      </div>
+
+      <input type="text" id='inputBox' autofocus value="">
+
+      <button id='clearButton' class="controlButton" type="button" title="Clear">
+        Clear&#x25BE;<!-- Black down-pointing small triangle  -->
+      </button>
+      <button id='settings' class="controlButton" type="button" title='Settings'>
+        &#x2699;  <!-- Gear icon -->
+      </button>
+      <button id='zoom' class="controlButton" type="button" title='Toggles zoom'>
+        &#x2350; <!-- ⍐ -->
+      </button>
+
+      <div id="chooseBox"></div>
+
+
+      <!-- <button type="button" class="addTaskButton">&#x270d;</button> --> <!-- Writing Hand -->
+    </div>
+
+      <!-- <br> -->
+
+    <div id='container' class="container2">
+      <div id='stressDiv'> </div>
+      <div id='timeDiv'> </div>
+      <div id='taskDiv'> </div>
+    </div>
+
+    <button id="addTaskButton" class="controlButton">+</button>
+
+    <div id='animationBox'>
+      <h1 align='center'>FuzzyPlan</h1>
+      <h2 align='center'>Add task</h2>
+      <div id='dummyAdd'></div>
+    </div>
+    <!-- <p>Supported browsers: Firefox, Vivaldi, Chrome, Ecosia app for Samsung</p> -->
+  </body>
+</html>
