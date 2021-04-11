@@ -9,6 +9,13 @@
     <style media="screen">
       header { position: fixed; left: 75%; top: 0; width: 100%; }
       footer { position: fixed; left: 0; bottom: 0; width: 100%; color: rgba(0, 0, 0, .2); background-color: rgba(255, 255, 255, 0); }
+      main {
+        display: grid;
+        grid-template-columns: 2em auto 2em;
+        grid-template-rows: 2em;
+        height: min-content;
+        row-gap: 1em;
+      }
       .controlContainer { display: flex; }
       .burger { list-style-type: none; padding-left: 1em; }
       .burgerText { display: none; border: 3px ridge; border-radius: 0px 5px 15px 5px; padding: 5px; margin: 4px 0px; }
@@ -20,13 +27,6 @@
       .headContainer {
         display: flex;
         flex-wrap: wrap;
-      }
-      .contentContainer {
-        display: grid;
-        grid-template-columns: 2em auto 2em;
-        grid-template-rows: 2em;
-        height: min-content;
-        row-gap: 1em;
       }
       .content {
         grid-column-start: 2;
@@ -149,17 +149,20 @@
     <!-- <script src='main.js' defer> </script> -->
   </head>
   <body>
+
     <header>
-      <img id='topImg' src="images/vinter_top.png" alt="none" >
+      <img id="topImg" src="images/vinter_top_mobile68x62.jpg" srcset="images/vinter_top_mobile68x62.jpg 68w,
+      images/vinter_top_small567x519.jpg 567w, images/vinter_top567x519.jpg 567w" sizes="25vw" alt="none" >
     </header>
 
     <div class="burger">
         <div class="controlContainer">
-          <button type="button" class="burgerControl">|||</button>
+          <img src="images/burger.svg" class="burgerControl" alt="Navigation" width="20px" height="20">
           <button type="button" class="languageDa" lang="da">Dansk</button>
           <button type="button" class="languageEng" lang="en">English</button>
         </div>
     </div>
+
     <div class="headContainer">
       <div id="menuContainer">
         <div id='FuzzyPlan' class="burgerText"> FuzzyPlan (beta) </div>
@@ -168,7 +171,8 @@
         <div id='cooking' class="burgerText"> Cooking </div>
         <div id='about' class="burgerText"> About </div>
       </div>
-      <div class="contentContainer">
+
+      <main>
         <div class="content">
           &nbsp;
         </div>
@@ -178,12 +182,14 @@
         <div class="content">
           <a href="/cooking/kogebog.html">Trin-for-trin Kogebog</a>
         </div>
-      </div>
+      </main>
     </div>
 
     <footer>
-      <img id='bottomImg' src="images/vinter_bottom.png" alt="none" >
+      <img id='bottomImg' src="images/vinter_bottom_mobile376x92.jpg" srcset="images/vinter_bottom_mobile376x92.jpg 376w,
+      images/vinter_bottom_small2760x669.jpg 2760w, images/vinter_bottom_2760x669.jpg 2760w" sizes="100vw" alt="none" >
       <p id='cookieText'>Cookie policy: No cookies for you!</p>
     </footer>
+
   </body>
 </html>
