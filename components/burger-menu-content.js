@@ -24,6 +24,7 @@ class BurgerMenuControl extends HTMLElement {
         .secondLevelBurgerText {
           display: grid;
           justify-content: flex-end;
+          padding: .2em;
         }
 
         #menuContainer {
@@ -36,14 +37,14 @@ class BurgerMenuControl extends HTMLElement {
       <div id='cookbook' class="burgerText"> Step-by-step cookbook </div>
       <div id='programming' class="burgerHeading">
         Programming
-        <div id='python' class='secondLevelBurgerText' lang='en'>Pyton</div>
-        <div id='rust' class='secondLevelBurgerText' lang='en'>Rust</div>
+        <div id='python' class='secondLevelBurgerText' lang='en' style='display: none'>Pyton</div>
+        <div id='rust' class='secondLevelBurgerText' lang='en' style='display: none'>Rust</div>
       </div>
       <div id='cooking' class="burgerHeading">
         Cooking
-        <div id='cookbooks' class='secondLevelBurgerText' lang='en'>Cookbooks</div>
-        <div id='baking' class='secondLevelBurgerText' lang='en'>Baking</div>
-        <div id='tempMix' class='secondLevelBurgerText' lang='en'>Temperature mixer</div>
+        <div id='cookbooks' class='secondLevelBurgerText' lang='en' style='display: none'>Cookbooks</div>
+        <div id='baking' class='secondLevelBurgerText' lang='en' style='display: none'>Baking</div>
+        <div id='tempMix' class='secondLevelBurgerText' lang='en' style='display: none'>Temperature mixer</div>
       </div>
       <div id='about' class="burgerText"> About </div>
       </div>

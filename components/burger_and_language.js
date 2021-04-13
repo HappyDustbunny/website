@@ -1,15 +1,20 @@
 $(function() {
+  let toggleVar0 = 10; // Used to toggle border-radius for the burger menu
+  let radius0 = 5; // Used to toggle border-radius for the burger menu
+  let toggleVar1 = 10; // Used to toggle border-radius for the burger menu
+  let radius1 = 5; // Used to toggle border-radius for the burger menu
+
   let lang = ['en', 'da'];
   let language = 0; // English 0, Danish 1
   let languagePack = { // {'id': [['text', 'title'], ['tekst', 'titel']]} The variable language is 0 for english and 1 for danish
     'cookbook': [['Step-by-step cookbook', ''],
-                 ['Trin-for-trin kogebog', '']],
+    ['Trin-for-trin kogebog', '']],
     'programming': [['Programming', ''],
-                    ['Programmering', '']],
+    ['Programmering', '']],
     'cooking': [['Cooking', ''],
-                ['Madlavning', '']],
+    ['Madlavning', '']],
     'about': [['About', ''],
-              ['Om', '']],
+    ['Om', '']],
     // '': [['', ''], ['', '']],
   };
 
@@ -49,13 +54,55 @@ $(function() {
   });
 
   $('#programming').on('click', function() {
-    $('.secondLevelBurgerText').not('animated').slideToggle();
+    $('#programming > *').not('animated').slideToggle();
+    toggleProgramming();
+    if (toggleVar1 < 0) {
+      $('#cooking > *').not('animated').slideToggle();
+      toggleCooking()
+    };
     // window.location = '/programming/index.html';
   });
 
-  $('#cooking').on('click', function() {
-    window.location = '/cooking/index.html';
+  $('#python').on('click', function() {
+    window.location = '/programming/python.html';
   });
+
+  $('#rust').on('click', function() {
+    window.location = '/programming/rust.html';
+  });
+
+  $('#cooking').on('click', function() {
+    $('#cooking > *').not('animated').slideToggle();
+    toggleCooking();
+    if (toggleVar0 < 0) {
+      $('#programming > *').not('animated').slideToggle();
+      toggleProgramming()
+    };
+    // window.location = '/cooking/index.html';
+  });
+
+  $('#cookbooks').on('click', function() {
+    window.location = '/programming/cookbooks.html';
+  });
+
+  $('#baking').on('click', function() {
+    window.location = '/programming/baking.html';
+  });
+  $('#tempMix').on('click', function() {
+    window.location = '/programming/tempMix.html';
+  });
+
+  function toggleProgramming() {
+    radius0 = radius0 + toggleVar0;
+    toggleVar0 = -toggleVar0;
+    $('#programming').css('border-radius', '15px 15px ' + radius0 + 'px ' + radius0 + 'px');
+  }
+
+  function toggleCooking() {
+    radius1 = radius1 + toggleVar1;
+    toggleVar1 = -toggleVar1;
+    $('#cooking').css('border-radius', '15px 15px ' + radius1 + 'px ' + radius1 + 'px');
+  }
 
   $('#about').on('click', function() { // TODO: Make about and om pages
     if (language) {
@@ -66,7 +113,9 @@ $(function() {
   });
 
   function changeLanguage() {
-    let text = $('.burgerText')
+    let text = $('.burgerText');
+    // let text = $('.burgerText').add('.burgerHeading');
+    // TODO: Adding .add('burgerHeading') fix translation of multi-line burger-items, but overwrite the multi-lines :-(
 
     for (var index in text) {
       let id = text[index].id;
