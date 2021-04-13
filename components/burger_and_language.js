@@ -19,6 +19,7 @@ $(function() {
   $('.controlContainer').on('click', '.burgerControl', function(event) {
     event.preventDefault();
     $('.burgerText').not('animated').slideToggle();
+    $('.burgerHeading').not('animated').slideToggle();
     // $(this).siblings().children().not('animated').slideToggle();
   });
   $('.controlContainer').on('click', '.languageDa', function(event) {
@@ -48,7 +49,8 @@ $(function() {
   });
 
   $('#programming').on('click', function() {
-    window.location = '/programming/index.html';
+    $('.secondLevelBurgerText').not('animated').slideToggle();
+    // window.location = '/programming/index.html';
   });
 
   $('#cooking').on('click', function() {
