@@ -15,7 +15,7 @@ class MainControl extends HTMLElement {
 
 
       <div class="controlContainer">
-        <img src="images/burger.svg" class="burgerControl" alt="Navigation" width="20px" height="20">
+        <img src="../images/burger.svg" class="burgerControl" alt="Navigation" width="20px" height="20">
         <button type="button" class="languageDa" lang="da">Dansk</button>
         <button type="button" class="languageEng" lang="en">English</button>
       </div>

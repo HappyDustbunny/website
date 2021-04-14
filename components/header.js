@@ -11,8 +11,8 @@ class Header extends HTMLElement {
     </style>
 
     <header>
-      <img id="topImg" src="images/vinter_top_mobile68x62.jpg"
-      srcset="images/vinter_top_mobile68x62.jpg 68w, images/vinter_top_small567x519.jpg 567w, images/vinter_top567x519.jpg 567w"
+      <img id="topImg" src="../images/vinter_top_mobile68x62.jpg"
+      srcset="../images/vinter_top_mobile68x62.jpg 68w, ../images/vinter_top_small567x519.jpg 567w, ../images/vinter_top567x519.jpg 567w"
       sizes="25vw" alt="none" >
     </header>
     `;

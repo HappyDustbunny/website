@@ -11,8 +11,8 @@ class Footer extends HTMLElement {
     </style>
 
     <footer>
-      <img id='bottomImg' src="images/vinter_bottom_mobile376x92.jpg" srcset="images/vinter_bottom_mobile376x92.jpg 376w,
-      images/vinter_bottom_small2760x669.jpg 2760w, images/vinter_bottom_2760x669.jpg 2760w" sizes="100vw" alt="none" >
+      <img id='bottomImg' src="../images/vinter_bottom_mobile376x92.jpg" src="../images/vinter_bottom_mobile376x92.jpg 376w,
+      ../images/vinter_bottom_small2760x669.jpg 2760w, ../images/vinter_bottom_2760x669.jpg 2760w" sizes="100vw" alt="none" >
       <p id='cookieText'>Cookie policy: No cookies for you!</p>
     </footer>
     `;
