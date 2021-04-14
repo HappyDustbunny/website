@@ -7,14 +7,13 @@ $(function() {
   let lang = ['en', 'da'];
   let language = 0; // English 0, Danish 1
   let languagePack = { // {'id': [['text', 'title'], ['tekst', 'titel']]} The variable language is 0 for english and 1 for danish
-    'cookbook': [['Step-by-step cookbook', ''],
-    ['Trin-for-trin kogebog', '']],
-    'programming': [['Programming', ''],
-    ['Programmering', '']],
-    'cooking': [['Cooking', ''],
-    ['Madlavning', '']],
-    'about': [['About', ''],
-    ['Om', '']],
+    'cookbook': [['Step-by-step cookbook', ''], ['Trin-for-trin kogebog', '']],
+    'programming': [['Programming', ''], ['Programmering', '']],
+    'cooking': [['Cooking', ''], ['Madlavning', '']],
+    'cookbooks': [['Cookbooks', ''], ['Kogebøger', '']],
+    'baking': [['Baking', ''], ['Bagning', '']],
+    'tempMix': [['37\u00B0 mixer', ''], ['37\u00B0 blander', '']],
+    'about': [['About', ''], ['Om', '']],
     // '': [['', ''], ['', '']],
   };
 
@@ -23,7 +22,7 @@ $(function() {
 
   $('.controlContainer').on('click', '.burgerControl', function(event) {
     event.preventDefault();
-    $('.burgerText').not('animated').slideToggle();
+    $('.burgerItem').not('animated').slideToggle();
     $('.burgerHeading').not('animated').slideToggle();
     // $(this).siblings().children().not('animated').slideToggle();
   });
@@ -54,10 +53,11 @@ $(function() {
   });
 
   $('#programming').on('click', function() {
-    $('#programming > *').not('animated').slideToggle();
+    // $('#programming > *').not('animated').slideToggle();
+    $('#programming').siblings().not('animated').slideToggle();
     toggleProgramming();
     if (toggleVar1 < 0) {
-      $('#cooking > *').not('animated').slideToggle();
+      $('#cooking').siblings().not('animated').slideToggle();
       toggleCooking()
     };
     // window.location = '/programming/index.html';
@@ -72,10 +72,10 @@ $(function() {
   });
 
   $('#cooking').on('click', function() {
-    $('#cooking > *').not('animated').slideToggle();
+    $('#cooking').siblings().not('animated').slideToggle();
     toggleCooking();
     if (toggleVar0 < 0) {
-      $('#programming > *').not('animated').slideToggle();
+      $('#programming').siblings().not('animated').slideToggle();
       toggleProgramming()
     };
     // window.location = '/cooking/index.html';
@@ -95,13 +95,13 @@ $(function() {
   function toggleProgramming() {
     radius0 = radius0 + toggleVar0;
     toggleVar0 = -toggleVar0;
-    $('#programming').css('border-radius', '15px 15px ' + radius0 + 'px ' + radius0 + 'px');
+    $('#programming').parent().css('border-radius', '15px 15px ' + radius0 + 'px ' + radius0 + 'px');
   }
 
   function toggleCooking() {
     radius1 = radius1 + toggleVar1;
     toggleVar1 = -toggleVar1;
-    $('#cooking').css('border-radius', '15px 15px ' + radius1 + 'px ' + radius1 + 'px');
+    $('#cooking').parent().css('border-radius', '15px 15px ' + radius1 + 'px ' + radius1 + 'px');
   }
 
   $('#about').on('click', function() { // TODO: Make about and om pages

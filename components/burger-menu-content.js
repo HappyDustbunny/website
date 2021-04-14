@@ -5,7 +5,7 @@ class BurgerMenuControl extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
       <style>
-        .burgerText {
+        .burgerItem {
           display: none;
           border: 3px ridge;
           border-radius: 15px;
@@ -33,20 +33,20 @@ class BurgerMenuControl extends HTMLElement {
       </style>
 
       <div id="menuContainer">
-      <div id='FuzzyPlan' class="burgerText"> FuzzyPlan (beta) </div>
-      <div id='cookbook' class="burgerText"> Step-by-step cookbook </div>
-      <div id='programming' class="burgerHeading">
-        Programming
+      <div id='FuzzyPlan' class="burgerText burgerItem"> FuzzyPlan (beta) </div>
+      <div id='cookbook' class="burgerText burgerItem"> Step-by-step cookbook </div>
+      <div class="burgerHeading">
+        <div id='programming' class="burgerText">Programming</div>
         <div id='python' class='secondLevelBurgerText' lang='en' style='display: none'>Pyton</div>
         <div id='rust' class='secondLevelBurgerText' lang='en' style='display: none'>Rust</div>
       </div>
-      <div id='cooking' class="burgerHeading">
-        Cooking
-        <div id='cookbooks' class='secondLevelBurgerText' lang='en' style='display: none'>Cookbooks</div>
-        <div id='baking' class='secondLevelBurgerText' lang='en' style='display: none'>Baking</div>
-        <div id='tempMix' class='secondLevelBurgerText' lang='en' style='display: none'>Temperature mixer</div>
+      <div class="burgerHeading">
+        <div id='cooking' class="burgerText">Cooking</div>
+        <div id='cookbooks' class='secondLevelBurgerText burgerText' lang='en' style='display: none'>Cookbooks</div>
+        <div id='baking' class='secondLevelBurgerText burgerText' lang='en' style='display: none'>Baking</div>
+        <div id='tempMix' class='secondLevelBurgerText burgerText' lang='en' style='display: none'>Temperature mixer</div>
       </div>
-      <div id='about' class="burgerText"> About </div>
+      <div id='about' class="burgerText burgerItem"> About </div>
       </div>
     `;
   }
