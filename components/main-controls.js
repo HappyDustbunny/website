@@ -5,8 +5,20 @@ class MainControl extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
       <style>
-      .controlContainer { display: flex; list-style-type: none; padding-left: 1em; }
-      .burgerControl { font-size: 1.6em; color: rgb(170, 170, 170); writing-mode: vertical-rl; border: inherit; background: inherit; }
+      .controlContainer {
+        display: flex;
+        list-style-type: none;
+        padding-left: 1em;
+      }
+
+      .burgerControl {
+        font-size: 1.6em;
+        color: rgb(170, 170, 170);
+        writing-mode: vertical-rl;
+        border: inherit;
+        background: inherit;
+      }
+
       .burgerControl:active { border: inherit; background: inherit; }
       .languageDa {border: inherit; background: inherit; }
       .languageEng {border: inherit; background: inherit; }
@@ -15,9 +27,11 @@ class MainControl extends HTMLElement {
 
 
       <div class="controlContainer">
-        <img src="../images/burger.svg" class="burgerControl" alt="Navigation" width="20px" height="20">
-        <button type="button" class="languageDa" lang="da">Dansk</button>
-        <button type="button" class="languageEng" lang="en">English</button>
+        <button type="button" aria-expanded='false' class='burgerControl' alt='Navigation'>
+          <img src="../images/burger.svg" alt="Navigation burger" width="20px" height="20">
+        </button>
+        <button type="button" class="languageDa" aria-pressed='false' lang="da">Dansk</button>
+        <button type="button" class="languageEng" aria-pressed='true' lang="en">English</button>
       </div>
     `;
   }

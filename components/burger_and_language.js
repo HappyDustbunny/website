@@ -3,12 +3,13 @@ $(function() {
   let radius0 = 5; // Used to toggle border-radius for the burger menu
   let toggleVar1 = 10; // Used to toggle border-radius for the burger menu
   let radius1 = 5; // Used to toggle border-radius for the burger menu
+  let ariaExpanded = false; // Used to toggle aria expandedness of burger-button
 
   let lang = ['en', 'da'];
   let language = 0; // English 0, Danish 1
   let languagePack = { // {'id': [['text', 'title'], ['tekst', 'titel']]} The variable language is 0 for english and 1 for danish
     'cookbook': [['Step-by-step cookbook', ''], ['Trin-for-trin kogebog', '']],
-    'programming': [['Programming', ''], ['Programmering', '']],
+    'programming': [['Programming', ''], ['Programmering (Engelsk)', '']],
     'cooking': [['Cooking', ''], ['Madlavning', '']],
     'cookbooks': [['Cookbooks', ''], ['Kogebøger', '']],
     'baking': [['Baking', ''], ['Bagning', '']],
@@ -24,18 +25,23 @@ $(function() {
     event.preventDefault();
     $('.burgerItem').not('animated').slideToggle();
     $('.burgerHeading').not('animated').slideToggle();
-    // $(this).siblings().children().not('animated').slideToggle();
+    ariaExpanded = !ariaExpanded;
+    $('.burgerControl').attr('aria-expanded', ariaExpanded);
   });
   $('.controlContainer').on('click', '.languageDa', function(event) {
     $('.languageDa').css({ opacity: 1 });
+    $('.languageDa').attr('aria-pressed', 'true');
     $('.languageEng').css({ opacity: 0.3 });
+    $('.languageEng').attr('aria-pressed', 'false');
     language = 1;
     changeLanguage();
   });
 
   $('.controlContainer').on('click', '.languageEng', function(event) {
     $('.languageDa').css({ opacity: 0.3 });
+    $('.languageDa').attr('aria-pressed', 'true');
     $('.languageEng').css({ opacity: 1 });
+    $('.languageEng').attr('aria-pressed', 'true');
     language = 0;
     changeLanguage();
   });

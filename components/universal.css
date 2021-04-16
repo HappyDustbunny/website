@@ -1,14 +1,16 @@
 main {
   display: grid;
-  grid-template-columns: 25% auto 25%;
+  grid-template-columns: 1em auto 1em;
   grid-template-rows: 2em;
   height: min-content;
   row-gap: 1em;
+  width: 60%;
 }
 
 @media (max-width: 650px) {
   main {
     grid-template-columns: 2em auto 2em;
+    width: 100%;
   }
 }
 
