@@ -9,7 +9,7 @@ $(function() {
   let language = 0; // English 0, Danish 1
   let languagePack = { // {'id': [['text', 'title'], ['tekst', 'titel']]} The variable language is 0 for english and 1 for danish
     'cookbook': [['Step-by-step cookbook', ''], ['Trin-for-trin kogebog', '']],
-    'programming': [['Programming', ''], ['Programmering (Engelsk)', '']],
+    'programming': [['Programming', ''], ['Programmering (Eng)', '']],
     'cooking': [['Cooking', ''], ['Madlavning', '']],
     'cookbooks': [['Cookbooks', ''], ['Kogebøger', '']],
     'baking': [['Baking', ''], ['Bagning', '']],
@@ -20,6 +20,11 @@ $(function() {
 
   $('.languageDa').css({ opacity: 0.3 });
   changeLanguage();
+
+// TODO: Make keyboard navigation for menu https://www.w3.org/WAI/GL/wiki/Using_ARIA_menus and https://www.w3.org/TR/wai-aria-practices-1.1/#menubutton
+  // $(document).on('keydown', function(event) {
+  //   console.log(event.which);
+  // });
 
   $('.controlContainer').on('click', '.burgerControl', function(event) {
     event.preventDefault();
