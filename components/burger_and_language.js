@@ -73,12 +73,20 @@ $(function() {
     // window.location = '/programming/index.html';
   });
 
+  $('#journey').on('click', function() {
+    window.location = '/programming/index.html';
+  });
+
   $('#python').on('click', function() {
     window.location = '/programming/python.html';
   });
 
   $('#rust').on('click', function() {
     window.location = '/programming/rust.html';
+  });
+
+  $('#git').on('click', function() {
+    window.location = 'programming/gitcommandlineintro/gitcommandlineintro.html';
   });
 
   $('#cooking').on('click', function() {

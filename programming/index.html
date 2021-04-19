@@ -1,49 +1,82 @@
 <!DOCTYPE html>
-
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
-    <!-- <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet"> -->
-    <title>Mads Horn - Programming related stuff</title>
-    <!-- ****** faviconit.com favicons ****** -->
-    <link rel="shortcut icon" href="../images/favicon.ico">
-    <link rel="icon" sizes="16x16 32x32 64x64" href="../images/favicon.ico">
-    <link rel="icon" type="image/png" sizes="196x196" href="../images/favicon-192.png">
-    <link rel="icon" type="image/png" sizes="160x160" href="../images/favicon-160.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="../images/favicon-96.png">
-    <link rel="icon" type="image/png" sizes="64x64" href="../images/favicon-64.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16.png">
-    <link rel="apple-touch-icon" href="../images/favicon-57.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="../images/favicon-114.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="../images/favicon-72.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="../images/favicon-144.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="../images/favicon-60.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="../images/favicon-120.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="../images/favicon-76.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="../images/favicon-152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="../images/favicon-180.png">
-    <meta name="msapplication-TileColor" content="#FFFFFF">
-    <meta name="msapplication-TileImage" content="../images/favicon-144.png">
-    <meta name="msapplication-config" content="/browserconfig.xml">
-    <!-- ****** faviconit.com favicons ****** -->
-    <script defer></script>
+
+    <title>Tesst!</title>
+
+    <my-favicons></my-favicons>
+
+    <link rel="stylesheet" href="../components/universal.css">
+
+    <script src='../components/favicon.js' type='text/javascript' defer></script>
+    <script src='../components/header.js' type='text/javascript' defer></script>
+    <script src='../components/main-controls.js' type='text/javascript' defer></script>
+    <script src='../components/burger-menu-content.js' type='text/javascript' defer></script>
+    <script src='../components/footer.js' type='text/javascript' defer></script>
+    <script src="../components/burger_and_language.js" type="text/javascript" defer> </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+      window.jQuery || document.write("<script src='../components/jquery-3.6.0.slim.min.js'><\/script>")
+    </script>
+
   </head>
 
   <body>
-    <h1>Programming</h1>
-    <h3>Programming projects</h3>
-    <p>
-      Use the <a href="tictactoe/index.html">Tic tac toe board</a>
-    </p>
-    <br>
-    <h3>Related stuff</h3>
-    <p>
-      An <a href="gitcommandlineintro/gitcommandlineintro.html">introduction to the Git command line</a>.
-    </p>
-    <br>
-    <p> <a href="comming_soon">Other stuff</a> </p>
+
+    <my-header></my-header>
+
+    <main-controls></main-controls>
+    <noscript>
+      <a href="http://madshorn.dk/index.html">Home</a>
+    </noscript>
+
+    <div class="headContainer">
+      <burger-menu-content></burger-menu-content>
+
+      <main>
+        <div class="content">
+          &nbsp;
+        </div>
+        <div class="content english" lang="en">
+          <h3>My journey into programming</h3>
+          <p> I started programming on a TI 68 and continued on my brothers ZX Spectrum
+            and my highschools Piccoline computers running Comal 80.</p>
+          <p>At university I used Fortran 77, a hideous language with a malign sense of humor:
+            "You have an error. Between line 200 and 500. Good luck finding it."</p>
+          <p>Around 1995 I looked into HTMl and in 1998 I had to learn Visual Basic in
+            order to theach programming at HTX. I was a few weeks more experienced than my pupils. Fun times.</p>
+          <p> Around 2000 I was introduced to Python and used it for writing small programs
+            illustrating the physics I taught in highschool. The introduction of Python 3
+            threw me off for a few years</p>
+          <p>My youngest and school proved incompatible and after teaching them A level
+            math we swithed to programming around 2017. Pyton at first and later Rust.
+            After the first couple of month I was again in the situation of being only a
+            little more experience, but now my advantage was down to hours: anything
+            I grasped Toke took and run with immediatly. I learned <em>a lot.</em> </p>
+          <p> After Toke started school again I looked into HTML, CSS and JavaScript. I
+            started making a planning tool in order to have a project and it kind of
+            got it's own life. After 1&half; year I am still not finished. Making the
+            whole thing in vanilla JS may not be the wisest decision, but I learned
+            a lot by making everything from scratch.</p>
+          <br>
+          <a href="python.html" title="Python">Python</a>
+          <a href="rust.html" title="Rust">Rust</a>
+          <a href="git.html" title="Introduction to the Git commandline">Introduction to the Git commandline</a>
+
+        </div>
+
+        <div class="content danish" lang="da">
+          <p> Programmering foregår mest på engelsk, så jeg oversætter ikke mine
+          sider om programmering til dansk. </p>
+          <p> Skift sprog øverst til venstre</p>
+        </div>
+      </main>
+    </div>
+
+    <my-footer></my-footer>
+
   </body>
 </html>
