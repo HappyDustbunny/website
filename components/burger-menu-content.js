@@ -58,6 +58,7 @@ class BurgerMenuControl extends HTMLElement {
           <div id='tempMix' class='secondLevelBurgerText burgerText' lang='en' style='display: none'
            aria-label='Temperature mixer for getting 37&deg; hot water for baking'>Temperature mixer</div>
         </div>
+        <div id='home' class="burgerText burgerItem" aria-label='Home'> Home </div>
         <div id='about' class="burgerText burgerItem" aria-label='About'> About </div>
       </div>
     `;

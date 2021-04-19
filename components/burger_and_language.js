@@ -14,12 +14,16 @@ $(function() {
     'cookbooks': [['Cookbooks', ''], ['Kogebøger', '']],
     'baking': [['Baking', ''], ['Bagning', '']],
     'tempMix': [['37\u00B0 mixer', ''], ['37\u00B0 blander', '']],
+    'home': [['Home', ''], ['Hjem', '']],
     'about': [['About', ''], ['Om', '']],
     // '': [['', ''], ['', '']],
   };
 
-  $('.languageDa').css({ opacity: 0.3 });
-  changeLanguage();
+  if (localStorage.language) {
+    language = localStorage.language;
+  }
+
+  updateLanguage();
 
 // TODO: Make keyboard navigation for menu https://www.w3.org/WAI/GL/wiki/Using_ARIA_menus and https://www.w3.org/TR/wai-aria-practices-1.1/#menubutton
   // $(document).on('keydown', function(event) {
@@ -33,22 +37,17 @@ $(function() {
     ariaExpanded = !ariaExpanded;
     $('.burgerControl').attr('aria-expanded', ariaExpanded);
   });
+
   $('.controlContainer').on('click', '.languageDa', function(event) {
-    $('.languageDa').css({ opacity: 1 });
-    $('.languageDa').attr('aria-pressed', 'true');
-    $('.languageEng').css({ opacity: 0.3 });
-    $('.languageEng').attr('aria-pressed', 'false');
     language = 1;
-    changeLanguage();
+    localStorage.language = language;
+    updateLanguage();
   });
 
   $('.controlContainer').on('click', '.languageEng', function(event) {
-    $('.languageDa').css({ opacity: 0.3 });
-    $('.languageDa').attr('aria-pressed', 'true');
-    $('.languageEng').css({ opacity: 1 });
-    $('.languageEng').attr('aria-pressed', 'true');
     language = 0;
-    changeLanguage();
+    localStorage.language = language;
+    updateLanguage();
   });
 
   $('#FuzzyPlan').on('click', function() {
@@ -115,18 +114,16 @@ $(function() {
     $('#cooking').parent().css('border-radius', '15px 15px ' + radius1 + 'px ' + radius1 + 'px');
   }
 
-  $('#about').on('click', function() { // TODO: Make about and om pages
-    if (language) {
-      window.location = '/about/om.html';
-    } else {
-      window.location = '/about/about.html';
-    }
+  $('#home').on('click', function() {
+    window.location = '../index.html';
   });
 
-  function changeLanguage() {
+  $('#about').on('click', function() {
+    window.location = '/about/about.html';
+  });
+
+  function updateLanguage() {
     let text = $('.burgerText');
-    // let text = $('.burgerText').add('.burgerHeading');
-    // TODO: Adding .add('burgerHeading') fix translation of multi-line burger-items, but overwrite the multi-lines :-(
 
     for (var index in text) {
       let id = text[index].id;
@@ -136,5 +133,21 @@ $(function() {
         text[index].lang = lang[language]; // lang = ['en', 'da']
       }
     }
+
+    if (language == 0) {
+      $('.danish').hide()
+      $('.english').show()
+      $('.languageDa').css({ opacity: 0.3 });
+      $('.languageEng').css({ opacity: 1 });
+      $('.languageDa').attr('aria-pressed', 'false');
+      $('.languageEng').attr('aria-pressed', 'true');
+    } else {
+      $('.danish').show()
+      $('.english').hide()
+      $('.languageDa').css({ opacity: 1 });
+      $('.languageEng').css({ opacity: 0.3 });
+      $('.languageDa').attr('aria-pressed', 'true');
+      $('.languageEng').attr('aria-pressed', 'false');
+    };
   }
 });
