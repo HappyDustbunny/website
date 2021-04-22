@@ -4,7 +4,7 @@ main {
   grid-template-rows: 2em;
   height: min-content;
   row-gap: 1em;
-  width: 60%;
+  width: 85%;
 }
 
 kbd {
@@ -18,12 +18,23 @@ kbd {
     grid-template-columns: 2em auto 2em;
     width: 100%;
   }
+
+  .headContainer {
+  	display: flex;
+  	flex-wrap: wrap;
+  }
 }
 
 .headContainer {
-  display: flex;
-  flex-wrap: wrap;
+	/* display: flex; */
+	/* flex-wrap: wrap; */
+	display: grid;
+	grid-template-columns: 205px auto;
+	grid-template-rows: 2em;
+	height: min-content;
+	row-gap: 1em;
 }
+
 .content {
   grid-column-start: 2;
 }

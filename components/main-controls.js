@@ -9,6 +9,7 @@ class MainControl extends HTMLElement {
         display: flex;
         list-style-type: none;
         padding-left: 1em;
+        position: fixed;
       }
 
       .burgerControl {
