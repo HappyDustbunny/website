@@ -13,18 +13,6 @@ kbd {
   padding: 2px 4px;
 }
 
-@media (max-width: 650px) {
-  main {
-    grid-template-columns: 2em auto 2em;
-    width: 100%;
-  }
-
-  .headContainer {
-  	display: flex;
-  	flex-wrap: wrap;
-  }
-}
-
 .headContainer {
 	/* display: flex; */
 	/* flex-wrap: wrap; */
@@ -37,4 +25,16 @@ kbd {
 
 .content {
   grid-column-start: 2;
+}
+
+@media (max-width: 650px) {
+  main {
+    grid-template-columns: 2em auto 2em;
+    width: 100%;
+  }
+
+  .headContainer {
+    display: flex;
+    flex-wrap: wrap;
+  }
 }

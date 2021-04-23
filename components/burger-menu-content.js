@@ -38,7 +38,7 @@ class BurgerMenuControl extends HTMLElement {
         }
 
         #menuContainer {
-          position: fixed;
+          position: relative;
           top: 35px;
           width: 205px;
         }
