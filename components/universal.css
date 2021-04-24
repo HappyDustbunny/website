@@ -5,6 +5,7 @@ main {
   height: min-content;
   row-gap: 1em;
   width: 85%;
+  top: -40px;
 }
 
 kbd {
@@ -13,18 +14,25 @@ kbd {
   padding: 2px 4px;
 }
 
+burger-menu-content {
+  grid-column-start: 1;
+}
+
 .headContainer {
 	/* display: flex; */
 	/* flex-wrap: wrap; */
 	display: grid;
 	grid-template-columns: 205px auto;
-	grid-template-rows: 2em;
+	grid-template-rows: auto auto;
 	height: min-content;
 	row-gap: 1em;
 }
 
 .content {
   grid-column-start: 2;
+  overflow: scroll;
+  height: 800px;
+  scrollbar-color: #d0d0d0 white;
 }
 
 @media (max-width: 650px) {

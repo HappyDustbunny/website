@@ -86,7 +86,7 @@ $(function() {
   });
 
   $('#git').on('click', function() {
-    window.location = 'programming/gitcommandlineintro/gitcommandlineintro.html';
+    window.location = 'programming/git.html';
   });
 
   $('#cooking').on('click', function() {
@@ -100,7 +100,7 @@ $(function() {
   });
 
   $('#cookbooks').on('click', function() {
-    window.location = '/programming/cookbooks.html';
+    window.location = '/cooking/cookbooks.html';
   });
 
   $('#baking').on('click', function() {
