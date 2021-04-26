@@ -5,9 +5,27 @@ class Footer extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
     <style>
-      footer { position: fixed; left: 0; bottom: 0; width: 100%; color: rgba(0, 0, 0, .2); background-color: rgba(255, 255, 255, 0); }
-      #bottomImg  { width: 100%; opacity: 15%; }
-      #cookieText { font-size: 0.7em; position: absolute; bottom: 0px; right: 16px; }
+      footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        color: rgba(0, 0, 0, .2);
+        background-color: rgba(255, 255, 255, 0);
+        z-index: -1;
+      }
+
+      #bottomImg  {
+        width: 100%;
+        opacity: 15%;
+      }
+
+      #cookieText {
+        font-size: 0.7em;
+        position: absolute;
+        bottom: 0px;
+        right: 16px;
+      }
     </style>
 
     <footer>

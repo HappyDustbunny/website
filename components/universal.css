@@ -1,3 +1,7 @@
+body {
+  overflow: hidden; /* Prevent scrolling of body in order to keep drop down menu on page */
+}
+
 main {
   display: grid;
   grid-template-columns: 1em auto 1em;
@@ -5,7 +9,6 @@ main {
   height: min-content;
   row-gap: 1em;
   width: 85%;
-  top: -40px;
 }
 
 kbd {
@@ -32,7 +35,7 @@ burger-menu-content {
   grid-column-start: 2;
   overflow: scroll;
   height: 800px;
-  scrollbar-color: #d0d0d0 white;
+  scrollbar-color: #d0d0d0 #fff0;
 }
 
 @media (max-width: 650px) {
@@ -44,5 +47,9 @@ burger-menu-content {
   .headContainer {
     display: flex;
     flex-wrap: wrap;
+  }
+
+  .content {
+    height: 625px;
   }
 }

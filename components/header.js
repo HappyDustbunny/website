@@ -6,8 +6,18 @@ class Header extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
     <style>
-      header { position: fixed; left: 75%; top: 0; width: 100%; }
-      #topImg  { width: 25%; opacity: 10%; }
+      header {
+        position: fixed;
+        left: 75%;
+        top: 0;
+        width: 100%;
+        z-index: -1;
+       }
+
+      #topImg  {
+        width: 25%;
+        opacity: 10%;
+      }
     </style>
 
     <header>
