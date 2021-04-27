@@ -52,7 +52,8 @@ class BurgerMenuControl extends HTMLElement {
           <div id='journey' class='secondLevelBurgerText' lang='en' style='display: none' aria-label='My journey into programming'>My journey</div>
           <div id='python' class='secondLevelBurgerText' lang='en' style='display: none' aria-label='Python'>Pyton</div>
           <div id='rust' class='secondLevelBurgerText' lang='en' style='display: none' aria-label='Rust'>Rust</div>
-          <div id='git' class='secondLevelBurgerText' lang='en' style='display: none' aria-label='Git'>Git</div>
+          <div id='git' class='secondLevelBurgerText' lang='en' style='display: none' aria-label='Git'>Intro to Git</div>
+          <div id='myGithub' class='secondLevelBurgerText' lang='en' style='display: none' aria-label='Git'>My Github repos</div>
         </div>
         <div class="burgerHeading">
           <div id='cooking' class="burgerText">Cooking</div>

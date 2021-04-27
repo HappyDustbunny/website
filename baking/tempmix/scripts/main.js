@@ -1,3 +1,4 @@
+document.getElementById('v1').select();  // Only line changed later in my second page with JavaScript
 
 function calc() {
   let outPut = document.querySelector('output');

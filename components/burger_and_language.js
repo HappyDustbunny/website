@@ -99,6 +99,10 @@ $(function() {
     window.location = '../programming/git.html';
   });
 
+  $('#myGithub').on('click', function() {
+    window.location = 'https://github.com/HappyDustbunny?tab=repositories';
+  });
+
   $('#cooking').on('click', function() {
     $('#cooking').siblings().not('animated').slideToggle();
     toggleCooking();
@@ -114,10 +118,10 @@ $(function() {
   });
 
   $('#baking').on('click', function() {
-    window.location = '/programming/baking.html';
+    window.location = '../baking/index.html';
   });
   $('#tempMix').on('click', function() {
-    window.location = '/programming/tempMix.html';
+    window.location = '../baking/tempmix/index.html';
   });
 
   function toggleProgramming() {

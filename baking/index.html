@@ -1,44 +1,68 @@
 <!DOCTYPE html>
-
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/master.css">
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
-    <!-- <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet"> -->
-    <title>Mads Horn</title>
-    <!-- ****** faviconit.com favicons ****** -->
-    <link rel="shortcut icon" href="images/favicon.ico">
-    <link rel="icon" sizes="16x16 32x32 64x64" href="images/favicon.ico">
-    <link rel="icon" type="image/png" sizes="196x196" href="images/favicon-192.png">
-    <link rel="icon" type="image/png" sizes="160x160" href="images/favicon-160.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96.png">
-    <link rel="icon" type="image/png" sizes="64x64" href="images/favicon-64.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
-    <link rel="apple-touch-icon" href="images/favicon-57.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="images/favicon-114.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="images/favicon-72.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="images/favicon-144.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="images/favicon-60.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="images/favicon-120.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="images/favicon-76.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="images/favicon-152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png">
-    <meta name="msapplication-TileColor" content="#FFFFFF">
-    <meta name="msapplication-TileImage" content="images/favicon-144.png">
-    <meta name="msapplication-config" content="/browserconfig.xml">
-    <!-- ****** faviconit.com favicons ****** -->
+
+    <title>Baking</title>
+
+    <my-favicons></my-favicons>
+
+    <link rel="stylesheet" href="../components/universal.css">
+
+    <script src='../components/favicon.js' type='text/javascript' defer></script>
+    <script src='../components/header.js' type='text/javascript' defer></script>
+    <script src='../components/main-controls.js' type='text/javascript' defer></script>
+    <script src='../components/burger-menu-content.js' type='text/javascript' defer></script>
+    <script src='../components/footer.js' type='text/javascript' defer></script>
+    <script src="../components/burger_and_language.js" type="text/javascript" defer> </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+      window.jQuery || document.write("<script src='../components/jquery-3.6.0.slim.min.js'><\/script>")
+    </script>
+
   </head>
 
   <body>
-    <h1>Baking</h1>
-    <h3>Tips'n'tricks and recepies</h3>
-    <p> Need water at a specific temperature and don't want to use a thermometer?
-      <br> Use the <a href="tempmix/index.html">Temperature mixer</a> </p>
-    <br>
-    <p> <a href="comming_soon">Other stuff</a> </p>
-    <script src="scripts/main.js" defer></script>
+
+    <my-header></my-header>
+
+    <noscript>
+      <a href="http://madshorn.dk/index.html">Home</a>
+    </noscript>
+
+    <div class="headContainer">
+      <main-controls></main-controls>
+      <burger-menu-content></burger-menu-content>
+
+      <main>
+        <div class="content">
+          &nbsp;
+        </div>
+        <div class="content english" lang="en">
+          <h1>Baking</h1>
+          <p> Here I'll put anything relating to baking. </p>
+          <p> At the moment all I have is a temperature mixer for getting the correct
+            temperatue when baking without a thermometer. (Personally I find thermoeters
+            to be too bothersome to use :-)</p>
+          <a href="../baking/tempmix/index.html">Temperature Mixer for getting the
+            liquid in the recipe to be 37&deg;</a>
+        </div>
+
+        <div class="content danish" lang="da">
+          <h1>Bagning</h1>
+          <p> Her vil jeg lægge ting der er relateret til bagning. </p>
+          <p> For øjeblikket har jeg kun en temperatur blander der kan hjælpe en med at
+            få den korrekte temperatur når man bager, også selv om man ikke har et
+            termometer (eller finder termometre for langsomme at bruge som mig :-). </p>
+            <a href="../baking/tempmix/index.html">Temperaturblander der kan hjælpe
+              med at få væsken i opskriften til at være 37&deg;</a>
+        </div>
+      </main>
+    </div>
+
+    <my-footer></my-footer>
+
   </body>
 </html>

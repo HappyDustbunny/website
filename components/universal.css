@@ -52,4 +52,8 @@ burger-menu-content {
   .content {
     height: 625px;
   }
+
+  #pcAdvice {
+    display: none;
+  }
 }
