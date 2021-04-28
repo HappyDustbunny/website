@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Rust</title>
+
+    <my-favicons></my-favicons>
+
+    <link rel="stylesheet" href="../components/universal.css">
+
+    <script src='../components/favicon.js' type='text/javascript' defer></script>
+    <script src='../components/header.js' type='text/javascript' defer></script>
+    <script src='../components/main-controls.js' type='text/javascript' defer></script>
+    <script src='../components/burger-menu-content.js' type='text/javascript' defer></script>
+    <script src='../components/footer.js' type='text/javascript' defer></script>
+    <script src="../components/burger_and_language.js" type="text/javascript" defer> </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+      window.jQuery || document.write("<script src='../components/jquery-3.6.0.slim.min.js'><\/script>")
+    </script>
+
+  </head>
+
+  <body>
+
+    <my-header></my-header>
+
+    <noscript>
+      <a href="http://madshorn.dk/index.html">Home</a>
+    </noscript>
+
+    <div class="headContainer">
+      <main-controls></main-controls>
+      <burger-menu-content></burger-menu-content>
+
+      <main>
+        <div class="content">
+          &nbsp;
+        </div>
+        <div class="content english" lang="en">
+          <h1>Rust</h1>
+            <p> After about one and a half year of Python Toke thought we ought to move on.</p>
+            <p> I looked around and found that Rust was up and comming, so we bought the book
+              "Programming Rust" by Blandy and Orendorff. </p>
+            <p> I read the book and explained the concepts to Toke, who went on to use
+              them and show me how to think about Rust. A very exiting and challenging time! </p>
+            <h3>N body</h3>
+            <p> After making some exercises from the book we set out to try Rust's number
+              crunhing abilities. </p>
+                <p> When I studied astronomy back in the late 1980ties simulations
+              of star clusters were all the rage on supercomuters. I figured a modern gamer
+              was a match for an old super computer and my hunch turned out to be right :-) </p>
+            <p> After som simplifying assumptions and tricks (See this note for details:
+              <a href="../programming/nBodyTheory.pdf">N body Theory</a>) we made a simulation.</p>
+            <p> I took care of the graphics using the Nannou package and Toke programmed the
+              heavy lifting recoursive stuff.</p>
+            <p> By borrowing some code from the Mandelbrot example in the "Programming Rust" book
+              we obtained multi threading and a speed boost of 8 times. It was amazing to watch
+              the computer being able to run such heavy simulations. </p>
+            <img src="../images/Cluster.gif" alt="Two clusters of 15000 stars colliding">
+            <br>
+            <a href="python.html" title="Python">Python</a>
+            <a href="git.html" title="Introduction to the Git commandline">Introduction to the Git commandline</a>
+            <a href="https://github.com/HappyDustbunny?tab=repositories" title="Rust">My Github repositories</a>
+        </div>
+
+        <div class="content danish" lang="da">
+          <p> Programmering foregår mest på engelsk, så jeg oversætter ikke mine
+          sider om programmering til dansk. </p>
+          <p> Skift sprog øverst til venstre</p>
+        </div>
+      </main>
+    </div>
+
+    <my-footer></my-footer>
+
+  </body>
+</html>
