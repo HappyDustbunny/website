@@ -11,6 +11,12 @@ main {
   width: 85%;
 }
 
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 kbd {
   font-weight: bold;
   background-color: #D7D7D7;
@@ -19,6 +25,10 @@ kbd {
 
 burger-menu-content {
   grid-column-start: 1;
+}
+
+:focus {
+  outline: none; /* Make arrowkeys move text ogether with $('.content').focus(); in universal.css*/
 }
 
 .headContainer {

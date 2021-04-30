@@ -51,7 +51,7 @@
             <p> After making some exercises from the book we set out to try Rust's number
               crunhing abilities. </p>
                 <p> When I studied astronomy back in the late 1980ties simulations
-              of star clusters were all the rage on supercomuters. I figured a modern gamer
+              of star clusters were all the rage on supercomputers. I figured a modern gamer
               was a match for an old super computer and my hunch turned out to be right :-) </p>
             <p> After som simplifying assumptions and tricks (See this note for details:
               <a href="../programming/nBodyTheory.pdf">N body Theory</a>) we made a simulation.</p>
@@ -61,6 +61,34 @@
               we obtained multi threading and a speed boost of 8 times. It was amazing to watch
               the computer being able to run such heavy simulations. </p>
             <img src="../images/Cluster.gif" alt="Two clusters of 15000 stars colliding">
+            <p> <a href="https://github.com/HappyDustbunny/n_body"> The code for the simulation</a>
+              can be found on my Github page.</p>
+            <br>
+            <h3>Simple neural net</h3>
+            <p> After N-body we took a look at neural nets. </p>
+            <p> I read the theory and made a <a href="../programming/Simple_Neural_Net.ods">
+              spreadsheet emulating the simplest possible neural net with three neurons
+            </a>: an input neuron, an output neuron and a single hidden layer consisting
+            of one neuron.</p>
+            <p> I also wrote <a href="../programming/Back_propagation.pdf">a note
+              about simple back propagation</a> about a six neuron network with one
+              hidden layer of two neurons. The math looks horrendous because I include
+              every painstaikning detail, but it is actually fairly simple, using
+              nothing but high school math.</p>
+            <a href="../programming/Back_propagation.pdf">
+              <img src="../images/backpropagation_note_first_page.jpg" width="200px" height="276x" alt="Screenshot of first page of note about back propagation.">
+            </a>
+            <p> Then we made a neural net with two hidden layers of 8 neurons each capable
+              of showing 4 bit binary numbers on a (2+)7 segment display. </p>
+            <img src="../images/bin_to_7_seg.gif" alt="Gif showing a neural net with two hidden layers being trained showing 4 bit binary numbers on a 7 segment display">
+            <p> Again I made the support structure and the graphics while Toke did the
+              main programming of the back propagation. <a href="https://github.com/etok414/simple_nn">The code for the simple neural net</a> is on Toke's Github page.</p>
+            <br>
+            <h3>Handwritten number recognition</h3>
+            <p> After this simple example we set out to make a neural net capable of recognizing
+              handwritten numbers. We got the training data from <a href="http://yann.lecun.com/exdb/mnist/">Yann Lecun</a> and was inspired
+              by the YouTube video about <a href="https://youtu.be/aircAruvnKk">neural networks by YouTuber 3Blue1Brown</a>.</p>
+            <p> The <a href="https://github.com/etok414/numbers_nn"> handwriting recognition code</a> is on Toke's Github.</p>
             <br>
             <a href="python.html" title="Python">Python</a>
             <a href="git.html" title="Introduction to the Git commandline">Introduction to the Git commandline</a>

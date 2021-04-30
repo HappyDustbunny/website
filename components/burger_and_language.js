@@ -25,6 +25,8 @@ $(function() {
 
   updateLanguage();
 
+  $('.content').focus();
+
 // TODO: Make keyboard navigation for menu https://www.w3.org/WAI/GL/wiki/Using_ARIA_menus and https://www.w3.org/TR/wai-aria-practices-1.1/#menubutton
   // $(document).on('keydown', function(event) {
   //   console.log(event.which);
