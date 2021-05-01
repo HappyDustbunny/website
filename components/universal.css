@@ -48,6 +48,14 @@ burger-menu-content {
   scrollbar-color: #d0d0d0 #fff0;
 }
 
+.goHome {
+  margin-left: 15px;
+}
+
+#topImg {
+  display: inline;
+}
+
 @media (max-width: 650px) {
   main {
     grid-template-columns: 2em auto 2em;

@@ -70,7 +70,7 @@ $(function() {
     if (language) {
       window.location = '/cooking/kogebog.html';
     } else {
-      window.location = '/cooking/cookbook.html'; // TODO: Translate kogebog.html
+      window.location = '/cooking/kogebog.html'; // TODO: Translate kogebog.html
     }
   });
 
