@@ -1097,12 +1097,12 @@ button[id*='memory'] {
 
 /* storage-view css above ^^^ */
 
-/* @media screen and (max-width: 400px) {
+@media screen and (min-width: 400px) {
   html {
     background-color: black;
   }
 
-  #container {
+  /* #container {
     height: 500px;
-  }
-} */
+  } */
+}

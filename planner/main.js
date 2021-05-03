@@ -57,7 +57,7 @@ let ugeDage = ['Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag', 'S
 let storageList = {};  // taskList and their names are stored in memory1-17  {'memory1': [[task, task, ...], 'name']}
 
 ///////// Languages ///////
-let languagePack = {  // {'id': ['text', 'title']}
+let languagePack = {  // {'id': [['text', 'title'], ['tekst', 'titel']]} The variable language is 0 for english and 1 for danish
    // Day view
      "month": [['Month', 'Click to show month (or just swipe rigth with two fingers anywhere)'],
                ['Måned', 'Klik for at vise måned (eller swipe til højre med to fingre)']],
@@ -336,6 +336,7 @@ class Task {
   }
 }
 
+// TODO: Fix the way tasks from monthView show up in dayView at the start of a new planning period
 
 function setViewSize() {
   let height = window.screen.availHeight - 220;
