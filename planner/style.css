@@ -293,10 +293,10 @@ html {
 }
 
 #dayView {
-  /* position: relative; */ /* Needs to be relative in order for the add-button to have an absolute position with respect to the viewport and not the total page https://css-tricks.com/absolute-relative-fixed-positioining-how-do-they-differ/ */ */
+  /* position: relative; */ /* Needs to be relative in order for the add-button to have an absolute position with respect to the viewport and not the total page https://css-tricks.com/absolute-relative-fixed-positioining-how-do-they-differ/ */
   /* transition: all 0.4s; */
 
-  display: grid;
+  /* display: grid; */
   grid-template-columns: auto;
   grid-template-rows: auto auto auto;
   grid-gap: .3rem;
@@ -854,10 +854,30 @@ label {  /* Used in settingsView */
   border-radius: 10px;
 }
 
+#toDoButton {
+  position: absolute;
+  /* bottom: 60%;
+  left: 30%; */
+  margin-top: 50%;
+  margin-left: 31%;
+  font-size: x-large;
+  line-height: 0.1em;
+  text-align: center;
+  padding: 0.1em;
+  background-image: linear-gradient(#08e22a, #0bfb31, #0bfb31, #0bfb31, #08e22a);
+  height: 1.7em;
+  width: 5.7em;
+  border-radius: 25px;
+  border: 1px solid rgb(108, 168, 48);
+  z-index: 10;
+}
+
 #addTaskButton {
   position: absolute;
-  bottom: 10%;
-  left: 80%;
+  /* bottom: 10%;
+  left: 80%; */
+  margin-top: 150%;
+  margin-left: 75%;
   font-size: x-large;
   line-height: 0.1em;
   text-align: center;
@@ -1102,7 +1122,20 @@ button[id*='memory'] {
     background-color: black;
   }
 
-  /* #container {
-    height: 500px;
-  } */
+  #blankBottom {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 399px) {
+  #blankBottom {
+    height: 400px;
+    grid-area: taskFooter;
+  }
+
+  #spacerText {
+    font-weight: normal;
+    position: relative;
+    top: 50%;
+  }
 }

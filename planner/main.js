@@ -1,3 +1,6 @@
+// TODO: anneal() after double-clicking task?
+
+
 let taskList = [];  // List of all tasks
 let displayList = [];  // All tasks to be displayed, inclusive nullTime tasks
 let startAndEndTimes = [];
@@ -75,6 +78,8 @@ let languagePack = {  // {'id': [['text', 'title'], ['tekst', 'titel']]} The var
                   ['\u25B8 ', "Klik for at hoppe til den valgte opvågningstid "]],
      'nowButton': [['Now \u25BE', 'Click to insert a 15 min planning period at current time'],  // \u25BE <!-- Black Down-Pointing Small Triangle -->
                   ['Nu \u25BE', 'Klik for at indsætte en 15 minutteres planlægnings periode på nuværende tidspunkt.']],
+     'toDoButton': [['To do ...', 'Click to view due tasks from Month view'],
+                    ['Husk at ...', 'Klik for at se forfaldne opgaver fra Månedsvisningen']],
      'nowButtonJump': [['\u25B8 Now', 'Click to jump to current time'],  // \u25B8 <!-- Black Right-Pointing Small Triangle -->
                   ['\u25B8 Nu', 'Klik for at hoppe til nuværende tidspunkt.']],
      'clearButton': [['\u25BEClear', "Clear all tasks"],  // <!-- Black down-pointing small triangle  -->
@@ -85,6 +90,8 @@ let languagePack = {  // {'id': [['text', 'title'], ['tekst', 'titel']]} The var
                       ['\u2699', 'Indstillinger']],
      'zoom': [['\u2350', 'Toggles zoom'],  // ⍐
               ['\u2350', 'Zoom ind og ud']],
+     'spacerText': [['This space is to allow scrolling to the end of the day when the screen keyboard is active.', ''],
+              ['Dette blanke område er for at man kan scrolle til slutningen af dagen, når skærmtastaturet er aktivt.', '']],
     // Add view
      'addTaskHeading': [['Add task', ''],
                         ['Tilføj opgave', '']],
@@ -116,6 +123,8 @@ let languagePack = {  // {'id': [['text', 'title'], ['tekst', 'titel']]} The var
                 ['Afbryd', '']],
      'apply': [['OK', ''],
         ['OK', '']],
+     'applyButtonText': [['Ok (Then tap where this task should be)', ''],
+        ['OK (Klik der hvor opgaven skal inds&aelig;ttes)', '']],
       // Month View
      'track': [['Track', 'Choose which task to track with colours'],
                ['Følg', 'Vælg hvilke opgaver der skal følges']],
@@ -194,7 +203,7 @@ let languagePack = {  // {'id': [['text', 'title'], ['tekst', 'titel']]} The var
      'apply2': [['Apply', ''],
                 ['Anvend', '']],
      'noteSpan': [['Note:\r\nThe sound only play if the page has focus', ''],
-                  ['Bemærk:\r\nLyd afspilles kun hvis siden har fokus', '']],
+                  ['Bemærk:\r\nLyd afspilles kun, hvis siden har fokus', '']],
      'stressModelHeading': [['Stress Model', ''],
                        ['Stress Model', '']],
      'settingsInfo': [['?', 'Information about the stress model'],
@@ -337,6 +346,7 @@ class Task {
 }
 
 // TODO: Fix the way tasks from monthView show up in dayView at the start of a new planning period
+// TODO: Make weekends stand out in the past too in month-view
 
 function setViewSize() {
   let height = window.screen.availHeight - 220;
@@ -348,7 +358,7 @@ function setViewSize() {
 function setUpFunc() {
   taskList = [];
 
-  setViewSize();
+  // setViewSize();  // TODO: Remove this function?
 
   makeFirstTasks();
 
@@ -562,6 +572,14 @@ function retrieveLocallyStoredStuff() {
   }
 }
 
+function toDoButtonClicked() {
+  fillChooseBox('day');
+  toDoButton = document.getElementById('toDoButton');
+  toDoButton.hidden = true;
+  toDoButton.title = languagePack['toDoButton'][language][1];
+  toDoButton.textContent = languagePack['toDoButton'][language][0];
+}
+
 function getDueRemindersFromLast3Months() {  // If the day in the list lies in the past kick tasks to chooseBox
   let now = new Date();
   now = new Date(now.setDate(now.getDate() + 1)); // To include today in the next for-loop
@@ -573,7 +591,7 @@ function getDueRemindersFromLast3Months() {  // If the day in the list lies in t
 
     if (monthTaskList[myId]) {
       thisDay = monthTaskList[myId];
-      if (tasksSentBetween) {
+      if (0 < tasksSentBetween.length) {
         Object.assign(tasksSentBetween, thisDay); // Joins two objects by modifying the first with the added values https://attacomsian.com/blog/javascript-merge-objects
       } else {
         tasksSentBetween = thisDay;
@@ -583,8 +601,9 @@ function getDueRemindersFromLast3Months() {  // If the day in the list lies in t
     }
   }
 
-  if (0<tasksSentBetween.length) {
-    fillChooseBox('day');
+  if (0 < tasksSentBetween.length) {
+    document.getElementById('toDoButton').hidden = false;
+    // fillChooseBox('day');
   }
 }
 
@@ -625,7 +644,7 @@ function fillChooseBox(whichView) {  // whichView can be 'month' or 'day'
       if (counter === 0) {
         document.getElementById(whichView + 'InputBox').value = task.text;
       } else {
-        newButton = document.createElement('button'); // TODO: The buttons appear in Day view, but the CSS fucks up. The grid-area is not set correctly
+        newButton = document.createElement('button');
         newButton.classList.add('floatingTask');
         newButton.textContent = task.text;
         newButton.setAttribute('id', 'task' + counter);
@@ -635,6 +654,9 @@ function fillChooseBox(whichView) {  // whichView can be 'month' or 'day'
 
       counter += 1;
     }
+    let clearButton = document.getElementById('clearButton');
+    clearButton.textContent = languagePack['clearButtonText'][language][0];  // Black left-pointing small triangle
+    clearButton.title = languagePack['clearButtonText'][language][1];
   }
 
   tasksSentBetween = [];
@@ -655,6 +677,8 @@ function postponeTask() {
   }
   anneal();
   renderTasks();
+  handleChoosebox('day');
+  fixClearButtonArrow();
   resetInputBox('day');
 }
 
@@ -677,7 +701,7 @@ function resetInputBox(whichView) { // whichView can be 'day' or 'month'
 function handleChoosebox(whichView) {  // TODO: If task is edited and inserted while choosebox is active it forget all about chooseBox
   let chooseBox = document.getElementById(whichView + 'ChooseBox');
 
-  if (chooseBox.classList.contains('active')) {
+  if (chooseBox && chooseBox.classList.contains('active')) {
     if (chooseBox.hasChildNodes()) {
       document.getElementById(whichView + 'InputBox').value = chooseBox.firstChild.innerText;
       chooseBox.firstChild.remove();
@@ -806,7 +830,7 @@ function updateHearts() {
   fillHearths(Math.round(10 - result));
 }
 
-
+// TODO: Remove sounds?
 function sayToc() {
   let sound = new Audio('429721__fellur__tic-alt.wav');
   sound.play();
@@ -849,6 +873,7 @@ document.getElementById('zoom').addEventListener('click', zoomFunc);
 // Makes clicking anything inside the taskDiv container run taskHasBeenClicked()
 document.getElementById('taskDiv').addEventListener('click', function () { taskHasBeenClicked(event); }, true);
 
+document.getElementById('toDoButton').addEventListener('click', toDoButtonClicked);
 ////////// Eventlisteners for Add-view   /////////////////////
 
 document.getElementById('addTaskButton').addEventListener('click', addTaskButtonClicked);
@@ -1039,7 +1064,9 @@ function time_add(event) {
     fillTimeBox(taskTime_add);
   } else if (btnId === 'clear') {
     document.getElementById('inputTimeBox').value = '';
-    document.getElementById('apply').textContent = 'Ok (then tap where this task should be)';
+    let applyButton = document.getElementById('apply');
+    applyButton.textContent = languagePack['applyButtonText'][language][0];
+    applyButton.title = languagePack['applyButtonText'][language][1];
   } else if (btnId === 'inputTimeBox') {
     // Do fuckall
   } else {
@@ -1086,7 +1113,7 @@ function setTimeNow() {
 
 function clearTimeBox() {
   document.getElementById('inputTimeBox').value = '';
-  document.getElementById('apply').textContent = 'Ok (then tap where this task should be)';
+  document.getElementById('apply').textContent = languagePack['applyButtonText'][language][0];
   taskTime_add = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(), 12, 00);
 }
 
@@ -1499,7 +1526,7 @@ function monthRenderTasks() {
 
 
       // Find colour value if text is in trackTaskList
-      let string = tasks[n].text.toLowerCase();
+      let string = tasks[n].text;
       string = string.replace(/ /g, '_');
 
       for (var trackedTaskText in trackTaskList) {
@@ -1709,6 +1736,7 @@ function addTrackedTask(buttonColour) {
     document.getElementById('colourButtons').hidden = true;
 
     text = text.replace(/ /g, '_');  // The DOM can't handle spaces
+    text = text.charAt(0).toUpperCase() + text.slice(1);
     trackTaskList[text] = [chosenColour, '1'];
     renderTracking();
   } else if (text != '') {
@@ -2111,6 +2139,7 @@ function clearAllData() {
     localStorage.taskList = [];
     localStorage.monthTaskList = [];
     localStorage.pastDayList = [];
+    clearDay();
     location.reload(true);
   } else {
     alert(languagePack['nothingWasDeleted'][language]);
@@ -2137,7 +2166,6 @@ function gotoDayFromSettings() {
 }
 
 //////////////////// Settings-view code above ^^^ ///////////////////////////
-
 
 function twoFingerNavigation(event) {
   if (sessionStorage.touchX && event.touches.length === 1) {
@@ -2291,15 +2319,16 @@ function inputAtEnter(event) {
         resetInputBox('day');
       }
     }
-    // Ready buttons for next task
-    button.textContent = languagePack['clearButton'][language][0]; //'\u25BEClear'; // Black down-pointing small triangle
-    button.title = languagePack['clearButton'][language][1]; //'\u25BEClear'; // Black down-pointing small triangle
+    // // Ready buttons for next task // TODO: Check if ChooseBox is active
+    // button.textContent = languagePack['clearButton'][language][0];  // Black down-pointing small triangle
+    // button.title = languagePack['clearButton'][language][1];
+    fixClearButtonArrow();
     document.getElementById('addTaskButton').textContent = '+';
     document.getElementById('sortTask').setAttribute('class', 'noTasksToSort');
   } else {
     // Ready buttons for clearing or editing current text in inputbox
-    button.textContent = languagePack['clearButtonText'][language][0]; // '\u25C2Clear'; // Black left-pointing small triangle
-    button.title = languagePack['clearButtonText'][language][1]; // '\u25C2Clear'; // Black left-pointing small triangle
+    button.textContent = languagePack['clearButtonText'][language][0]; // Black left-pointing small triangle
+    button.title = languagePack['clearButtonText'][language][1];
     document.getElementById('addTaskButton').textContent = '\u270D';  // Writing hand
     document.getElementById('sortTask').setAttribute('class', 'tasksToSort');
   }
@@ -2486,48 +2515,60 @@ function removeFuzzyOverlap(task) {
 
 // Used by an eventListener. Govern the Edit/Clear button
 function clearTextboxOrDay() {
-  let clearButton = document.getElementById('clearButton');
   if (document.getElementById('dayInputBox').value != '' ) {
-    clearButton.textContent = '\u25BEClear'; // Black down-pointing small triangle
-    document.getElementById('addTaskButton').textContent = '+';
-    document.getElementById('sortTask').setAttribute('class', 'noTasksToSort');
-    id = '';
-  } else {
-    clearDay();
+    fixClearButtonArrow();
+  } else { // Clean all tasks from day-view
+    let answer = confirm(languagePack['removeAllTasks?'][language]);
+    if (answer == true) {
+      clearDay();
+    } else {
+      displayMessage(languagePack['nothingChanged'][language], 3000, 'day');
+    }
   }
   resetInputBox('day');
 }
 
+function fixClearButtonArrow() {
+  let chooseBox = document.getElementById('dayChooseBox');
+  let clearButton = document.getElementById('clearButton');
 
-function clearDay() {
-  let answer = confirm(languagePack['removeAllTasks?'][language]);
-  if (answer == true) {
-    // Move current taskList to trashBin
-    storageList['trashBin'] = [deepCopyFunc(taskList), languagePack['restoreLast'][language]];
-    document.getElementById('trashBin').classList.add('inUse');
-    document.getElementById('trashBin').classList.remove('notInUse');
-
-    // Make sure all alternative views are turned off
-    resetViews();
-
-    // Clear stuff and reset
-    taskList = [];
-    uniqueIdList = [];
-    makeFirstTasks();
-    resetInputBox('day');
-    wakeUpOrNowClickedOnce = false;
-    localStorage.indexOfLastTouched = 0;
-    document.getElementById('upButton').addEventListener('click', wakeUpButton, {once:true});
-    document.getElementById('nowButton').addEventListener('click', nowButton, {once:true});
-    storeLocally();
-    adjustNowAndWakeUpButtons();
-    setUpFunc();
-    document.getElementById('dayInputBox').value = '';
+  if (chooseBox.classList.contains('active')) { // If stuff in ChooseBox...
+    clearButton.textContent = languagePack['clearButtonText'][language][0]; // Black left-pointing small triangle
+    clearButton.title = languagePack['clearButtonText'][language][1];
+  } else {
+    clearButton.textContent = languagePack['clearButton'][language][0]; // Black down-pointing small triangle
+    clearButton.title = languagePack['clearButton'][language][1];
     document.getElementById('addTaskButton').textContent = '+';
     document.getElementById('sortTask').setAttribute('class', 'noTasksToSort');
-  } else {
-    displayMessage(languagePack['nothingChanged'][language], 3000, 'day');
+    id = '';
   }
+}
+
+
+function clearDay() {
+  // Move current taskList to trashBin
+  storageList['trashBin'] = [deepCopyFunc(taskList), languagePack['restoreLast'][language]];
+  document.getElementById('trashBin').classList.add('inUse');
+  document.getElementById('trashBin').classList.remove('notInUse');
+
+  // Make sure all alternative views are turned off
+  resetViews();
+
+  // Clear stuff and reset
+  taskList = [];
+  uniqueIdList = [];
+  makeFirstTasks();
+  resetInputBox('day');
+  wakeUpOrNowClickedOnce = false;
+  localStorage.indexOfLastTouched = 0;
+  document.getElementById('upButton').addEventListener('click', wakeUpButton, {once:true});
+  document.getElementById('nowButton').addEventListener('click', nowButton, {once:true});
+  storeLocally();
+  adjustNowAndWakeUpButtons();
+  setUpFunc();
+  document.getElementById('dayInputBox').value = '';
+  document.getElementById('addTaskButton').textContent = '+';
+  document.getElementById('sortTask').setAttribute('class', 'noTasksToSort');
 }
 
 
@@ -2605,7 +2646,9 @@ function editTask() {
   taskList.splice(id, 1);  // Remove clicked task from taskList
   uniqueIdOfLastTouched = taskList[id - 1].uniqueId;
 
-  document.getElementById('clearButton').textContent = '\u25C2Clear';  // Black left-pointing small triangle
+  let button = document.getElementById('clearButton');
+  button.textContent = languagePack['clearButtonText'][language][0]; // Black left-pointing small triangle
+  button.title = languagePack['clearButtonText'][language][1];
   chosenTaskId = '';
 
   renderTasks();
@@ -2736,8 +2779,11 @@ function taskHasBeenClicked(event) {
       } else {
         addTaskBefore(myUniqueId, task);
       }
-      clearButton.textContent = '\u25BEClear'; // Black down-pointing small triangle
+      // // TODO: Check if ChooseBox is active
+      // clearButton.textContent = languagePack['clearButton'][language][0]; // Black down-pointing small triangle
+      // clearButton.title = languagePack['clearButton'][language][1];
       handleChoosebox('day');
+      fixClearButtonArrow();
 
     } else {
       displayMessage(languagePack['formatReminder'][language], 6000, 'day')
@@ -2776,7 +2822,6 @@ function taskHasBeenClicked(event) {
       swapTasks(myUniqueId);
     }
     chosenTaskId = '';
-    // clearButton.textContent = 'Clear\u25B8';  // Black right-pointing small triangle
   }
   renderTasks();
 
@@ -2791,7 +2836,6 @@ function getIndexFromUniqueId(uniqueId) {
     nullTimeClicked = false;
   }
   for (const [index, task] of taskList.entries()) {
-    // console.log('get', index, task, task.uniqueId, uniqueId);
     if (task.uniqueId.toString() === uniqueId.toString()) {
       return index
     }
