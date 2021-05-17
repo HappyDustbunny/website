@@ -179,6 +179,20 @@ html {
   font-size: 1.4em;
 }
 
+.heartImg {
+  position: relative;
+  bottom: 25px;
+  height: 23px;
+  width: 23px;
+}
+
+.number {
+  position: relative;
+  bottom: 36px;
+  left: 7px;
+  font-size: 0.7em;
+}
+
 .durationContainer {
   display: grid;
   grid-template-columns: 50% 45% 5%;
@@ -285,7 +299,7 @@ html {
 
 #info {
   width: 22px;
-  border-radius: 20px;
+  border-radius: 20px;M
 }
 
 #d1, #g1 {
@@ -342,8 +356,14 @@ html {
   font-size: 0.6em;
 }
 
+#applyDiv {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-between;
+}
+
 #apply {
-  width: 250px;
+  width: 220px;
 }
 
 #cancel {
@@ -357,30 +377,29 @@ html {
 
 /* [type=radio] { */
 [name=drain] {
-  position: absolute;
   opacity: 0%;
-  width: 0px;
-  height: 0px;
 }
 
-/* [type=radio] + img { */
 [name=drain] + img {
-  opacity: 50%;
+  opacity: 10%;
 }
 
 [name=drain]:checked + img {
   opacity: 100%;
-  /* background-color: blue; */
 }
 
 #drainBand {
+  display: flex;
   background-image: linear-gradient(to right, hsl(255,50%,0%), hsl(255, 50%, 50%));
   width: 100%;
+  height: 50%;
 }
 
 #gainBand {
+  display: flex;
   background-image: linear-gradient(to right, hsl(255,50%,50%), hsl(255, 50%, 100%));
   width: 100%;
+  height: 50%;
 }
 
 /* add View-css above */
@@ -876,8 +895,10 @@ label {  /* Used in settingsView */
   position: absolute;
   /* bottom: 10%;
   left: 80%; */
-  margin-top: 150%;
-  margin-left: 75%;
+  /* margin-top: 150%;
+  margin-left: 75%; */
+  margin-top: 450px;
+  margin-left: 275px;
   font-size: x-large;
   line-height: 0.1em;
   text-align: center;
