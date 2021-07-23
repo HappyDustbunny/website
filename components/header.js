@@ -16,7 +16,7 @@ class Header extends HTMLElement {
 
       #topImg  {
         width: 25%;
-        opacity: 10%;
+        opacity: .1;
       }
     </style>
 

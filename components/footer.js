@@ -17,7 +17,7 @@ class Footer extends HTMLElement {
 
       #bottomImg  {
         width: 100%;
-        opacity: 15%;
+        opacity: 0.15;
       }
 
       #cookieText {

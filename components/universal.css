@@ -43,8 +43,8 @@ burger-menu-content {
 
 .content {
   grid-column-start: 2;
-  overflow: scroll;
-  height: 800px;
+  overflow: auto;
+  height: 85vh;  /* vh is percentage of viewport height. vw is viewport width */
   scrollbar-color: #d0d0d0 #fff0;
 }
 
@@ -67,9 +67,9 @@ burger-menu-content {
     flex-wrap: wrap;
   }
 
-  .content {
+  /* .content {
     height: 625px;
-  }
+  } */
 
   #pcAdvice {
     display: none;
