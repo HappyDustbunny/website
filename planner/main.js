@@ -1,4 +1,4 @@
-// TODO: anneal() after double-clicking task?
+'applyAdd'// TODO: anneal() after double-clicking task?
 
 
 let taskList = [];  // List of all tasks
@@ -30,9 +30,16 @@ let lang = ['en', 'da'];
 
 ///////// Add-view /////////
 let taskText_add = '';
-let taskDuration_add = defaultTaskDuration;
+let taskDuration_add = defaultTaskDuration;  // In minutes
 let taskTime_add = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(), 12, 00);
 let drainGainLevel_add = 'd1';
+
+///////// Play-view /////////
+let startTime_play = new Date();
+let endTime_play = new Date();
+let playViewActive = false;  // Helps styling the Add-view elements for Play-view to recycle code
+let fixedPlayInterval = false;  // Keeps tracks of if a fixed interval has been chosen in Play View
+let playTimer = '';
 
 ///////// Month-view ////////
 let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -114,10 +121,8 @@ let languagePack = {  // {'id': [['text', 'title'], ['tekst', 'titel']]} The var
              ['Nu', 'Sæt tiden til nu']],
      'clear': [['Clear', 'Clear time'],
                ['Slet', 'Slet tidspunkt']],
-     'drainLevelText': [['\u00a0 Drain level', ''],
-                        ['\u00a0 Dræningsniveau', '']],
-     'grainLevelText': [['Gain level', ''],
-                        ['Gavnlighedsniveau', '']],
+     'drainLevelText': [['\u00a0 Stress level', ''],
+                        ['\u00a0 Stressniveau', '']],
      'addInfo': [['?', 'Information and user manual'],
         ['?', 'Information og brugsanvisning']],
      'cancel': [['Cancel', ''],
@@ -126,6 +131,19 @@ let languagePack = {  // {'id': [['text', 'title'], ['tekst', 'titel']]} The var
         ['OK', '']],
      'applyButtonText': [['Ok (Then tap where this task should be)', ''],
         ['OK (Klik der hvor opgaven skal indsættes)', '']],
+      // Play View
+      'playText': [['Task running from', ''],
+                 ['Opgave løber fra', '']],
+      'toText': [[' to ', ''],
+                 [' til ', '']],
+      'playControlsQuery': [['Set duration or stress level?', ''],
+                 ['Sæt varighed eller stressniveau?', '']],
+      'cutPlayingTaskShort?': [['Confirming will insert the task at the start time with a shorter duration than '],
+                 ['Bekræft for at indsætte opgaven ved starttidspunktet med en kortere varighed end ']],
+      'isAShortTimeOK?': [['The time since the task started is less than 10 minutes. Go ahead and insert a short task? ('],
+                 ['Der er gået mindre end 10 minutter. Fortsæt og indsæt en kort opgave? (']],
+      'soundOrNot': [['Play sound when time is up? (Gong)', ''],
+                     ['Spil lyd når tiden er gået? (Gong)', '']],
       // Month View
      'track': [['Track', 'Choose which task to track with colours'],
                ['Følg', 'Vælg hvilke opgaver der skal følges']],
@@ -181,8 +199,8 @@ let languagePack = {  // {'id': [['text', 'title'], ['tekst', 'titel']]} The var
                 ['Andvend', '']],
      'playTocText': [['Play \'toc\' sound', ''],
                      ['Afspil \'tac\' lyd', '']],
-      'tocLabelOff': [['Off', ''],
-                      ['Fra', '']],
+     'tocLabelOff': [['Off', ''],
+                     ['Fra', '']],
      'tocLabelStart': [['At the beginning of tasks (toc)', ''],
                        ['I begyndelsen af en opgave (tac)', '']],
      'tocLabelEnd': [['At the end of tasks (toc toc)', ''],
@@ -203,8 +221,10 @@ let languagePack = {  // {'id': [['text', 'title'], ['tekst', 'titel']]} The var
                    ['', 'Tidsinterval X i minutter']],
      'apply2': [['Apply', ''],
                 ['Anvend', '']],
-     'noteSpan': [['Note:\r\nThe sound only play if the page has focus', ''],
+     'soundIfFocus': [['Note:\r\nThe sound only play if the page has focus', ''],
                   ['Bemærk:\r\nLyd afspilles kun, hvis siden har fokus', '']],
+     'soundIfFocusPlayView': [['Note: The sound only play if the page has focus', ''],
+                  ['Bemærk: Lyd afspilles kun, hvis siden har fokus', '']],
      'stressModelHeading': [['Stress Model', ''],
                        ['Stress Model', '']],
      'settingsInfo': [['?', 'Information about the stress model'],
@@ -215,21 +235,37 @@ let languagePack = {  // {'id': [['text', 'title'], ['tekst', 'titel']]} The var
                                 + 'double\r\nwhen working without pause', ''],
                                ['Sæt den tid det omtrent tager\r\nfør dit stressniveau '
                                 + 'fordobles,\r\nnår du arbejder uden pause', '']],
-      'apply3': [['Apply', ''],
-      ['Anvend', '']],
+     'apply3': [['Apply', ''],
+                ['Anvend', '']],
+
+     'backupHeading': [['Backup', ''],
+                ['Tag backup', '']],
+     'backupText': [['Backup the lists stored in Month View.\r\nNote that this backup also can restore the past days in Month View in another browser.', ''],
+                ['Tag backup af de gamle opgavelister gemt i Månedsvisningen.\r\nBemærk at denne backup også kan flytte gamle opgavelister til Månedsvisningen i en anden browser.', '']],
+     'backup': [['Backup', ''],
+                ['Tag backup', '']],
+     'restoreBackupInputText': [['Open the text file with your backup. Copy ALL the gibberish into the textbox', ''],
+                ['Åben tekstfilen med din backup. Kopier AL den skræmmende tekst ind i tekstboksen', '']],
+     'restoreBackup': [['Restore backup', ''],
+                       ['Gendan backup', '']],
+     'confirmRestoreBackup': [['Confirm restore of backup', ''],
+                       ['Bekræft gendanlse af backup', '']],
+     'cancelRestoreBackup': [['Cancel backup', ''],
+                       ['Afbryd backup', '']],
+
      'clearDataHeading': [['Clear data and preferences', ''],
                           ['Slet data og indstillinger', '']],
-     'clearAllData': [['Clear all data', ''],
-                      ['Slet alle data', '']],
-     'clearEverything': [['Clear all data and preferences', ''],
-                         ['Slet alle data og indstillinger', '']],
+     'clearAllData': [['Clear current day', ''],
+                      ['Slet alle dagens opgaver', '']],
+     'clearEverything': [['Clear ALL data and preferences', ''],
+                         ['Slet ALLE data og indstillinger', '']],
      'gotoDayFromSettings1': [['Go back', ''],
                        ['Gå tilbage', '']],
     // Messages
      'dontUse': [['Please don\'t use ' , ' for task description'],
                  ['Undlad venligst at bruge ', 'til at beskrive opgaver']],
-     'format1h30m': ['Please use the format 1h30m for 1 hour and 30 minutes',
-                     'Brug formatet 1h30m for 1 time og 30 minutter'],
+     'format1h30m': ['Please use the format 1h30m\r\n for 1 hour and 30 minutes',
+                     'Brug formatet 1h30m\r\n for 1 time og 30 minutter'],
      'format1200': ['Please use the format 12:00 or 1200',
                     'Brug formatet 12:00 eller 1200'],
      'taskTextMsg': ['Please write a task text',
@@ -297,7 +333,8 @@ let languagePack = {  // {'id': [['text', 'title'], ['tekst', 'titel']]} The var
       // Auto replace
       'pause': ['pause', 'pause'],
       'rest': ['rest', 'hvile'],
-      'relax': ['relax', 'slappe af'],
+      'relax': ['relax', 'afspænding'],
+      'meditate': ['meditate', 'meditere'],
       'splatte': ['bliss out', 'splatte'],
 };
 
@@ -464,7 +501,7 @@ function storeLocally() {
 function deepCopyFunc(original) {
   if (typeof original != 'object' || original === null || // typeof null is 'object', hence the latter check
     Object.prototype.toString.call(original) === '[object Date]') { // Dates have to be returned as-is
-    return original
+    return original;
   }
 
   let deepCopy = {};  // Assume deepCopy is an object
@@ -478,7 +515,7 @@ function deepCopyFunc(original) {
     deepCopy[key] = deepCopyFunc(value);  // Recursively travel the object for objects
   }
 
-  return deepCopy
+  return deepCopy;
 }
 
 
@@ -491,7 +528,7 @@ function fixDatesInList(list) {
     task.end = new Date(task.end);
     task.end.setDate(now.getDate());
   }
-  return list
+  return list;
 }
 
 
@@ -553,10 +590,6 @@ function retrieveLocallyStoredStuff() {
     // Fix dates messed up by JSON.stringify
     for (const key in pastDayList) {
       pastDayList[key] = fixDatesInList(pastDayList[key]);
-      // for (const index in pastDayList[key]) {
-      //   pastDayList[key][index].date = new Date(pastDayList[key][index].date);
-      //   pastDayList[key][index].end = new Date(pastDayList[key][index].end);
-      // }
     }
   }
 
@@ -841,15 +874,20 @@ function updateHearts() {
   fillHearths(Math.round(10 - result));
 }
 
-// TODO: Remove sounds?
-function sayToc() {
+function sayToc() { // Sound credit https://freesound.org/people/fellur/sounds/429721/
   let sound = new Audio('429721__fellur__tic-alt.wav');
   sound.play();
 }
 
 
-function sayTic() {
+function sayTic() {  // Sound credit https://freesound.org/people/Breviceps/sounds/448081/
   let sound = new Audio('448081__breviceps__tic-toc-click.wav');
+  sound.play();
+}
+
+
+function sayGong() {  // Sound credit https://freesound.org/people/Q.K./sounds/56241/
+  let sound = new Audio('56241__q-k__gong-center-mute.wav');
   sound.play();
 }
 
@@ -874,6 +912,7 @@ document.getElementById('nowButton').addEventListener('click', jumpToNow);
 
 // Makes pressing Enter add task
 document.getElementById('dayInputBox').addEventListener('keypress', function () { inputAtEnter(event); });
+document.getElementById('dayInputBox').addEventListener('touchend', function () { inputAtEnter(event); });
 
 // Tie event to Clear or Edit button
 document.getElementById('clearButton').addEventListener('click', clearTextboxOrDay);
@@ -885,16 +924,25 @@ document.getElementById('zoom').addEventListener('click', zoomFunc);
 document.getElementById('taskDiv').addEventListener('click', function () { taskHasBeenClicked(event); }, true);
 
 document.getElementById('toDoButton').addEventListener('click', toDoButtonClicked);
+
+////////// Eventlisteners for Play-view   /////////////////////
+
+document.getElementById('playButton').addEventListener('click', playButtonClicked);
+document.getElementById('playControlsQuery').addEventListener('click', playControlsQuery);
+
 ////////// Eventlisteners for Add-view   /////////////////////
 
 document.getElementById('addTaskButton').addEventListener('click', addTaskButtonClicked);
 
+document.getElementById('inputBox_add').addEventListener('focusout', readInputBox_add);
 document.getElementById('inputBox_add').addEventListener('keypress',
         function () { if (event.key === 'Enter') { readTaskText(); } });
 document.getElementById('inputDurationBox').addEventListener('keypress',
         function () { if (event.key === 'Enter') { readDurationTime(); } });
-document.getElementById('inputTimeBox').addEventListener('keypress',
-        function () { if (event.key === 'Enter') { readTaskStartTime(); } });
+document.getElementById('inputTimeBox').addEventListener('focusout',
+        function () {readTaskStartTime(); fillTimeBox(taskTime_add);});
+// document.getElementById('inputTimeBox').addEventListener('keypress',
+//         function () { if (event.key === 'Enter') { readTaskStartTime(); } });
 
 document.addEventListener('touchmove', function() {twoFingerNavigation(event);});
 
@@ -910,7 +958,12 @@ document.getElementById('addInfo').addEventListener('click', gotoInfoStress);
 
 document.getElementById('cancel').addEventListener('click', gotoDayFromAdd);
 
-document.getElementById('apply').addEventListener('click', apply);
+document.getElementById('applyAdd').addEventListener('click', apply);
+
+////////////////// Eventlisteners for Play-view ///////////////////////
+
+document.getElementById('stopButton').addEventListener('click', stopButtonPressed);
+
 
 ////////////////// Eventlisteners for Month-view ///////////////////////
 
@@ -982,10 +1035,15 @@ document.getElementById('inputBoxX').addEventListener('focus', inputBoxXGotFocus
 document.getElementById('stressLevel').addEventListener('focus', stressLevelGotFocus);
 document.getElementById('tDouble').addEventListener('focus', tDoubleGotFocus);
 
+document.getElementById('backup').addEventListener('click', storeBackup);
+document.getElementById('restoreBackup').addEventListener('click', restoreBackup);
+document.getElementById('confirmRestoreBackup').addEventListener('click', confirmRestoreBackup);
+
 //////////////////// Add-view code below ///////////////////////////
 
 function addTaskButtonClicked() {
   storeLocally();
+  drainGainLevel_add = 'd1';
 
   // TODO: Hmmm. Using .hidden removes transition. Get rid of transition CSS or .hidden?
   // Trigger animation via CSS
@@ -994,36 +1052,89 @@ function addTaskButtonClicked() {
   document.getElementById('addView').hidden = false;
   document.getElementById('dayView').hidden = true;
 
+  hideOrDisplayClass('playView', 'none');
+  hideOrDisplayClass('addView', 'block');
+  hideOrDisplayClass('hourglassTimer', 'none');  // Inelegant to turn the hourglassTimer off just after turning it on, but the logic is cleaner
+
   fillDurationBox(defaultTaskDuration);
 
   clearTimeBox();
 
   document.getElementById('d1').checked = 'checked';
-  // document.getElementById('apply').textContent = 'Ok (then tap where this task should be)';
+
+  document.getElementById('applyAdd').hidden = false;
+  document.getElementById('stopButton').hidden = true;
+
+  // document.getElementById('applyAdd').textContent = 'Ok (then tap where this task should be)';
 
   let inputBox = document.getElementById('dayInputBox');         // Day-inputBox
   let inputBox_add = document.getElementById('inputBox_add'); // Add-inputBox
 
-  if (inputBox.value != '') {  // Parse the value and fill relevant boxes
-    parsedList = parseText(inputBox.value); // parsedList = [taskStart, duration, text, drain];
-    inputBox_add.value = parsedList[2];
-    inputBox_add.blur();
-    fillDurationBox(parsedList[1] / 60000);
-    if (parsedList[0] != '') {  // This will never trigger because fixed times are currently stripped when double clicking a task to edit
-      fillTimeBox(parsedList[0]);
-    }
-    let drain = Number(parsedList[3]);
-      document.getElementsByClassName('drain')[5 - drain].checked = true;
-      if (0 < drain) {
-    } else {
-      document.getElementsByClassName('drain')[4 - drain].checked = true;
-    }
+  inputBox_add.value = inputBox.value;
 
-  } else {
+  readInputBox_add();
+
+  if (inputBox_add.value == '') {
     inputBox_add.value = '';
     inputBox_add.focus();
   }
 }
+
+
+function readInputBox_add() {
+  let inputBox_add = document.getElementById('inputBox_add'); // Add-inputBox
+
+  let text = inputBox_add.value;
+
+  if (text != '') {  // Parse the value and fill relevant boxes
+
+    parsedList = parseText(text); // parsedList = [taskStart, duration, text, drain];
+    inputBox_add.value = parsedList[2];
+    inputBox_add.blur();
+
+    fillDurationBox(parsedList[1] / 60000);
+
+    if (playViewActive && /[0-9]+h/.exec(text) != null || /[0-9]+m/.exec(text) != null) {
+      playControlsQuery(false);
+    }
+
+    if (parsedList[0] != '') {  // This will rarely trigger because fixed times are currently stripped when double clicking a task to edit
+      fillTimeBox(parsedList[0]);
+    }
+
+    let drain = Number(parsedList[3]);
+
+    if (drain == 1) { // Check for keywords and add appropriate number of hearts
+      if (text.toLowerCase().includes(languagePack['pause'][language])) {
+        drain = '-1';
+        document.getElementById('inputBox_add').removeEventListener('focusout', readInputBox_add);
+      };
+      if (text.toLowerCase().includes(languagePack['rest'][language])) {
+        drain = '-3';
+        document.getElementById('inputBox_add').removeEventListener('focusout', readInputBox_add);
+      };
+      if (text.toLowerCase().includes(languagePack['relax'][language])) {
+        drain = '-5';
+        document.getElementById('inputBox_add').removeEventListener('focusout', readInputBox_add);
+      };
+      if (text.toLowerCase().includes(languagePack['meditate'][language])) {
+        drain = '-5';
+        document.getElementById('inputBox_add').removeEventListener('focusout', readInputBox_add);
+      };
+      if (text.toLowerCase().includes(languagePack['splatte'][language])) {
+        drain = '-5';
+        document.getElementById('inputBox_add').removeEventListener('focusout', readInputBox_add);
+      };
+    }
+
+    if (0 < drain) {
+      document.getElementsByClassName('drain')[5 - drain].checked = true;
+    } else {
+      document.getElementsByClassName('drain')[4 - drain].checked = true;
+    }
+  }
+}
+
 
 function addDuration(event) {
   let btnId = event.target.id;  // btnId is in the form 'durationPlus30m'
@@ -1049,6 +1160,10 @@ function addDuration(event) {
       taskDuration_add = 0;
     }
     fillDurationBox(taskDuration_add);
+
+    if (playViewActive) {
+      durationTimeChangeInPlayView();
+    }
   }
 }
 
@@ -1075,7 +1190,7 @@ function time_add(event) {
     fillTimeBox(taskTime_add);
   } else if (btnId === 'clear') {
     document.getElementById('inputTimeBox').value = '';
-    let applyButton = document.getElementById('apply');
+    let applyButton = document.getElementById('applyAdd');
     applyButton.textContent = languagePack['applyButtonText'][language][0];
     applyButton.title = languagePack['applyButtonText'][language][1];
   } else if (btnId === 'inputTimeBox') {
@@ -1112,7 +1227,7 @@ function fillTimeBox(time) {  // time in Date-format
 
   document.getElementById('inputTimeBox').value = prettyTaskTime;
 
-  document.getElementById('apply').textContent = 'Ok'; // Remove instruction from return-button as the task will be added the right place automatically
+  document.getElementById('applyAdd').textContent = 'Ok'; // Remove instruction from return-button as the task will be added the right place automatically
 }
 
 
@@ -1124,7 +1239,7 @@ function setTimeNow() {
 
 function clearTimeBox() {
   document.getElementById('inputTimeBox').value = '';
-  document.getElementById('apply').textContent = languagePack['applyButtonText'][language][0];
+  document.getElementById('applyAdd').textContent = languagePack['applyButtonText'][language][0];
   taskTime_add = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(), 12, 00);
 }
 
@@ -1143,13 +1258,14 @@ function prettifyTime(time) {
   }
   let prettyTaskTime = nils[0] + taskTimeHours + ':' + nils[1] + taskTimeMinutes;
 
-  return prettyTaskTime
+  return prettyTaskTime;
 }
 
 
 function readTaskText() {
   let contentInputBox = document.getElementById('inputBox_add').value.trim();
   let badCharacters = /[^a-zA-ZæøåÆØÅ\s\.\,\?\!\(\)\"]+/.exec(contentInputBox);
+
   if (badCharacters) {
     displayMessage(languagePack['dontUse'][language][0] + badCharacters + languagePack['dontUse'][language][1], 3000, 'add');
   } else {
@@ -1178,19 +1294,27 @@ function readDurationTime() {
 
 
 function readTaskStartTime() {
+  let timeH = '';
+  let timeM = '';
   let contentInputBox = document.getElementById('inputTimeBox').value.trim();
   let badCharacters = /[^0-9:]/.exec(contentInputBox);
   if (badCharacters) {
-    displayMessage(languagePack['format1200'][language], 3000, 'day');
+    displayMessage(languagePack['format1200'][language], 3000, 'add');
   } else {
-    let timeH = /[0-9][0-9]/.exec(contentInputBox);
+    if (contentInputBox.length == 3) {
+      timeH = /[0-9]/.exec(contentInputBox).toString();
+    } else if (contentInputBox.length == 4) {
+      timeH = /[0-9][0-9]/.exec(contentInputBox).toString();
+    } else {
+      return;
+    }
     contentInputBox = contentInputBox.replace(timeH, '');
-    let timeM = /[0-9][0-9]/.exec(contentInputBox);
+    timeM = /[0-9][0-9]/.exec(contentInputBox).toString();
     let now = new Date();
     taskTime_add = new Date(now.getFullYear(), now.getMonth(), now.getDate(), timeH, timeM);
     if (0 < timeH || 0 < timeM) {
       fillTimeBox(taskTime_add);
-      return taskTime_add
+      return taskTime_add;
     }
   }
 }
@@ -1208,17 +1332,30 @@ function readDrainGainRadioButtons() {
 
 function formatTask() {
   let returnText = '';
-  if (document.getElementById('inputTimeBox').value.trim() === '') {
+
+  readTaskText();
+  readDrainGainRadioButtons();
+
+  let prettyTaskTime = '';
+  if (playViewActive) {
+    prettyTaskTime = prettifyTime(startTime_play);
+    let now = new Date();
+    taskDuration_add = Math.trunc((now - startTime_play) / 60000);
+  } else if (document.getElementById('inputTimeBox').value.trim() === '') {
     returnText =  taskText_add + ' '
-                + taskDuration_add + 'm '
-                + drainGainLevel_add;
+    + taskDuration_add + 'm '
+    + drainGainLevel_add;
+    return returnText;
   } else {
-    let prettyTaskTime = prettifyTime(taskTime_add);
-    returnText =  taskText_add + ' '
-                + prettyTaskTime.replace(':', '') + ' '
-                + taskDuration_add + 'm '
-                + drainGainLevel_add;
+    prettyTaskTime = prettifyTime(taskTime_add);
+    readDurationTime();
   }
+
+  returnText =  taskText_add + ' '
+  + prettyTaskTime.replace(':', '') + ' '
+  + taskDuration_add + 'm '
+  + drainGainLevel_add;
+
   return returnText;
 }
 
@@ -1226,13 +1363,13 @@ function formatTask() {
 function apply() {
   let taskText = document.getElementById('inputBox_add');
   if (taskText === '') {
-    displayMessage(languagePack['taskTextMsg'][language], 3000, 'day');
+    displayMessage(languagePack['taskTextMsg'][language], 3000, 'day');  // Please write a task text
   } else {
-    readTaskText()
-    readDurationTime();
+    // Insert directly if starttime or send returnText to dayInputBox to be manually inserted
     let startTime = readTaskStartTime();
-    readDrainGainRadioButtons();
-    returnText = formatTask();
+
+    let returnText = formatTask();
+
     if (startTime) {
       inputFixedTask(returnText);
     } else {
@@ -1242,15 +1379,217 @@ function apply() {
     // Close add-view
     document.getElementById('addView').hidden = true;
     document.getElementById('dayView').hidden = false;
+
+    // document.getElementById('inputBox_add').addEventListener('focusout', readInputBox_add);
   }
 }
 
 function gotoDayFromAdd() {
+  // Reset Play-View
+  playViewActive = false;
+  fixedPlayInterval = false;
+
+  document.getElementById('toText').innerText = '';
+  document.getElementById('untilText').innerText = '';
+  // document.getElementById('hourglass').hidden = true; // TODO: This shows up in Add View after a cancelation of Play View
+  // document.getElementById('soundDiv').hidden = true;
+
+  hideOrDisplayClass('hourglassTimer', 'none');
+  hideOrDisplayClass('playControl', 'none');
+
+  // Close add-view
   document.getElementById('addView').hidden = true;
   document.getElementById('dayView').hidden = false;
 }
 
 //////////////////// Add-view button code above ///////////////////////////
+
+// Helper function for Add-view and Play-view
+function hideOrDisplayClass(className, displayStatus) {  // displaystatus can be 'none' or 'block'
+  let members = document.getElementsByClassName(className);
+
+  for (var i = 0; i < members.length; i++) {
+    members[i].style.display = displayStatus;
+  }
+}
+
+//////////////////// Play-view button code below ///////////////////////////
+
+function playButtonClicked() {
+  storeLocally();
+  drainGainLevel_add = 'd1';
+
+  // TODO: Hmmm. Using .hidden removes transition. Get rid of transition CSS or .hidden?
+  // Trigger animation via CSS
+  // document.getElementById('addView').classList.add('active');
+  // document.getElementById('dayView').classList.remove('active');
+  document.getElementById('addView').hidden = false;
+  document.getElementById('dayView').hidden = true;
+
+  playViewActive = true;
+
+  hideOrDisplayClass('addView', 'none');
+  hideOrDisplayClass('playView', 'block');
+
+  document.getElementById('stopButton').hidden = false;
+  document.getElementById('applyAdd').hidden = true;
+
+  let inputBox = document.getElementById('dayInputBox');         // Day-inputBox
+  let inputBox_add = document.getElementById('inputBox_add'); // Add-inputBox
+
+  inputBox_add.value = inputBox.value;
+
+  readInputBox_add();  // TODO: If a duration is in the inputbox playControlQuery should fire (?)
+
+  if (inputBox_add.value == '') {
+    inputBox_add.value = '';
+    inputBox_add.focus();
+  }
+
+  startTime_play = new Date();
+  let nowTime = prettifyTime(startTime_play);
+  document.getElementById('nowText').innerText = nowTime;
+}
+
+
+function playUpdate(deltaTime) {  // deltaTime in minutes
+	let hourglassSize = 50;  // Half the width of the hourglass in px
+	let borderSize = 0;
+
+  if (deltaTime < 1) {
+    deltaTime = 1;
+  }
+
+  document.getElementById('hourglass').style.display = 'block';
+  document.getElementById('soundDiv').style.display = 'block';
+
+	elem = document.getElementById('hourglassDiv');
+	text = document.getElementById('hourglassText');
+
+	if (typeof playUpdate.counter == 'undefined') {
+		playUpdate.counter = 0;
+	}
+
+	if (playUpdate.counter < 100) {
+		playUpdate.counter += 100 /  Math.trunc(deltaTime * 60);
+		w = Math.trunc(playUpdate.counter / 2) - Math.trunc(playUpdate.counter / 2)%2;
+		borderSize = hourglassSize - w + 2;  // Plus 2 for last border
+
+    // console.log(deltaTime, playUpdate.counter);
+    // console.log(playUpdate.counter, w, borderSize, 2*w + 2*borderSize);
+
+		elem.style.width = Math.trunc(2 * w)  + 'px';
+		elem.style.height = Math.trunc(2 * w) + 'px';
+		elem.style.borderLeft = borderSize + 'px solid rgba(154, 219, 240, 0.6)';
+		elem.style.borderRight = borderSize + 'px solid rgba(154, 219, 240, 0.6)';
+		elem.style.borderTop = borderSize + 'px solid rgba(154, 219, 240, 1.0)';
+		elem.style.borderBottom = borderSize + 'px solid rgba(154, 219, 240, 1.0)';
+		text.innerHTML = Math.trunc(playUpdate.counter) + '%';
+		text.style.color = 'rgba(4, 177, 217, 1.0)'
+		text.style.fontSize = Math.trunc(playUpdate.counter / 4) + 'px';
+		text.style.opacity = Math.trunc(playUpdate.counter / 2 + 35) + '%';
+	} else if (typeof playTimer != 'undefined') {
+		clearInterval(playTimer);
+		playUpdate.counter = 0;
+    insertTask();
+
+    // Say Gong three times?
+    if (document.getElementById('sound').checked) {
+      sayGong(); setTimeout(function () {sayGong(); setTimeout(function () {sayGong()}, 300)}, 600);
+    }
+	}
+}
+
+
+function playControlsQuery(useDefault) {  // Turn off the playControlQuery div and shows Duration and Stress level controls
+  document.getElementById('playControlsQueryDiv').style.display = 'none';
+  document.getElementById('toText').style.display = 'inline-block';
+  document.getElementById('inputDurationBox').style.backgroundColor = '#d3d3d31c';
+  document.getElementById('inputDurationBox').disabled = 'true';
+  hideOrDisplayClass('playControl', 'block');
+
+  if (useDefault) {
+    fillDurationBox(defaultTaskDuration);
+  }
+
+  if (playViewActive) {
+    durationTimeChangeInPlayView();
+  }
+
+  fixedPlayInterval = true;
+}
+
+
+function durationTimeChangeInPlayView() {
+  readDurationTime();  // This updates taskDuration_add which is in minutes
+
+  let startTime = startTime_play.getTime();
+  endTime_play = new Date(startTime + 60000 * taskDuration_add);
+
+  let now = new Date();
+  if (endTime_play < now) {
+    taskDuration_add = now - startTime_play;
+    fillDurationBox(Math.trunc(taskDuration_add/60000));
+  }
+
+  document.getElementById('untilText').innerText = prettifyTime(endTime_play);
+
+  let deltaTime = (endTime_play - startTime_play) / 60000;
+
+  // Start timer
+  if (document.getElementById('inputDurationBox').value != '') {
+    // Kill previous timers
+    clearInterval(playTimer);
+
+    playTimer = setInterval(function () {playUpdate(deltaTime);}, 1000);
+  }
+}
+
+
+function stopButtonPressed() {
+  let contentInputBox = document.getElementById('inputBox_add').value;
+  if (contentInputBox === '') {
+    displayMessage(languagePack['taskTextMsg'][language], 3000, 'add');  // Please write a task text
+  } else {
+    // Chance to opt out from inserting the current task with current length
+    if (fixedPlayInterval) {
+      let answer = confirm(languagePack['cutPlayingTaskShort?'][language] + taskDuration_add + 'm');
+      // 'Confirming will insert the task at the start time with a shorter duration than'
+      if (!answer) {
+        return;
+      }
+    }
+    // Chance to opt out if the task is too small
+    let now = new Date();
+    let deltaTime = Math.trunc((now - startTime_play) / 60000);  // The current task time since start in minutes
+
+    taskDuration_add = deltaTime;
+
+    if (deltaTime < 10) {
+      let isAShortTimeOKAnswer = confirm(languagePack['isAShortTimeOK?'][language] + deltaTime + 'm)');
+      // 'The time since the task started is less than 10 minutes. Go ahead and insert a short task?'
+      if (!isAShortTimeOKAnswer) {
+        return;
+      }
+    }
+
+    insertTask();
+
+    clearInterval(playTimer);
+  }
+}
+
+function insertTask() {
+
+  // Insert task with current length
+  let returnText = formatTask();
+  inputFixedTask(returnText);
+
+  gotoDayFromAdd();
+}
+
+
+//////////////////// Play-view button code above ///////////////////////////
 
 
 //////////////////// Month-view code below ///////////////////////////
@@ -1288,6 +1627,30 @@ function gotoDay() {
 }
 
 
+function findFirstDateInPastDayListAndReturnNumberOfMonthsSince() {
+  let oldestDate = new Date();
+
+  let dateKeys = Object.keys(pastDayList);
+
+  for (key of dateKeys) {
+    let year = /\d\d\d\d\b/.exec(key)[0];
+    let month = /-.+-/.exec(key)[0].replace(/-/g, '');
+    let thisDate = new Date(year, month);
+
+    if (thisDate < oldestDate) {
+      oldestDate = thisDate;
+    }
+  }
+
+  let deltaMonths = Math.trunc((new Date() - oldestDate) / (30 * 24 * 3600000)) + 1;
+  if (deltaMonths < 1) {
+    deltaMonths = 1;
+  }
+
+  return deltaMonths;
+}
+
+
 function fillMonthDateBar() {
   // Remove old content
   while (monthTaskDiv.firstChild) {
@@ -1297,15 +1660,15 @@ function fillMonthDateBar() {
 
 
   let now = new Date();
-  let nowMinus3Month = new Date();
-  nowMinus3Month = new Date(nowMinus3Month.setMonth(nowMinus3Month.getMonth() - 1));
+  let nowMinusSomeMonths = new Date();
+  let someMonths = findFirstDateInPastDayListAndReturnNumberOfMonthsSince();
+  nowMinusSomeMonths = new Date(nowMinusSomeMonths.setMonth(nowMinusSomeMonths.getMonth() - someMonths));
   let nowPlus3Month = new Date();
   nowPlus3Month = new Date(nowPlus3Month.setMonth(nowPlus3Month.getMonth() + 3));
-  // TODO: Set scrollheight for monthView
   // TODO: Set number of days shown based on data in pastDaylist?
   let thisMonth = now.getMonth();
 
-  for (let i = nowMinus3Month; i < nowPlus3Month; i.setDate(i.getDate() + 1)) {
+  for (let i = nowMinusSomeMonths; i < nowPlus3Month; i.setDate(i.getDate() + 1)) {
     // Insert monthnames before each the 1th
     if (thisMonth < i.getMonth() || (thisMonth === 11 && i.getMonth() === 0)) {  // Month 0 is january
       thisMonth = i.getMonth();
@@ -1598,7 +1961,10 @@ function monthRenderTasks() {
     }
   }
 
-  document.getElementById('monthContainer').scrollTop = 500;
+  // document.getElementById('monthContainer').scrollTop = 500;
+  let monthContainer = document.getElementById('monthContainer');
+  let scrollTop = monthContainer.scrollHeight - 2085; // 2085 is the pixel height of 3 monht in the future
+  monthContainer.scrollTop = scrollTop;
 }
 
 
@@ -2145,16 +2511,18 @@ function applyStressModel() {
 
 function storeBackup() { // TODO: Finish this
   // Wrap up data from localStorage in a blob
-  let data = JSON.stringify(localStorage.taskList);
+  let data = JSON.stringify(localStorage.pastDayList);
   let blob = new Blob([data], { type: 'text/plain;charset=utf-8' });
+  console.log(blob);
 
   // Make filename
   let now = new Date();
   let date = now.getDate().toString() + '-' + (now.getMonth() + 1).toString() + '-' + now.getFullYear().toString();
   let fileName = 'FuzzyPlanBackup_' + date + '.txt';
 
-  // Store the blob by creating an element, clicking it and removing it again
+  // Store the blob by creating a link element, clicking it and removing it again
   let url = window.URL.createObjectURL(blob);
+  console.log(url);
 
   let element = window.document.createElement('a');
   element.href = url;
@@ -2165,6 +2533,38 @@ function storeBackup() { // TODO: Finish this
 
   // Clean up
   window.URL.revokeObjectURL(url);
+}
+
+function restoreBackup() {
+  document.getElementById('backup').hidden = true;
+  document.getElementById('restoreBackup').hidden = true;
+
+  document.getElementById('restoreBackupInputText').hidden = false;
+  document.getElementById('restoreBackupInput').hidden = false;
+  document.getElementById('confirmRestoreBackup').hidden = false;
+}
+
+
+function confirmRestoreBackup() {
+  // TODO: Make a confirm dialog
+  document.getElementById('backup').hidden = false;
+  document.getElementById('restoreBackup').hidden = false;
+
+  document.getElementById('restoreBackupInputText').hidden = true;
+  document.getElementById('restoreBackupInput').hidden = true;
+  document.getElementById('confirmRestoreBackup').hidden = true;
+
+  let backupText = document.getElementById('restoreBackupInput').value;
+  pastDayList = JSON.parse(backupText);
+  pastDayList = JSON.parse(pastDayList); // ... because Blops are strange
+  // Fix dates messed up by JSON.stringify
+  for (const key in pastDayList) {
+    pastDayList[key] = fixDatesInList(pastDayList[key]);
+  }
+
+  localStorage.pastDayList = pastDayList;
+
+  location.reload(true);
 }
 
 
@@ -2207,13 +2607,15 @@ function twoFingerNavigation(event) {
   if (sessionStorage.touchX && event.touches.length === 1) {
     sessionStorage.touchX = '';
   }
-  if (event.touches.length > 1) {
+  if (event.touches.length > 0) {
     if (!sessionStorage.touchX) {
       sessionStorage.touchX = event.touches[0].screenX; // SESSIONstorage, not localStorage. Doh.
     } else if (event.touches[0].screenX - sessionStorage.touchX < 50) { // Left swipe
-      goToPage('storage.html');
+      // goToPage('storage.html');
+      storageButtonClicked();
     } else if (event.touches[0].screenX - sessionStorage.touchX > 50) { // Right swipe
-      goToPage('month.html'); // TODO: Fix twofingerNavigation
+      // goToPage('month.html'); // TODO: Fix twofingerNavigation
+      monthButtonClicked();
     }
   }
 }
@@ -2341,7 +2743,7 @@ function inputAtEnter(event) {
   let button = document.getElementById('clearButton');
   if (event.key === 'Enter') {
     let contentInputBox = document.getElementById('dayInputBox').value.trim();
-    if (/[a-c, e-g, i-l, n-z]/.exec(contentInputBox) != null && chosenTaskId === '') {
+    if (chosenTaskId === '' && /[a-c, e-g, i-l, n-z]/.exec(contentInputBox) != null ||  /(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])/.exec(contentInputBox) != null) {  // The latter is to allow emojis
       inputFixedTask(contentInputBox);
     } else {
       if (/[^0-9]/.exec(contentInputBox) != null && chosenTask != '') {
@@ -2520,7 +2922,7 @@ function isThereASoftOverlap(task) {
         }
       }
       if (n === len - 1 && overlap === 'softOverlap') {
-        return overlap
+        return overlap;
       }
   }
 
@@ -2550,7 +2952,7 @@ function removeFuzzyOverlap(task) {
       }
     }
   }
-  return overlappingTasks
+  return overlappingTasks;
 }
 
 // Used by an eventListener. Govern the Edit/Clear button
@@ -2754,7 +3156,7 @@ function createDisplayList(sourceList) {
   }
 
   uniqueIdOfLastTouched = jumpToId;
-  return displayList
+  return displayList;
 }
 
 
@@ -2810,7 +3212,7 @@ function taskHasBeenClicked(event) {
 
   if (contentInputBox !== '' && !chosenTaskId) {
     // Text in inputBox and no chosenTaskId. Create new task and insert before clicked element
-    if (/[a-c, e-g, i-l, n-z]/.exec(contentInputBox) != null) {
+    if (chosenTaskId === '' && /[a-c, e-g, i-l, n-z]/.exec(contentInputBox) != null ||  /(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])/.exec(contentInputBox) != null) {  // The latter is to allow emojis
       let parsedList = parseText(contentInputBox);
       let task = new Task(parsedList[0], parsedList[1], parsedList[2], parsedList[3]);
       if (nullTimeClicked) {
@@ -2877,7 +3279,7 @@ function getIndexFromUniqueId(uniqueId) {
   }
   for (const [index, task] of taskList.entries()) {
     if (task.uniqueId.toString() === uniqueId.toString()) {
-      return index
+      return index;
     }
   }
 }
@@ -3110,7 +3512,7 @@ function textExtractor(task) {  // Extract the text to be written on screen
     text = text1 + nils[2] + endH + ':' + nils[3] + endM + ' ' + text;
   }
 
-  return text
+  return text;
 }
 
 
@@ -3233,11 +3635,13 @@ function parseText(rawText) {
     rawText = rawText.replace('g' + gain, '');
   };
 
-
-  if (rawText.toLowerCase().includes(languagePack['pause'][language])) {drain = '-1'};
-  if (rawText.toLowerCase().includes(languagePack['rest'][language])) {drain = '-3'};
-  if (rawText.toLowerCase().includes(languagePack['relax'][language])) {drain = '-5'};
-  if (rawText.toLowerCase().includes(languagePack['splatte'][language])) {drain = '-5'};
+  if (drain == 1) {
+    if (rawText.toLowerCase().includes(languagePack['pause'][language])) {drain = '-1'};
+    if (rawText.toLowerCase().includes(languagePack['rest'][language])) {drain = '-3'};
+    if (rawText.toLowerCase().includes(languagePack['relax'][language])) {drain = '-5'};
+    if (rawText.toLowerCase().includes(languagePack['meditate'][language])) {drain = '-5'};
+    if (rawText.toLowerCase().includes(languagePack['splatte'][language])) {drain = '-5'};
+  }
 
   let text = rawText.trim();
   text = text.slice(0, 1).toUpperCase() + text.slice(1, );

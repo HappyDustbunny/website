@@ -159,6 +159,7 @@ html {
   padding-right: 15px;
   padding-bottom: 10px;
   padding-top: 10px;
+  margin-left: 10px;
   border-radius: 10px;
   background-color: rgba(154, 219, 240, .25);
   width: 90%;
@@ -292,9 +293,17 @@ html {
   height: 800px;
 } */
 
-#gainDiv {
+#inputBox_add {
+  width: 175px;
+}
+
+/* #gainDiv {
   display: inline-flex;
   justify-content: space-between;
+} */
+
+#addInfo {
+  width: 20px;
 }
 
 #info {
@@ -362,7 +371,7 @@ html {
   justify-content: space-between;
 }
 
-#apply {
+#applyAdd {
   width: 220px;
 }
 
@@ -370,7 +379,7 @@ html {
   width: 15%;
 }
 
-#apply, #cancel {
+#applyAdd, #cancel {
   font-size: 0.6em;
   margin-top: 5px;
 }
@@ -758,8 +767,13 @@ label {  /* Used in settingsView */
   white-space: pre;
 }
 
-#noteSpan {
+#soundIfFocus {
   white-space: pre;
+}
+
+#soundIfFocusPlayView {
+  white-space: pre;
+  font-size: 0.8em;
 }
 
 #stressLevelText {
@@ -891,6 +905,54 @@ label {  /* Used in settingsView */
   z-index: 10;
 }
 
+#hourglassDiv {
+  box-sizing: content-box; /* Suspend the border-box used in the rest of the project */
+	display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  margin-top: 6px;
+}
+
+#hourglassText {
+  display: flex;
+  align-self: center;
+}
+
+#stopButton {
+  font-size: large;
+  line-height: 0.1em;
+  text-align: center;
+  padding: .1em 0.2em .3em .15em;
+  /* background-image: linear-gradient(#b00505, #fb0b0b, #fb0b0b, #fb0b0b, #fb0b0b, #b00505); */
+  background-image: linear-gradient(#b93604, #fb4e0b, #fb4e0b, #fb4e0b, #fb4e0b, #a43206);
+  /* background-image: linear-gradient(#05b020, #0bfb31, #0bfb31, #0bfb31, #0bfb31, #05b020); */
+  height: 2em;
+  width: 2em;
+  border-radius: 25px;
+  border: 1px solid rgb(108, 168, 48);
+  z-index: 10;
+}
+
+#playButton {
+	position: absolute;
+	/* bottom: 10%; */
+	/* left: 80%; */
+	/* margin-top: 150%; */
+	/* margin-left: 75%; */
+	margin-top: 450px;
+	margin-left: 100px;
+	font-size: xx-large;
+	line-height: 0.1em;
+	text-align: center;
+	padding: .01em 0.02em .2em .15em;
+	background-image: linear-gradient(#05b020, #0bfb31, #0bfb31, #0bfb31, #0bfb31, #05b020);
+	height: 1.3em;
+	width: 1.3em;
+	border-radius: 25px;
+	border: 1px solid rgb(108, 168, 48);
+	z-index: 10;
+}
+
 #addTaskButton {
   position: absolute;
   /* bottom: 10%;
@@ -903,7 +965,7 @@ label {  /* Used in settingsView */
   line-height: 0.1em;
   text-align: center;
   padding: .1em 0.12em .2em .1em;
-  background-image: linear-gradient(#08e22a, #0bfb31, #0bfb31, #0bfb31, #08e22a);
+  background-image: linear-gradient(#05b020, #0bfb31, #0bfb31, #0bfb31, #0bfb31, #05b020);
   height: 1.7em;
   width: 1.7em;
   border-radius: 25px;
@@ -958,10 +1020,11 @@ label {  /* Used in settingsView */
   padding-left: 7px;
 }
 
-#dayMessage {
+#dayMessage, #addMessage {
   grid-area: messages;
   color: red;
-  white-space: pre;
+  text-align: center;
+  white-space: pre;  /* Render text as predefined without wrapping */
 }
 
 /* TODO: There are two #month */

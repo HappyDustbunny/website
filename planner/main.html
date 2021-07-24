@@ -27,7 +27,7 @@
           <button type="button" id="storage" class='controlButton'> </button>
 
           <span id='heart'></span>
-          <span id='dayMessage' display='none'></span>
+          <span id='dayMessage' hidden></span>
           <br>
         </div>
 
@@ -42,8 +42,8 @@
 
           <input type="text" id='dayInputBox' class="inputBox" autofocus value="">
 
-          <button id="addTaskButton" class="controlButton">+</button>  <!-- This button is placed in lower right corner by CSS -->
-          <!-- <button type="button" class="addTaskButton">&#x270d;</button> --> <!-- Writing Hand -->
+          <button type="button" id='playButton'>&#x25B8;</button>  <!-- This button is placed in lower left corner by CSS -->
+          <button type="button" id="addTaskButton" >+</button>  <!-- This button is placed in lower right corner by CSS -->
 
           <button type="button" id='toDoButton' class="controlButton" hidden> </button>
 
@@ -75,11 +75,11 @@
           <h1 align='center'>FuzzyPlan</h1>
           <h2 id="addTaskHeading"align='center' lang="en">Add task</h2>
           <h2 align='center' lang="da" hidden>Tilføj opgave</h2>
-          <span id='addMessage' display='none'></span>
+          <span id='addMessage' hidden></span>
         </div>
 
 
-        <div class='topic'>
+        <div class='topic addView playView'>
           <div>
             <span id='inputBox_add_text' class="text"> </span>
             <input type="text" id='inputBox_add' class="inputBox" autofocus value='' tabindex="1">
@@ -88,11 +88,26 @@
 
         <span>   <br>   </span>
 
-        <div class='topic'>
+        <div class="topic playView" hidden>
+          <span id="playText" class="text"></span>
+          <span id="nowText"></span>
+          <span id="toText" class="text" hidden></span>
+          <span id="untilText"></span>
+        </div>
+
+        <span class="playView" hidden>   <br>   </span>
+
+        <div id='playControlsQueryDiv' class="topic playView" hidden>
+          <button type="button" id="playControlsQuery" class="controlButton add" tabindex="6"></button>
+        </div>
+
+        <span id="playTopicSpan" hidden>   <br>   </span>
+
+        <div class='topic addView playControl'>
           <div id="duration" class="durationContainer">
             <span id='text1'>
               <span id='inputDurationBox_text' class='text'></span>
-              <input type="text" id='inputDurationBox' class="inputBox" tabindex="2" placeholder="0h30m"> <br>
+              <input type="text" id='inputDurationBox' class="inputBox" tabindex="2"> <br>
             </span>
             <div class="buttons">
               <div>
@@ -117,11 +132,23 @@
               </div>
             </div>
           </div>
+          <div id="hourglass" class="hourglassTimer" hidden>
+            <div id="hourglassDiv" style='width: 100px; height: 100px;  border: 2px solid rgba(154, 219, 240, 1.0)'>
+              <div id="hourglassText">	</div>
+            </div>
+          </div>
+          <span class="hourglassTimer"> <br> </span>
+          <div id='soundDiv' class="hourglassTimer" hidden>
+            <input id='sound' type="checkbox" name="soundOrNot">
+            <label  id="soundOrNot" for="soundOrNots" class="labelText"></label>
+            <br>
+            <span id="soundIfFocusPlayView" class="labelText"> </span>
+          </div>
         </div>
 
-        <span>   <br>   </span>
+        <span class="addView" hidden>   <br>   </span>
 
-        <div class='topic'>
+        <div class='topic addView' hidden>
           <div id="time" class="timeContainer">
             <div class="timeButtons">
               <span id='inputTimeBoxText' class="text">Task starts at</span>
@@ -161,16 +188,13 @@
           </div>
         </div>
 
-        <span>   <br>   </span>
+        <span class="addView playControl" hidden>   <br>   </span>
 
-        <div class='topic'>
+        <div class='topic addView playControl'>
           <div class="addContainer2">
 
             <span id="drainLevelText" class="text"> </span>
-            <div id='gainDiv'>
-              <span id="grainLevelText" class="text"></span>
-              <button type="button" id="addInfo" class='controlButton'> </button>
-            </div>
+            <button type="button" id="addInfo" class='controlButton'> </button>
 
             <div id='drainBand'>
               <label class="hearts">
@@ -218,17 +242,21 @@
                 <img class="heartImg" src="16px-A_SVG_semicircle_heart.svg.png" alt="red heart">
               </label>
             </div>
-
-          </div>
-
-          <div id="applyDiv">
-            <button type="button" id="cancel" class="controlButton add" tabindex="6"></button>
-            <button type="button" id="apply" class="controlButton add" tabindex="7"></button>
           </div>
         </div>
 
         <span>   <br>   </span>
+
+        <div class="topic addView playView">
+          <div id="applyDiv">
+            <button type="button" id="cancel" class="controlButton add" tabindex="6"></button>
+            <button type="button" id="applyAdd" class="controlButton add" tabindex="7" hidden></button>
+            <button type="button" id="stopButton" class="controlButton add" tabindex="7" hidden>&#x25A0;</button>
+          </div>
+        </div>
       </div>
+
+      <span class="addView playView" hidden>   <br>   </span>
 
       <!-- Month view ---------------------- -->
 
@@ -245,7 +273,7 @@
             til dagsvisning (eller swipe til venstre med to fingre hvorsomhelst)' lang="da" hidden>Dag</button>
           </span>
 
-          <span id='monthMessage' display='none'></span>
+          <span id='monthMessage' hidden></span>
           <br>
         </div>
 
@@ -276,7 +304,7 @@
 
           <button type="button" id="month1" class='controlButton'> </button>
 
-          <span id='trackMessage' display='none'></span>
+          <span id='trackMessage' hidden></span>
           <br>
         </div>    <!-- trackContainer1 -->
 
@@ -334,7 +362,7 @@
             <button type="button" class="controlButton" title="Klik for at
             komme tilbage til dagsvisning" lang="da" hidden>Dag</button>
           </span>
-          <span id='storageMessage' display='none'></span>
+          <span id='storageMessage' hidden></span>
 
           <br>
 
@@ -393,7 +421,7 @@
 
           <button type="button" id='gotoDayFromSettings' class='controlButton'> </button>
 
-          <span id='settingsMessage' display='none'></span>
+          <span id='settingsMessage' hidden></span>
 
           <br>
         </div>    <!-- settingsContainer1 -->
@@ -487,7 +515,7 @@
             </div>
             <br>
             <br>
-            <span id="noteSpan" class="labelText"> </span>
+            <span id="soundIfFocus" class="labelText"> </span>
           </div>
 
           <span>   <br>   </span>
@@ -516,7 +544,30 @@
           <span> <br> </span>
 
           <div class='topic'>
+            <h4 id='backupHeading' class="text"> </h4>
+
+            <span id="backupText" class="labelText">  </span>
+
+            <span> <br> </span>
+            <span> <br> </span>
+
+            <button type="button" id="backup" class='controlButton'></button>
+
+            <button type="button"  id="restoreBackup" class='controlButton'></button>
+
+            <span id="restoreBackupInputText" class="labelText" hidden></span>
+            <input id="restoreBackupInput" type="text" hidden>
+            <button type="button"  id="cancelRestoreBackup" class='controlButton' hidden></button>
+            <button type="button"  id="confirmRestoreBackup" class='controlButton' hidden></button>
+
+          </div>
+
+          <span>   <br>   </span>
+
+          <div class='topic'>
             <h4  id='clearDataHeading' class="text"> </h4>
+
+            <span>   <br>   </span>
 
             <button type="button" id="clearAllData" class='controlButton'></button>
 
