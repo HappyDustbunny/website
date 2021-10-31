@@ -1,0 +1,30 @@
+{
+  "short_name": "FuzzyPlan",
+  "description": "A planning tool for those of us who hates plans, but knows we need them",
+  "start_url": "/planner/main.html",
+  "scope": "/",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "favicons/favicon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "favicons/favicon-310.png",
+      "type": "image/png",
+      "sizes": "310x310"
+    },
+    {
+      "src": "favicons/favicon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "favicons/favicon-150.png",
+      "type": "image/png",
+      "sizes": "150x150"
+    }
+  ],
+  "backgroundColor": "#FFF"
+}

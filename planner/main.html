@@ -4,60 +4,135 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>FuzzyPlan</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="FPlogo.png">
-    <link rel="stylesheet" href="main.css">
-    <script src="main.js" defer></script>
+
+    <!-- ****** faviconit.com planner/favicons ****** -->
+  	<link rel="shortcut icon" href="/planner/favicons/favicon.ico">
+  	<link rel="icon" sizes="16x16 32x32 64x64" href="/planner/favicons/favicon.ico">
+  	<link rel="icon" type="image/png" sizes="196x196" href="/planner/favicons/favicon-192.png">
+  	<link rel="icon" type="image/png" sizes="160x160" href="/planner/favicons/favicon-160.png">
+  	<link rel="icon" type="image/png" sizes="96x96" href="/planner/favicons/favicon-96.png">
+  	<link rel="icon" type="image/png" sizes="64x64" href="/planner/favicons/favicon-64.png">
+  	<link rel="icon" type="image/png" sizes="32x32" href="/planner/favicons/favicon-32.png">
+  	<link rel="icon" type="image/png" sizes="16x16" href="/planner/favicons/favicon-16.png">
+  	<link rel="apple-touch-icon" href="/planner/favicons/favicon-57.png">
+  	<link rel="apple-touch-icon" sizes="114x114" href="/planner/favicons/favicon-114.png">
+  	<link rel="apple-touch-icon" sizes="72x72" href="/planner/favicons/favicon-72.png">
+  	<link rel="apple-touch-icon" sizes="144x144" href="/planner/favicons/favicon-144.png">
+  	<link rel="apple-touch-icon" sizes="60x60" href="/planner/favicons/favicon-60.png">
+  	<link rel="apple-touch-icon" sizes="120x120" href="/planner/favicons/favicon-120.png">
+  	<link rel="apple-touch-icon" sizes="76x76" href="/planner/favicons/favicon-76.png">
+  	<link rel="apple-touch-icon" sizes="152x152" href="/planner/favicons/favicon-152.png">
+  	<link rel="apple-touch-icon" sizes="180x180" href="/planner/favicons/favicon-180.png">
+  	<meta name="msapplication-TileColor" content="#FFFFFF">
+  	<meta name="msapplication-TileImage" content="/planner/favicons/favicon-144.png">
+  	<meta name="msapplication-config" content="/planner/favicons/browserconfig.xml">
+  	<!-- ****** faviconit.com planner/favicons ****** -->
+
+    <link rel="stylesheet" href="FuzzyPlan20211002.css">
+    <link rel="manifest" href="/planner/FuzzyPlan_manifest.json">
+    <!-- <link rel="manifest" href="/planner_test/FuzzyPlan_manifest.json"> -->
+    <script type="text/javascript">
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/FuzzyPlan_serviceWorker20211002.js').then(function(registration) {
+          // Registration was successful
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, function(err) {
+          // registration failed :(
+          console.log('ServiceWorker registration failed: ', err);
+        });
+      });
+    }
+    </script>
+    <!-- <script src="FuzzyPlan_serviceWorker20211002.js"></script> -->
+    <script src="FuzzyPlan20211002.js" defer></script>
   </head>
 
   <body onload="setUpFunc()">
     <div id="page">
 
+      <div class="headContainer">
+        <button type="button" id="month" class='controlButton dayView active'> </button>
+
+        <h1 id='name' align=center> FuzzyPlan </h1>
+
+        <button type="button" id="info" class='controlButton dayView active'> </button>
+
+        <button type="button" id="storage" class='controlButton dayView active'> </button>
+
+        <span id='heart'></span>
+        <span id='message' hidden></span>
+
+        <!-- monht view -->
+        <button type="button" id='track' class="controlButton monthView" hidden></button>
+        <button type="button" id="day" class='controlButton monthView' hidden></button>
+        <!-- storage view -->
+        <button type="button" id="day1" class='controlButton storageView' hidden> </button>
+        <!-- settings view -->
+        <button type="button" id='gotoDayFromSettings' class='controlButton settingsView' hidden> </button>
+        <!-- track view -->
+        <button type="button" id="month1" class='controlButton trackView' hidden> </button>
+        <br>
+      </div>
+
+      <div class="centerWrapper">
+        <div id="sortTask" class="noTasksToSort dayView active">
+          <button type="button" id="postpone" class="controlButton"> </button>
+
+          <button type="button" id='upButton' class="controlButton"> </button>
+
+          <button type="button" id='nowButton' class="controlButton"> </button>
+        </div>
+
+        <input type="text" id='dayInputBox' class="inputBox dayView active" autofocus value="">
+
+        <div id="playButtonContainer" class="dayView active">
+          <div id="playButtonTop" class="dayView active"></div>
+          <div id="playButtonTap" class="dayView active"></div>
+          <button type="button" id='playButton' class="controlButton dayView active"></button>  <!-- This button is placed in lower left corner by CSS -->
+        </div>
+
+        <button type="button" id="addTaskButton" class="dayView active">+</button>  <!-- This button is placed in lower right corner by CSS -->
+
+        <button type="button" id='toDoButton' class="controlButton" hidden> </button>
+
+        <button type="button" id='clearButton' class="controlButton dayView active"> </button>
+
+        <button type="button" id='gotoSettings' class="controlButton dayView active"> </button>
+
+        <button type="button" id='zoom' class="controlButton dayView active"> </button>
+
+        <div id="dayChooseBox"></div>
+
+        <!-- monht view -->
+        <div id="putBackClearDiv" class="monthView">
+          <button type="button" id="putBack" class="controlButton"> </button>
+          <button type="button" id='monthClearButton' class="controlButton monthView"> </button>
+        </div>
+
+        <input type="text" id='monthInputBox' class="inputBox monthView" autofocus value="">
+
+        <button type="button" id="moveToDay" class="controlButton" hidden> </button>
+
+        <div id='monthChooseBox' hidden></div>
+
+        <!-- add view -->
+        <h2 id="addTaskHeading" class="text addView" align='center' lang="en" hidden>Add task</h2>
+
+        <!-- track view -->
+        <h2 id='trackViewHeading' class='text trackView' align='center' hidden> </h2>
+        <!-- storage view -->
+        <h4 id="storageHeadingText" class="text storageView" hidden>  </h4>
+        <!-- settings view -->
+        <h2 id="settingsHeading" class="text settingsView " hidden> </h2>
+      </div>
+
+
       <!-- Day view ------------------------ -->
 
-      <div id="dayView" class="active">
-        <div class="container1">
-          <button type="button" id="month" class='controlButton'> </button>
+      <div id="dayView">
 
-          <h1 id='name' align=center>
-            FuzzyPlan
-          </h1>
-
-          <button type="button" class='controlButton' id="info"> </button>
-
-          <button type="button" id="storage" class='controlButton'> </button>
-
-          <span id='heart'></span>
-          <span id='dayMessage' hidden></span>
-          <br>
-        </div>
-
-        <div class="centerWrapper">
-          <div id="sortTask" class="noTasksToSort">
-            <button type="button" id="postpone" class="controlButton"> </button>
-
-            <button type="button" id='upButton' class="controlButton"> </button>
-
-            <button type="button" id='nowButton' class="controlButton"> </button>
-          </div>
-
-          <input type="text" id='dayInputBox' class="inputBox" autofocus value="">
-
-          <button type="button" id='playButton'>&#x25B8;</button>  <!-- This button is placed in lower left corner by CSS -->
-          <button type="button" id="addTaskButton" >+</button>  <!-- This button is placed in lower right corner by CSS -->
-
-          <button type="button" id='toDoButton' class="controlButton" hidden> </button>
-
-          <button type="button" id='clearButton' class="controlButton"> </button>
-
-          <button type="button" id='gotoSettings' class="controlButton"> </button>
-
-          <button type="button" id='zoom' class="controlButton"> </button>
-
-          <div id="dayChooseBox"></div>
-
-        </div>
-
-        <div id='container' class="container2">
+        <div id='container' class="container2 dayView">
           <div id='stressDiv'> </div>
           <div id='timeDiv'> </div>
           <div id='taskDiv'> </div>
@@ -71,12 +146,10 @@
       <!-- Add-task view ---------------------- -->
 
       <div id='addView' hidden>
-        <div class="addContainer1">
+        <!-- <div class="addContainer1">
           <h1 align='center'>FuzzyPlan</h1>
-          <h2 id="addTaskHeading"align='center' lang="en">Add task</h2>
-          <h2 align='center' lang="da" hidden>Tilføj opgave</h2>
           <span id='addMessage' hidden></span>
-        </div>
+        </div> -->
 
 
         <div class='topic addView playView'>
@@ -87,21 +160,6 @@
         </div>
 
         <span>   <br>   </span>
-
-        <div class="topic playView" hidden>
-          <span id="playText" class="text"></span>
-          <span id="nowText"></span>
-          <span id="toText" class="text" hidden></span>
-          <span id="untilText"></span>
-        </div>
-
-        <span class="playView" hidden>   <br>   </span>
-
-        <div id='playControlsQueryDiv' class="topic playView" hidden>
-          <button type="button" id="playControlsQuery" class="controlButton add" tabindex="6"></button>
-        </div>
-
-        <span id="playTopicSpan" hidden>   <br>   </span>
 
         <div class='topic addView playControl'>
           <div id="duration" class="durationContainer">
@@ -132,13 +190,13 @@
               </div>
             </div>
           </div>
-          <div id="hourglass" class="hourglassTimer" hidden>
+          <div id="hourglass" class="hourglassTimer">
             <div id="hourglassDiv" style='width: 100px; height: 100px;  border: 2px solid rgba(154, 219, 240, 1.0)'>
               <div id="hourglassText">	</div>
             </div>
           </div>
           <span class="hourglassTimer"> <br> </span>
-          <div id='soundDiv' class="hourglassTimer" hidden>
+          <div id='soundDiv' class="hourglassTimer">
             <input id='sound' type="checkbox" name="soundOrNot">
             <label  id="soundOrNot" for="soundOrNots" class="labelText"></label>
             <br>
@@ -146,9 +204,9 @@
           </div>
         </div>
 
-        <span class="addView" hidden>   <br>   </span>
+        <span class="addView">   <br>   </span>
 
-        <div class='topic addView' hidden>
+        <div class='topic addView'>
           <div id="time" class="timeContainer">
             <div class="timeButtons">
               <span id='inputTimeBoxText' class="text">Task starts at</span>
@@ -188,7 +246,7 @@
           </div>
         </div>
 
-        <span class="addView playControl" hidden>   <br>   </span>
+        <span class="addView playControl">   <br>   </span>
 
         <div class='topic addView playControl'>
           <div class="addContainer2">
@@ -200,46 +258,46 @@
               <label class="hearts">
                 &nbsp;
                 <input type="radio" id='d5' class="drain" name='drain' value="d5">
-                <img class="heartImg"  src="16px-A_SVG_semicircle_heart_empty.svg.png" alt="empty heart">
+                <img class="heartImg"  src="200px-A_SVG_semicircle_heart_empty.svg.png" alt="empty heart">
               </label>
               <label class="hearts">
                 <input type="radio" id='d4' class="drain" name='drain' value="d4">
-                <img class="heartImg" src="16px-A_SVG_semicircle_heart_empty.svg.png" alt="empty heart">
+                <img class="heartImg" src="200px-A_SVG_semicircle_heart_empty.svg.png" alt="empty heart">
               </label>
               <label class="hearts">
                 <input type="radio" id='d3' class="drain" name='drain' value="d3">
-                <img class="heartImg" src="16px-A_SVG_semicircle_heart_empty.svg.png" alt="empty heart">
+                <img class="heartImg" src="200px-A_SVG_semicircle_heart_empty.svg.png" alt="empty heart">
               </label>
               <label class="hearts">
                 <input type="radio" id='d2' class="drain" name='drain' value="d2">
-                <img class="heartImg" src="16px-A_SVG_semicircle_heart_empty.svg.png" alt="empty heart">
+                <img class="heartImg" src="200px-A_SVG_semicircle_heart_empty.svg.png" alt="empty heart">
               </label>
               <label class="hearts">
                 <input type="radio" id='d1' class="drain" name='drain' value="d1" checked='checked'>
-                <img class="heartImg" src="16px-A_SVG_semicircle_heart_empty.svg.png" alt="empty heart">
+                <img class="heartImg" src="200px-A_SVG_semicircle_heart_empty.svg.png" alt="empty heart">
               </label>
             </div>
 
             <div id='gainBand'>
               <label class="hearts">
                 <input type="radio" id='g1' class="drain" name='drain' value="g1">
-                <img class="heartImg" src="16px-A_SVG_semicircle_heart.svg.png" alt="red heart">
+                <img class="heartImg" src="200px-A_SVG_semicircle_heart.svg.png" alt="red heart">
               </label>
               <label class="hearts">
                 <input type="radio" id='g2' class="drain" name='drain' value="g2">
-                <img class="heartImg" src="16px-A_SVG_semicircle_heart.svg.png" alt="red heart">
+                <img class="heartImg" src="200px-A_SVG_semicircle_heart.svg.png" alt="red heart">
               </label>
               <label class="hearts">
                 <input type="radio" id='g3' class="drain" name='drain' value="g3">
-                <img class="heartImg" src="16px-A_SVG_semicircle_heart.svg.png" alt="red heart">
+                <img class="heartImg" src="200px-A_SVG_semicircle_heart.svg.png" alt="red heart">
               </label>
               <label class="hearts">
                 <input type="radio" id='g4' class="drain" name='drain' value="g4">
-                <img class="heartImg" src="16px-A_SVG_semicircle_heart.svg.png" alt="red heart">
+                <img class="heartImg" src="200px-A_SVG_semicircle_heart.svg.png" alt="red heart">
               </label>
               <label class="hearts">
                 <input type="radio" id='g5' class="drain" name='drain' value="g5">
-                <img class="heartImg" src="16px-A_SVG_semicircle_heart.svg.png" alt="red heart">
+                <img class="heartImg" src="200px-A_SVG_semicircle_heart.svg.png" alt="red heart">
               </label>
             </div>
           </div>
@@ -256,57 +314,25 @@
         </div>
       </div>
 
-      <span class="addView playView" hidden>   <br>   </span>
+<!-- // Running a timer when the page looses focus is tricky. The play and tic part of the app will be dropped for now. This message is pasted before all uncommented sections in main.js and main.html -->
+      <!-- <span class="addView playView" hidden>   <br>   </span> -->
 
       <!-- Month view ---------------------- -->
 
       <div id="monthView" hidden>
-        <div class="monthContainer1">
-          <button type="button" id='track' class="controlButton"></button>
-
-          <h1 id='monthViewName' align=center>
-            FuzzyPlan
-          </h1>
-
-          <button type="button" id="day" class='controlButton'></button>
-            <button type="button" class='controlButton' title='Klik for at gå tilbage
-            til dagsvisning (eller swipe til venstre med to fingre hvorsomhelst)' lang="da" hidden>Dag</button>
-          </span>
-
-          <span id='monthMessage' hidden></span>
-          <br>
-        </div>
-
-        <div class="monthCenterWrapper">
-          <button type="button" id='monthClearButton' class="controlButton"> </button>
-          <input type="text" id='monthInputBox' class="inputBox" autofocus value="">
-
-          <button type="button" id="moveToDay" class="controlButton"> </button>
-
-          <button type="button" id="putBack" class="controlButton"> </button>
-          <div id='monthChooseBox'></div>
-        </div>
+        <!-- <div id='rap' class="glid active">
+          rap
+        </div> -->
 
         <div id='monthContainer' class="monthContainer2">
           <div id='monthTaskDiv'> </div>
         </div>
+
       </div>
 
       <!-- Track view ---------------------- -->
 
       <div id="trackView" hidden>
-        <div class="trackContainer1">
-          <h1 id='trackViewName' align='center'>
-            FuzzyPlan
-          </h1>
-
-          <h2 id='trackViewHeading' align='center'> </h2>
-
-          <button type="button" id="month1" class='controlButton'> </button>
-
-          <span id='trackMessage' hidden></span>
-          <br>
-        </div>    <!-- trackContainer1 -->
 
         <span> <br> </span>
 
@@ -332,12 +358,30 @@
           <div id="colourButtons" hidden></div>
         </div>
 
-        <span> <br> </span>
+        <!-- <span> <br> </span> -->
+
+        <div id="trackViewSpacer"></div>
+
+        <div class="topic">
+          <span id="showTrackedItemsInTooltip" class="text"> </span>
+          <br> <br>
+          <input id='showTTChkbox' type="checkbox" name="showInTooltip" value="show" checked>
+          <label id="showTTLabel" class="labelText" for="showInTooltip"></label>
+
+          <span> <br> </span>
+
+          <!-- <button type="button" id="deleteTrackedButton" class="controlButton"></button> -->
+        </div>
 
         <div id="trackViewSpacer"></div>
 
         <div class="topic">
           <span id="trackedItemsText" class="text"> </span>
+
+          <div id="selectAllOrNoneDiv">
+            <input id="selectAllOrNoneChkbox" type="checkbox" name="selectAllOrNone" checked>
+            <label id="selectAllOrNoneLabel" class="labelText" for="selectAllOrNone"></label>
+          </div>
           <div id="trackedItemsDiv"></div>
 
           <span> <br> </span>
@@ -345,23 +389,19 @@
           <button type="button" id="deleteTrackedButton" class="controlButton"></button>
         </div>
 
+        <!-- <span> <br> </span> -->
+
       </div>    <!-- trackView -->
 
       <!-- Storage view ------------------------- -->
 
       <div id="storageView" hidden>
-        <div class="storageContainer">
+        <!-- <div class="storageContainer">
           <h1 id='storageViewName' align='center'>
             FuzzyPlan
           </h1>
 
-          <!-- <h2 align='center'>Retrieve or store task lists</h2> -->
-          <span id='day1'>
-            <button type="button" class="controlButton" title="Click to
-            get back to day-view" lang="en">Day</button>
-            <button type="button" class="controlButton" title="Klik for at
-            komme tilbage til dagsvisning" lang="da" hidden>Dag</button>
-          </span>
+
           <span id='storageMessage' hidden></span>
 
           <br>
@@ -370,7 +410,6 @@
 
         <div class="storageContainer1">
           <div>
-            <h3 id="storageHeadingText">  </h3>
 
             <button type="button" id="storeList" class='controlButton'> </button>
 
@@ -414,12 +453,12 @@
       <!-- Settings view --------------------- -->
 
       <div id="settingsView" hidden>
-        <div class="container1">
+
+        <!-- <div class="container1">
           <h1 id='name' align=center>
             FuzzyPlan
           </h1>
 
-          <button type="button" id='gotoDayFromSettings' class='controlButton'> </button>
 
           <span id='settingsMessage' hidden></span>
 
@@ -427,8 +466,6 @@
         </div>    <!-- settingsContainer1 -->
 
         <div class="settingsContainer">
-
-          <h2 id="settingsHeading" class="text"> </h2>
 
           <div class="topic">
             <div>
@@ -455,13 +492,50 @@
             </div>
           </div>
 
+          <span> <br> </span>
+
+          <div class='topic'>
+            <h4 id='backupHeading' class="text"> </h4>
+
+            <span id="backupText" class="labelText">  </span>
+
+            <span> <br> </span>
+            <span> <br> </span>
+
+            <button type="button"  id="restoreBackup" class='controlButton'></button>
+            <div class="backupDistanceBetweenButtons"></div>
+            <button type="button" id="backup" class='controlButton'></button>
+
+            <div id='backupSection' hidden>
+              <label id="backupInputText" class="labelText" for='fileChooser'></label>
+              <input id="backupInput" type="file" name="fileChooserOut" accept=".txt">
+              <input id="backupInputFixed" type="text" name="fileChooserOutFixed">
+              <br><br>
+              <button type="button"  id="cancelBackup" class='controlButton'></button>
+              <div class="backupDistanceBetweenButtons"></div>
+              <button type="button"  id="confirmBackup" class='controlButton'></button>
+            </div>
+
+            <div id="restoreBackupSection" hidden>
+              <label id="restoreBackupInputText" class="labelText" for='fileChooser'></label>
+              <input id="restoreBackupInput" type="file" name="fileChooser" accept=".fpbu">
+              <!-- <input id="restoreBackupInput" type="file" name="fileChooser" accept=".txt"> -->
+              <br><br>
+              <button type="button"  id="cancelRestoreBackup" class='controlButton'></button>
+              <div class="backupDistanceBetweenButtons"></div>
+              <button type="button"  id="confirmRestoreBackup" class='controlButton'></button>
+            </div>
+
+
+          </div>
+
           <span>   <br>   </span>
 
           <div class='topic'>
             <div>
               <h4 id="taskDurationHeading" class="text"></h4>
 
-              <span id="taskDurationText"></span>
+              <span id="taskDurationText" class="labelText"></span>
               <input type="text" id='inputBoxM' class="inputBox inputSettings" value="30">
 
               <br>
@@ -474,6 +548,23 @@
           <span>   <br>   </span>
 
           <div class='topic'>
+            <div>
+              <h4 id="wakeUpHeading" class="text"></h4>
+
+              <span id="wakeUpText" class="labelText"></span>
+              <input type="text" id='inputBoxWakeUp' class="inputBox inputSettings" value="7:00">
+
+              <br>
+              <br>
+
+              <button type="button" id="applyWakeUp" class='controlButton'> </button>
+            </div>
+          </div>
+
+          <span>   <br>   </span>
+
+<!-- // Running a timer when the page looses focus is tricky. The play and tic part of the app will be dropped for now. This message is pasted before all uncommented sections in main.js and main.html -->
+          <!-- <div class='topic'>
             <div>
               <h4 id="playTocText" class="text"></h4>
 
@@ -516,9 +607,9 @@
             <br>
             <br>
             <span id="soundIfFocus" class="labelText"> </span>
-          </div>
+          </div> -->
 
-          <span>   <br>   </span>
+          <!-- <span>   <br>   </span> -->
 
           <div class='topic'>
             <div class="stressContainer">
@@ -541,27 +632,6 @@
             <button type="button" id='apply3' class='controlButton' lang="en">Apply</button>
           </div>
 
-          <span> <br> </span>
-
-          <div class='topic'>
-            <h4 id='backupHeading' class="text"> </h4>
-
-            <span id="backupText" class="labelText">  </span>
-
-            <span> <br> </span>
-            <span> <br> </span>
-
-            <button type="button" id="backup" class='controlButton'></button>
-
-            <button type="button"  id="restoreBackup" class='controlButton'></button>
-
-            <span id="restoreBackupInputText" class="labelText" hidden></span>
-            <input id="restoreBackupInput" type="text" hidden>
-            <button type="button"  id="cancelRestoreBackup" class='controlButton' hidden></button>
-            <button type="button"  id="confirmRestoreBackup" class='controlButton' hidden></button>
-
-          </div>
-
           <span>   <br>   </span>
 
           <div class='topic'>
@@ -576,6 +646,19 @@
           </div>
 
           <span>   <br>   </span>
+
+          <div class='topic'>
+            <h4  id='updateAppHeading' class="text"> </h4>
+
+            <span id="updateAppText" class="labelText"> </span>
+
+            <span>   <br>   </span>
+
+            <button type="button"  id="updateApp" class='controlButton'></button>
+
+          </div>
+
+          <span>   <br>   </span>
           <button type="button" id="gotoDayFromSettings1" class='controlButton'> </button>
           <span>   <br>   </span>
 
@@ -584,6 +667,5 @@
 
 
     </div>    <!-- page -->
-    <!-- <p>Supported browsers: Firefox, Vivaldi, Chrome, Ecosia app for Samsung</p> -->
   </body>
 </html>
