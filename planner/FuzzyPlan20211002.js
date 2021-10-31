@@ -2903,7 +2903,7 @@ function updateApp() {
   });
 
   // Fetch the serviceWorker again to reload pages and ressources into cache
-  navigator.serviceWorker.register('/FuzzyPlan_serviceWorker20211002.js').then(function(registration) {
+  navigator.serviceWorker.register('/planner/FuzzyPlan_serviceWorker20211002.js').then(function(registration) {
      // Registration was successful
      console.log('ServiceWorker registration successful with scope: ', registration.scope);
     }, function(err) {

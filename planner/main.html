@@ -28,13 +28,13 @@
   	<meta name="msapplication-config" content="/planner/favicons/browserconfig.xml">
   	<!-- ****** faviconit.com planner/favicons ****** -->
 
-    <link rel="stylesheet" href="FuzzyPlan20211002.css">
+    <link rel="stylesheet" href="/planner/FuzzyPlan20211002.css">
     <link rel="manifest" href="/planner/FuzzyPlan_manifest.json">
     <!-- <link rel="manifest" href="/planner_test/FuzzyPlan_manifest.json"> -->
     <script type="text/javascript">
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/FuzzyPlan_serviceWorker20211002.js').then(function(registration) {
+        navigator.serviceWorker.register('/planner/FuzzyPlan_serviceWorker20211002.js').then(function(registration) {
           // Registration was successful
           console.log('ServiceWorker registration successful with scope: ', registration.scope);
         }, function(err) {
@@ -45,7 +45,7 @@
     }
     </script>
     <!-- <script src="FuzzyPlan_serviceWorker20211002.js"></script> -->
-    <script src="FuzzyPlan20211002.js" defer></script>
+    <script src="/planner/FuzzyPlan20211002.js" defer></script>
   </head>
 
   <body onload="setUpFunc()">
