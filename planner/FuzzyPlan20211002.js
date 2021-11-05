@@ -52,6 +52,7 @@ let trackTaskList = {}; // Each tracked task have a text-key and a colour and an
 // let trackTaskList = {'morgenprogram': ['#00FF00', '1'], 'frokost': ['#DD0000', '1'], 'programmere': ['#0000FF', '1']}; // Each tracked task have a text-key and a colour and an opacity  Ex: {'morgenprogram': ['#00FF00', '1']}
 let putBackId = '';
 let dontShowTrackedAsTooltip = false;
+let backupMessageShown = 0;   // Value 0: Not shown yet     1: Shown today
 
 ///////// Month-view ////////
 let backupFileName = '';
@@ -260,8 +261,8 @@ let languagePack = {  // {'id': [['text', 'title'], ['tekst', 'titel']]} The var
 
      'backupHeading': [['Backup', ''],
                 ['Tag backup', '']],
-     'backupText': [['Backup the lists stored in Month View.\r\n(Note that this backup also can restore the past days in Month View in another browser)', ''],
-                ['Tag backup af de gamle opgavelister gemt i Månedsvisningen.\r\n(Bemærk at denne backup også kan flytte gamle opgavelister til Månedsvisningen i en anden browser)', '']],
+     'backupText': [['Backup settings and lists stored in Month View.\r\n(Note that this backup also can restore the past days in Month View in another browser)', ''],
+                ['Tag backup af indstillinger og gamle opgavelister gemt i Månedsvisningen.\r\n(Bemærk at denne backup også kan flytte gamle opgavelister til Månedsvisningen i en anden browser)', '']],
      'backup': [['Backup', ''],
                 ['Tag backup', '']],
      'backupInputText': [['Choose a file to overwrite, write your own name for the backup or use the proposed filename', ''],
@@ -308,6 +309,8 @@ let languagePack = {  // {'id': [['text', 'title'], ['tekst', 'titel']]} The var
                      'Datoer i fortiden kan ikke tildeles opgaver'],
      'useDayView': ['Use Day-view for today\'s tasks',
                     'Brug dagsvisning for dagens opgaver'],
+     'considerBackup': ['Consider taking a backup\r\nIt is done in Settings (\u2699)',
+                    'Overvej at tage en backup\r\nDet gøres i Indstillinger (\u2699)'],
      'finishTaskFirst': ['Please finish the current edit \nbefore starting a new',
                          'Afslut redigeringen før du starter en ny opgave'],
      'notADate': ['Not a date.\nPlease fix date or remove the back-slash',
@@ -512,6 +515,8 @@ function storeLocally() {
 
   localStorage.language = language;   // Value 0:English 1:Danish
 
+  localStorage.backupMessageShown = backupMessageShown;   // Value 0: Not shown yet    1: Shown today
+
   localStorage.dontShowTrackedAsTooltip = dontShowTrackedAsTooltip;
 
   localStorage.playViewIsRecording = playViewIsRecording;
@@ -632,6 +637,10 @@ function retrieveLocallyStoredStuff() {
 
   if (localStorage.getItem('language')) {
     language = Number(localStorage.language);   // Value 0:English 1:Danish
+  }
+
+  if (localStorage.getItem('backupMessageShown')) {
+    backupMessageShown = Number(localStorage.backupMessageShown);   // Value 0: Not shown yet     1: Shown today
   }
 
   if (localStorage.getItem('dontShowTrackedAsTooltip')) {
@@ -2143,6 +2152,14 @@ function monthRenderTasks() {
   let monthContainer = document.getElementById('monthContainer');
   let scrollTop = monthContainer.scrollHeight - 2085; // 2085 is the pixel height of 3 monht in the future
   monthContainer.scrollTop = scrollTop;
+
+  let now = new Date();
+  if (now.getDate() == 5 && backupMessageShown == 0){
+     displayMessage(languagePack['considerBackup'][language], 3000, 'month');
+     backupMessageShown = 1;
+  } else if (now.getDate() != 5) {
+    backupMessageShown = 0;
+  }
 }
 
 
