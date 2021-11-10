@@ -6,7 +6,10 @@ let CACHED_URLS = [
   '200px-Flag_of_Denmark.png',
   '200px-Flag_of_the_United_Kingdom.png',
   'FPlogo.png',
+  'favicon.png',
+  'favicon.ico',
   'favicons/favicon.ico',
+  'favicons/favicon.png',
   'favicons/favicon-16.png',
   'favicons/favicon-32.png',
   'favicons/favicon-57.png',
@@ -40,6 +43,6 @@ self.addEventListener('install', function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
-  // console.log('Fetch request for: ', event.request.url);
+  console.log('Fetch request for: ', event.request.url);
   event.respondWith( caches.match(event.request) );
 })

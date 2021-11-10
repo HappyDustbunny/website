@@ -2867,7 +2867,7 @@ function confirmRestoreBackup() {
         localStorage[item] = pastDayListBackUp[item];
       }
 
-      location.reload(true);
+      location.reload();
 
     } else {
       alert(languagePack['nothingChanged'][language]);
@@ -2889,7 +2889,7 @@ function clearAllData() {
     localStorage.monthTaskList = [];
     localStorage.pastDayList = [];
     clearDay();
-    location.reload(true);
+    location.reload();
   } else {
     alert(languagePack['nothingWasDeleted'][language]);
   }
@@ -2900,7 +2900,7 @@ function clearEverything() {
   let answer = confirm(languagePack['reallySure?'][language]);
   if (answer) {
     localStorage.clear();
-    location.reload(true);
+    location.reload();
   } else {
     alert(languagePack['nothingWasDeleted'][language]);
   }
@@ -2909,8 +2909,6 @@ function clearEverything() {
 function updateApp() {
   // Delete cached pages and ressources
   caches.delete('FP-cache');
-
-  // location.reload(true); // Reload to actually remove content
 
   // Remove the current serviceworker
   navigator.serviceWorker.getRegistrations().then( function(registrations) {
@@ -2928,7 +2926,8 @@ function updateApp() {
        console.log('ServiceWorker registration failed: ', err);
   });
 
-  location.reload(true);
+  location.reload(true); // Maybe the true flag is the one actually doing the heavy lifting?? Before removing it I had trouble with using location.reload(true); in backupConfirm as it removed cached content
+
 }
 
 
