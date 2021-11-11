@@ -3,7 +3,7 @@
   "short_name": "FuzzyPlan",
   "description": "A planning tool for those of us who hates plans, but knows we need them",
   "start_url": "/planner/main.html",
-  "scope": "/",
+  "scope": "/planner",
   "display": "standalone",
   "icons": [
     {
@@ -25,7 +25,14 @@
       "src": "favicons/favicon-150.png",
       "type": "image/png",
       "sizes": "150x150"
+    },
+    {
+      "src": "favicons/favicon-64maskable.png",
+      "type": "image/png",
+      "sizes": "64x64",
+      "purpose": "any maskable"
     }
   ],
-  "backgroundColor": "#ffffff"
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff"
 }

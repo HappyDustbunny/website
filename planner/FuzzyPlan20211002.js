@@ -2856,6 +2856,7 @@ function readFile(event) {
 
   reader.readAsText(file);
 }
+// TODO: Restoring a backup leaves last backupname in box + layout problem with backup buttons after confirmed backup
 
 function confirmRestoreBackup() {
   if (document.getElementById('restoreBackupInput').value == '') {
@@ -3005,7 +3006,7 @@ function  fillHearths(currentStressLevel) {
     newHeart.src="200px-A_SVG_semicircle_heart.svg.png";
     newHeart.style.width = '14px';
     newHeart.style.height = '14px';
-    newHeart.style.alt="heart symbol";
+    newHeart.alt="heart symbol";
 
     heartSpan.appendChild(newHeart);
   }
@@ -3015,7 +3016,7 @@ function  fillHearths(currentStressLevel) {
     newHalfHeart.src="200px-A_SVG_semicircle_heart_empty.svg.png";
     newHalfHeart.style.width = '14px';
     newHalfHeart.style.height = '14px';
-    newHalfHeart.style.alt="empty heart symbol";
+    newHalfHeart.alt="empty heart symbol";
 
     heartSpan.appendChild(newHalfHeart);
   }
