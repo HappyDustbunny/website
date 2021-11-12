@@ -83,7 +83,7 @@ html {
 
 .centerWrapper {
   display: grid;
-  grid-template-columns: 6% 21% 43% 11% 6% 6%;
+  grid-template-columns: 6% 21% 43% 12% 5% 6%;
   grid-template-rows: auto auto;
   grid-gap: .3rem;
   background-color: transparent;
@@ -655,8 +655,8 @@ html {
 
 #putBack {
   display: none;
-	/* line-height: 0.8em; */
-	padding-top: 2px;
+	line-height: 0.8em;
+	/* padding-top: 2px; */
 }
 
 #putBack.active {
@@ -1396,6 +1396,10 @@ button[id*='memory'] {
   #blankBottom {
     display: none;
   }
+
+  #putBack {
+    padding-top: 5px;
+  }
 }
 
 @media screen and (max-width: 399px) {
@@ -1408,6 +1412,10 @@ button[id*='memory'] {
     font-weight: normal;
     position: relative;
     top: 50%;
+  }
+
+  #putBack {
+  	padding-top: 2px;
   }
 }
 

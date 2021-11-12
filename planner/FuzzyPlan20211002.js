@@ -1,6 +1,5 @@
 // TODO: Clicking while a fixed task is in the input box inserts the tasks disregarding the fixed time. Bug or feature? Same in month view.
 // TODO: Integrate the help file in main
-// TODO: Make Postpone appear when text appear in inputBox
 
 let hashStack = [];
 let lastHash = '';
@@ -72,7 +71,7 @@ let weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturda
 'Sunday', 'Extra Store 1', 'Extra Store 2', 'Extra Store 3'];
 let ugeDage = ['Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag', 'Søndag',
 'Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag', 'Søndag',
-'Ekstralager 1', 'Ekstralager 2', 'Ekstralager 3']; // TODO: Fix weekdays translation when a storage is in use(?)
+'Ekstralager 1', 'Ekstralager 2', 'Ekstralager 3'];
 let storageList = {};  // taskList and their names are stored in memory1-17  {'memory1': [[task, task, ...], 'name']}
 
 ///////// Languages ///////
@@ -381,10 +380,10 @@ let languagePack = {  // {'id': [['text', 'title'], ['tekst', 'titel']]} The var
 
 
 // Daylight saving time shenanigans
-let today = new Date();
-let january = new Date(today.getFullYear(), 0, 1);
-let july = new Date(today.getFullYear(), 6, 1);
-const dstOffset = (july.getTimezoneOffset() - january.getTimezoneOffset()) * 60000; // Daylight saving time offset in ms
+// let today = new Date();
+// let january = new Date(today.getFullYear(), 0, 1);
+// let july = new Date(today.getFullYear(), 6, 1);
+// const dstOffset = (july.getTimezoneOffset() - january.getTimezoneOffset()) * 60000; // Daylight saving time offset in ms
 
 // Task-object. Each task will be an object of this type
 class Task {
@@ -801,7 +800,7 @@ function fillChooseBox(whichView) {  // whichView can be 'month' or 'day'
     }
 
   } else {  // whichView is 'day'
-    document.getElementById('postpone').classList.add('active'); // TODO: Is the class 'active' used? Nope. Should it be?
+    document.getElementById('postpone').classList.add('active'); // The class 'active' is being used for CSS formatting. I think
 
     tasks = tasksSentToDay;
     tasksSentToDay = [];
@@ -862,13 +861,12 @@ function postponeTask() {
   renderTasks();
   fixClearButtonArrow();
 }
-// TODO: Postpone does not appear when more than one task from monhtView is sorted in dayView
+
 
 function moveToDay() {
   let contentInputBox = document.getElementById('monthInputBox').value.trim();
   let parsedList = parseText(contentInputBox);
   let task = new Task(parsedList[0], parsedList[1], parsedList[2], parsedList[3]);
-  console.log(tasksSentToDay);
   tasksSentToDay.push(task);
   resetInputBox('month');
 }
@@ -1240,7 +1238,6 @@ function addTaskButtonClicked() {
   storeLocally();
   drainGainLevel_add = 'd1';
 
-  // TODO: Hmmm. Using .hidden removes transition. Fix this
   displayClass('dayView', false);
   displayClass('addView', true);
 
@@ -2281,7 +2278,6 @@ function colourButtonClicked(event) {
 
 
 function addTrackedTask(buttonColour) {
-  // TODO: Sanitize inputs
   let taskPickerInputBox = document.getElementById('taskPickerInputBox');
   let text = taskPickerInputBox.value.trim();
   if (/^[^'!"#$%&\\'()\*+,\-\.\/:;<=>?@\[\\\]\^_`{|}~']+$/.exec(text)) {
@@ -2663,7 +2659,7 @@ function applyTaskDuration() {
 
   let min = document.getElementById('inputBoxM').value.trim();
 
-  if (isNaN(min) || min < 0 || 24*60 - 2 < min) { // TODO: Scroll to top or display message
+  if (isNaN(min) || min < 0 || 24*60 - 2 < min) {
     displayMessage(languagePack['only0-1438'][language], 3000, 'settings');
     document.getElementById('inputBoxM').select();
     return;
@@ -2756,14 +2752,11 @@ function applyStressModel() {
 }
 
 
-function prepareStoreBackup() { // TODO: Make automatic backups at the end of each day (/week?)
+function prepareStoreBackup() {
   document.getElementById('backup').hidden = true;
   document.getElementById('restoreBackup').hidden = true;
 
   document.getElementById('backupSection').hidden = false;
-  // document.getElementById('cancelBackup').hidden = false;
-  // document.getElementById('backupInputText').hidden = false;
-  // document.getElementById('confirmBackup').hidden = false;
   let backupInputFixed = document.getElementById('backupInputFixed');
   backupInputFixed.hidden = false;
   document.getElementById('backupInput').hidden = false;
@@ -2771,8 +2764,8 @@ function prepareStoreBackup() { // TODO: Make automatic backups at the end of ea
   // Make filename
   let now = new Date();
   let date = now.getDate().toString() + '-' + (now.getMonth() + 1).toString() + '-' + now.getFullYear().toString();
-  backupFileName = 'FuzzyPlanBackup_' + date + '.fpbu';
-  // backupFileName = 'FuzzyPlanBackup_' + date + '.txt';
+  // backupFileName = 'FuzzyPlanBackup_' + date + '.fpbu';
+  backupFileName = 'FuzzyPlanBackup_' + date + '.txt';
   backupInputFixed.value = backupFileName;
 }
 
@@ -2802,8 +2795,8 @@ function fixBackupNameFromBrowsedNames() {
 
 
 function fixBackupNameFromWrittenName() {
-  backupFileName = document.getElementById('backupInputFixed').value + '.fpbu';
-  // backupFileName = document.getElementById('backupInputFixed').value + '.txt';
+  // backupFileName = document.getElementById('backupInputFixed').value + '.fpbu';
+  backupFileName = document.getElementById('backupInputFixed').value + '.txt';
 }
 
 
@@ -2856,7 +2849,6 @@ function readFile(event) {
 
   reader.readAsText(file);
 }
-// TODO: Restoring a backup leaves last backupname in box + layout problem with backup buttons after confirmed backup
 
 function confirmRestoreBackup() {
   if (document.getElementById('restoreBackupInput').value == '') {
@@ -2873,7 +2865,7 @@ function confirmRestoreBackup() {
     } else {
       alert(languagePack['nothingChanged'][language]);
     }
-    // TODO: Make a confirm dialog.
+
     document.getElementById('backup').hidden = false;
     document.getElementById('restoreBackup').hidden = false;
 
@@ -3052,7 +3044,7 @@ function wakeUpButton() {
     let succes = false;
     let now = new Date();
     let taskStartMinusDst = new Date(now.getFullYear(), now.getMonth(), now.getDate(), wakeUpH, wakeUpM);
-    let taskStart = new Date(taskStartMinusDst.getTime() + 0 * dstOffset); // TODO: Remove dstOffset?
+    let taskStart = new Date(taskStartMinusDst.getTime());
     let task = new Task(taskStart, 15 * 60000, languagePack['planning'][language][0], 1);
     succes = addFixedTask(task);
     if (!succes) {
@@ -3697,7 +3689,7 @@ function swapTasks(myId) {
 }
 
 
-function anneal() { // TODO: Tasks can end up after 23:59. At least a warning is needed(?)
+function anneal() {
   fixTimes();
   let len = taskList.length;
   for (var n=1; n<len - 1; n++) {
@@ -4026,6 +4018,7 @@ function updateStartAndEndTimes(timeH, timeM, hours, minutes) { // Makes a list 
 
 function parseText(rawText) {
   let taskStart = '';
+  let rawText = '';
 
   let minutes = /[0-9]+m/.exec(rawText);
   if (minutes) { // If 30m is in rawText store number in minutes and remove 30m from rawText
@@ -4091,7 +4084,7 @@ function parseText(rawText) {
     rawText = rawText.replace('g' + gain, '');
   };
 
-  if (drain == 1) { // TODO: If rawText is undefined .toLowerCase() will throw an error
+  if (drain == 1) {
     if (rawText.toLowerCase().includes(languagePack['pause'][language])) {drain = '-1'};
     if (rawText.toLowerCase().includes(languagePack['rest'][language])) {drain = '-3'};
     if (rawText.toLowerCase().includes(languagePack['relax'][language])) {drain = '-5'};
