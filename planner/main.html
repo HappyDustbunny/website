@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="description" content="FuzzyPlan is a planning tool for those of us who hates plans - but knows we need them. FuzzyPlan is designed to be flexible and effective, yet still reminds you of postponed tasks">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme_color" content="#FFFFFF">
+
     <title>FuzzyPlan</title>
 
     <!-- ****** faviconit.com planner/favicons ****** -->
@@ -35,7 +37,7 @@
     <script type="text/javascript">
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/planner/FuzzyPlan_serviceWorker20211002.js').then(function(registration) {
+        navigator.serviceWorker.register('/planner/FuzzyPlan_serviceWorker20211002.js', { scope: '/planner/' }).then(function(registration) {
           // Registration was successful
           console.log('ServiceWorker registration successful with scope: ', registration.scope);
         }, function(err) {
@@ -474,7 +476,7 @@
 
               <span id='eng'>
                 <input type="radio" id='en' class="language" name='language' value=0 checked='checked'>
-                <img src="./200px-Flag_of_the_United_Kingdom.png" alt="UK flag" height=15px>
+                <img src="./200px-Flag_of_the_United_Kingdom.png" alt="UK flag" width="30px" height=15px>
                 <label for="en">English </label>
               </span>
 
@@ -482,7 +484,7 @@
 
               <span id='dan'>
                 <input type="radio" id='da' class="language" name='language' value=1>
-                <img src="./200px-Flag_of_Denmark.png" alt="DK flag" height=15px>
+                <img src="./200px-Flag_of_Denmark.png" alt="DK flag" width="20px" height=15px>
                 <label for="da">&nbsp;&nbsp;Dansk</label>
               </span>
 

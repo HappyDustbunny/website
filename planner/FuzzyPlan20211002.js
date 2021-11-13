@@ -2359,7 +2359,7 @@ function selectAllOrNone() {
   }
 }
 
-function trackCheckboxClicked(event) {
+function trackCheckboxClicked(event) { // TODO: Is this actually used?
   let trackedTask = event.target.id;
   let element = document.getElementsByClassName(trackedTask);
 
@@ -4018,7 +4018,9 @@ function updateStartAndEndTimes(timeH, timeM, hours, minutes) { // Makes a list 
 
 function parseText(rawText) {
   let taskStart = '';
-  let rawText = '';
+  if (!rawText) {
+    rawText = '';
+  }
 
   let minutes = /[0-9]+m/.exec(rawText);
   if (minutes) { // If 30m is in rawText store number in minutes and remove 30m from rawText
