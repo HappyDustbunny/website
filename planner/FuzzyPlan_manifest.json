@@ -7,24 +7,9 @@
   "display": "standalone",
   "icons": [
     {
-      "src": "favicons/favicon-512.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    },
-    {
-      "src": "favicons/favicon-310.png",
-      "type": "image/png",
-      "sizes": "310x310"
-    },
-    {
-      "src": "favicons/favicon-192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "favicons/favicon-152.png",
-      "type": "image/png",
-      "sizes": "152x152"
+      "src": "favicon.ico",
+      "sizes": "512x512 310x310 192x192 152x152",
+      "type": "image/x-icon"
     },
     {
       "src": "favicons/favicon-64maskable.png",
