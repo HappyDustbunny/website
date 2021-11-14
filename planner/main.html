@@ -8,8 +8,14 @@
 
     <title>FuzzyPlan</title>
 
+    <link rel="manifest" href="/planner/FuzzyPlan_manifest.json">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
     <!-- ****** faviconit.com planner/favicons ****** -->
-  	<link rel="shortcut icon" href="/planner/favicons/favicon.ico">
+  	<!-- <link rel="shortcut icon" href="/planner/favicons/favicon.ico">
   	<link rel="icon" sizes="16x16 32x32 64x64" href="/planner/favicons/favicon.ico">
   	<link rel="icon" type="image/png" sizes="196x196" href="/planner/favicons/favicon-192.png">
   	<link rel="icon" type="image/png" sizes="160x160" href="/planner/favicons/favicon-160.png">
@@ -28,20 +34,17 @@
   	<link rel="apple-touch-icon" sizes="180x180" href="/planner/favicons/favicon-180.png">
   	<meta name="msapplication-TileColor" content="#FFFFFF">
   	<meta name="msapplication-TileImage" content="/planner/favicons/favicon-144.png">
-  	<meta name="msapplication-config" content="/planner/favicons/browserconfig.xml">
+  	<meta name="msapplication-config" content="/planner/favicons/browserconfig.xml"> -->
   	<!-- ****** faviconit.com planner/favicons ****** -->
 
     <link rel="stylesheet" href="/planner/FuzzyPlan20211002.css">
-    <link rel="manifest" href="/planner/FuzzyPlan_manifest.json">
-    <!-- <link rel="manifest" href="/planner_test/FuzzyPlan_manifest.json"> -->
+
     <script type="text/javascript">
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {
         navigator.serviceWorker.register('/planner/FuzzyPlan_serviceWorker20211002.js', { scope: '/planner/' }).then(function(registration) {
-          // Registration was successful
           console.log('ServiceWorker registration successful with scope: ', registration.scope);
         }, function(err) {
-          // registration failed :(
           console.log('ServiceWorker registration failed: ', err);
         });
       });
