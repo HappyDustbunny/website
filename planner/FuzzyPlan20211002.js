@@ -2910,14 +2910,12 @@ function updateApp() {
     }
   });
 
-  // Fetch the serviceWorker again to reload pages and ressources into cache
-  navigator.serviceWorker.register('/planner/FuzzyPlan_serviceWorker20211002.js').then(function(registration) {
-     // Registration was successful
-     console.log('ServiceWorker registration successful with scope: ', registration.scope);
-    }, function(err) {
-       // registration failed :(
-       console.log('ServiceWorker registration failed: ', err);
-  });
+  // // Fetch the serviceWorker again to reload pages and ressources into cache
+  // navigator.serviceWorker.register('/planner/FuzzyPlan_serviceWorker20211002.js').then(function(registration) {
+  //    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+  //   }, function(err) {
+  //      console.log('ServiceWorker registration failed: ', err);
+  // });
 
   location.reload(true); // Maybe the true flag is the one actually doing the heavy lifting?? Before removing it I had trouble with using location.reload(true); in backupConfirm as it removed cached content
 
