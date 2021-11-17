@@ -2,8 +2,8 @@
   "name": "FuzzyPlan",
   "short_name": "FuzzyPlan",
   "description": "A planning tool for those of us who hates plans, but knows we need them",
-  "start_url": "/planner/main.html",
-  "scope": "/planner/",
+  "start_url": "main.html",
+  "scope": "/",
   "display": "standalone",
   "icons": [
     {

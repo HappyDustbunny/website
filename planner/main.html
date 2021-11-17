@@ -4,45 +4,43 @@
     <meta charset="utf-8">
     <meta name="description" content="FuzzyPlan is a planning tool for those of us who hates plans - but knows we need them. FuzzyPlan is designed to be flexible and effective, yet still reminds you of postponed tasks">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme_color" content="#FFFFFF">
+    <meta name="theme-color" content="#FFFFFF">
 
     <title>FuzzyPlan</title>
 
-    <link rel="manifest" href="/planner/FuzzyPlan_manifest.json">
-
-    <link rel="icon" href="/planner/favicon.ico" sizes="any">
-    <link rel="icon" href="/planner/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/planner/apple-touch-icon.png">
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" href="icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
     <!-- ****** faviconit.com planner/favicons ****** -->
-  	<!-- <link rel="shortcut icon" href="/planner/favicons/favicon.ico">
-  	<link rel="icon" sizes="16x16 32x32 64x64" href="/planner/favicons/favicon.ico">
-  	<link rel="icon" type="image/png" sizes="196x196" href="/planner/favicons/favicon-192.png">
-  	<link rel="icon" type="image/png" sizes="160x160" href="/planner/favicons/favicon-160.png">
-  	<link rel="icon" type="image/png" sizes="96x96" href="/planner/favicons/favicon-96.png">
-  	<link rel="icon" type="image/png" sizes="64x64" href="/planner/favicons/favicon-64.png">
-  	<link rel="icon" type="image/png" sizes="32x32" href="/planner/favicons/favicon-32.png">
-  	<link rel="icon" type="image/png" sizes="16x16" href="/planner/favicons/favicon-16.png">
-  	<link rel="apple-touch-icon" href="/planner/favicons/favicon-57.png">
-  	<link rel="apple-touch-icon" sizes="114x114" href="/planner/favicons/favicon-114.png">
-  	<link rel="apple-touch-icon" sizes="72x72" href="/planner/favicons/favicon-72.png">
-  	<link rel="apple-touch-icon" sizes="144x144" href="/planner/favicons/favicon-144.png">
-  	<link rel="apple-touch-icon" sizes="60x60" href="/planner/favicons/favicon-60.png">
-  	<link rel="apple-touch-icon" sizes="120x120" href="/planner/favicons/favicon-120.png">
-  	<link rel="apple-touch-icon" sizes="76x76" href="/planner/favicons/favicon-76.png">
-  	<link rel="apple-touch-icon" sizes="152x152" href="/planner/favicons/favicon-152.png">
-  	<link rel="apple-touch-icon" sizes="180x180" href="/planner/favicons/favicon-180.png">
+  	<!-- <link rel="shortcut icon" href="favicons/favicon.ico">
+  	<link rel="icon" sizes="16x16 32x32 64x64" href="favicons/favicon.ico">
+  	<link rel="icon" type="image/png" sizes="196x196" href="favicons/favicon-192.png">
+  	<link rel="icon" type="image/png" sizes="160x160" href="favicons/favicon-160.png">
+  	<link rel="icon" type="image/png" sizes="96x96" href="favicons/favicon-96.png">
+  	<link rel="icon" type="image/png" sizes="64x64" href="favicons/favicon-64.png">
+  	<link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32.png">
+  	<link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16.png">
+  	<link rel="apple-touch-icon" href="favicons/favicon-57.png">
+  	<link rel="apple-touch-icon" sizes="114x114" href="favicons/favicon-114.png">
+  	<link rel="apple-touch-icon" sizes="72x72" href="favicons/favicon-72.png">
+  	<link rel="apple-touch-icon" sizes="144x144" href="favicons/favicon-144.png">
+  	<link rel="apple-touch-icon" sizes="60x60" href="favicons/favicon-60.png">
+  	<link rel="apple-touch-icon" sizes="120x120" href="favicons/favicon-120.png">
+  	<link rel="apple-touch-icon" sizes="76x76" href="favicons/favicon-76.png">
+  	<link rel="apple-touch-icon" sizes="152x152" href="favicons/favicon-152.png">
+  	<link rel="apple-touch-icon" sizes="180x180" href="favicons/favicon-180.png">
   	<meta name="msapplication-TileColor" content="#FFFFFF">
-  	<meta name="msapplication-TileImage" content="/planner/favicons/favicon-144.png">
-  	<meta name="msapplication-config" content="/planner/favicons/browserconfig.xml"> -->
+  	<meta name="msapplication-TileImage" content="favicons/favicon-144.png">
+  	<meta name="msapplication-config" content="favicons/browserconfig.xml"> -->
   	<!-- ****** faviconit.com planner/favicons ****** -->
 
-    <link rel="stylesheet" href="/planner/FuzzyPlan20211002.css">
+    <link rel="stylesheet" href="FuzzyPlan20211002.css">
 
     <script type="text/javascript">
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/planner/FuzzyPlan_serviceWorker20211002.js', { scope: '/planner/' }).then(function(registration) {
+        navigator.serviceWorker.register('FuzzyPlan_serviceWorker20211002.js', { scope: '/' }).then(function(registration) {
           console.log('ServiceWorker registration successful with scope: ', registration.scope);
         }, function(err) {
           console.log('ServiceWorker registration failed: ', err);
@@ -51,7 +49,9 @@
     }
     </script>
     <!-- <script src="FuzzyPlan_serviceWorker20211002.js"></script> -->
-    <script src="/planner/FuzzyPlan20211002.js" defer></script>
+    <script src="FuzzyPlan20211002.js" defer></script>
+
+    <link rel="manifest" href="FuzzyPlan_manifest.json">
   </head>
 
   <body onload="setUpFunc()">
@@ -90,7 +90,8 @@
           <button type="button" id='nowButton' class="controlButton"> </button>
         </div>
 
-        <input type="text" id='dayInputBox' class="inputBox dayView active" autofocus value="">
+        <input type="text" id='dayInputBox' class="inputBox dayView active" name="dayInput" autofocus value="">
+        <label id="dayInputLabel" class="labelText screenReaderOnly" for="dayInputBox"></label>
 
         <div id="playButtonContainer" class="dayView active">
           <div id="playButtonTop" class="dayView active"></div>

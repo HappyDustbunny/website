@@ -95,6 +95,8 @@ let languagePack = {  // {'id': [['text', 'title'], ['tekst', 'titel']]} The var
                   ['Nu \u25BE', 'Klik for at indsætte en 15 minutteres planlægnings periode på nuværende tidspunkt.']],
      'toDoButton': [['To do ...', 'Click to view due tasks from Month view'],
                     ['Husk at ...', 'Klik for at se forfaldne opgaver fra Månedsvisningen']],
+      'dayInputLabel': [['Input box for entering tasks', ''], // Only for aria label
+                   ['Input box til at skrive opgaver ind i', '']],
      'nowButtonJump': [['\u25B8 Now', 'Click to jump to current time'],  // \u25B8 <!-- Black Right-Pointing Small Triangle -->
                   ['\u25B8 Nu', 'Klik for at hoppe til nuværende tidspunkt.']],
      'clearButton': [['\u25BEClear', "Clear all tasks"],  // <!-- Black down-pointing small triangle  -->
@@ -186,7 +188,7 @@ let languagePack = {  // {'id': [['text', 'title'], ['tekst', 'titel']]} The var
      'showTTLabel': [['Show tracked tasks in tool tip in month view', 'Remove checkmark to make it easier to see what made a day special (the tracked routine tasks is not shown)'],
                       ['Vis opgaver der følges i tool tip i månedsvisningen', 'Fjern hakket for at gøre det lettere at se hvad der gør en dag særlig (rutineopgaverne bliver ikke vist så)']],
     // Storage view
-     'storageHeadingText': [['Store or retrive tasklists', ''],
+     'storageHeadingText': [['Store or retrive tasklists', ''],  // TODO: Remove or make visible? Remove I think
                             ['Gem eller gendan opgavelister', '']],
      'storeList': [['Store list in', 'To clear a stored list, just store an empty list'],
                    ['Gem liste i', 'Gem en tom liste for at slette en gemt liste.']],
@@ -2911,7 +2913,7 @@ function updateApp() {
   });
 
   // // Fetch the serviceWorker again to reload pages and ressources into cache
-  // navigator.serviceWorker.register('/planner/FuzzyPlan_serviceWorker20211002.js').then(function(registration) {
+  // navigator.serviceWorker.register('FuzzyPlan_serviceWorker20211002.js').then(function(registration) {
   //    console.log('ServiceWorker registration successful with scope: ', registration.scope);
   //   }, function(err) {
   //      console.log('ServiceWorker registration failed: ', err);
