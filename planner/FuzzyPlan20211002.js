@@ -460,7 +460,7 @@ function setUpFunc() {
 
   getDueRemindersFromLast3Months();
 
-  jumpToNow();
+  jumpToNow(); // Looks like this is the Cumulative Layout Shift Lighthouse complains about :-) Nothing much to be done
 
   updateHearts(); // Update hearts to current time
 

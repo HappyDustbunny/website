@@ -2,14 +2,15 @@
   "name": "FuzzyPlan",
   "short_name": "FuzzyPlan",
   "description": "A planning tool for those of us who hates plans, but knows we need them",
-  "start_url": "main.html",
+  "start_url": "/?source=pwa",
   "scope": "/",
   "display": "standalone",
   "icons": [
     {
-      "src": "favicons/favicon-192.png",
+      "src": "favicons/maskable_192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "favicons/favicon-512.png",

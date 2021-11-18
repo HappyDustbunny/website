@@ -41,7 +41,7 @@
     <script type="text/javascript">
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {
-        navigator.serviceWorker.register('FuzzyPlan_serviceWorker20211002.js', { scope: '/' }).then(function(registration) {
+        navigator.serviceWorker.register('/FuzzyPlan_serviceWorker20211002.js', { scope: '/' }).then(function(registration) {
           console.log('ServiceWorker registration successful with scope: ', registration.scope);
         }, function(err) {
           console.log('ServiceWorker registration failed: ', err);
@@ -67,7 +67,10 @@
 
         <button type="button" id="storage" class='controlButton dayView active'> </button>
 
-        <span id='heart'></span>
+        <span id='heart'>
+          <!-- Having a heart from the start may alleviate layout shift -->
+          <img class="heartImg"  src="200px-A_SVG_semicircle_heart_empty.svg.png" alt="empty heart" width="14px" height="14px">
+        </span>
         <span id='message' hidden></span>
 
         <!-- monht view -->
@@ -266,46 +269,46 @@
               <label class="hearts">
                 &nbsp;
                 <input type="radio" id='d5' class="drain" name='drain' value="d5">
-                <img class="heartImg"  src="200px-A_SVG_semicircle_heart_empty.svg.png" alt="empty heart">
+                <img class="heartImg"  src="200px-A_SVG_semicircle_heart_empty.svg.png" alt="empty heart" width="14px" height="14px">
               </label>
               <label class="hearts">
                 <input type="radio" id='d4' class="drain" name='drain' value="d4">
-                <img class="heartImg" src="200px-A_SVG_semicircle_heart_empty.svg.png" alt="empty heart">
+                <img class="heartImg" src="200px-A_SVG_semicircle_heart_empty.svg.png" alt="empty heart" width="14px" height="14px">
               </label>
               <label class="hearts">
                 <input type="radio" id='d3' class="drain" name='drain' value="d3">
-                <img class="heartImg" src="200px-A_SVG_semicircle_heart_empty.svg.png" alt="empty heart">
+                <img class="heartImg" src="200px-A_SVG_semicircle_heart_empty.svg.png" alt="empty heart" width="14px" height="14px">
               </label>
               <label class="hearts">
                 <input type="radio" id='d2' class="drain" name='drain' value="d2">
-                <img class="heartImg" src="200px-A_SVG_semicircle_heart_empty.svg.png" alt="empty heart">
+                <img class="heartImg" src="200px-A_SVG_semicircle_heart_empty.svg.png" alt="empty heart" width="14px" height="14px">
               </label>
               <label class="hearts">
                 <input type="radio" id='d1' class="drain" name='drain' value="d1" checked='checked'>
-                <img class="heartImg" src="200px-A_SVG_semicircle_heart_empty.svg.png" alt="empty heart">
+                <img class="heartImg" src="200px-A_SVG_semicircle_heart_empty.svg.png" alt="empty heart" width="14px" height="14px">
               </label>
             </div>
 
             <div id='gainBand'>
               <label class="hearts">
                 <input type="radio" id='g1' class="drain" name='drain' value="g1">
-                <img class="heartImg" src="200px-A_SVG_semicircle_heart.svg.png" alt="red heart">
+                <img class="heartImg" src="200px-A_SVG_semicircle_heart.svg.png" alt="red heart" width="14px" height="14px">
               </label>
               <label class="hearts">
                 <input type="radio" id='g2' class="drain" name='drain' value="g2">
-                <img class="heartImg" src="200px-A_SVG_semicircle_heart.svg.png" alt="red heart">
+                <img class="heartImg" src="200px-A_SVG_semicircle_heart.svg.png" alt="red heart" width="14px" height="14px">
               </label>
               <label class="hearts">
                 <input type="radio" id='g3' class="drain" name='drain' value="g3">
-                <img class="heartImg" src="200px-A_SVG_semicircle_heart.svg.png" alt="red heart">
+                <img class="heartImg" src="200px-A_SVG_semicircle_heart.svg.png" alt="red heart" width="14px" height="14px">
               </label>
               <label class="hearts">
                 <input type="radio" id='g4' class="drain" name='drain' value="g4">
-                <img class="heartImg" src="200px-A_SVG_semicircle_heart.svg.png" alt="red heart">
+                <img class="heartImg" src="200px-A_SVG_semicircle_heart.svg.png" alt="red heart" width="14px" height="14px">
               </label>
               <label class="hearts">
                 <input type="radio" id='g5' class="drain" name='drain' value="g5">
-                <img class="heartImg" src="200px-A_SVG_semicircle_heart.svg.png" alt="red heart">
+                <img class="heartImg" src="200px-A_SVG_semicircle_heart.svg.png" alt="red heart" width="14px" height="14px">
               </label>
             </div>
           </div>
