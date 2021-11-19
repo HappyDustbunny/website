@@ -807,10 +807,10 @@ function fillChooseBox(whichView) {  // whichView can be 'month' or 'day'
     tasks = tasksSentToDay;
     tasksSentToDay = [];
 
-    if (tasks.length === 0) {
-      document.getElementById('sortTask').classList.remove('tasksToSort');
-    } else {
+    if (tasks.length != 0 || document.getElementById('dayChooseBox').classList.contains('active')) {
       document.getElementById('sortTask').classList.toggle('tasksToSort',true); // Add the class tasksToSort due to 'true' flag
+    } else {
+      document.getElementById('sortTask').classList.remove('tasksToSort');
     }
 
   }
