@@ -354,8 +354,8 @@ let languagePack = {  // {'id': [['text', 'title'], ['tekst', 'titel']]} The var
                         '\nStart dagen med en opgave med fast tid\n\nTryk enten på "Nu" knappen eller tilføj\n en opgave kl 6:00 ved \nat skrive "600 15m planlægning"'],
      'notEnoughRoom': ['Not enough room. \nPlease clear some space',
                        'Der er ikke plads til en opgave\naf den længde her'],
-     'overlap': ['There is an overlap with another fixed time',
-                 'Der er et overlap med en anden opgave med fast tid'],
+     'overlap': ['There is an overlap with another fixed time.\nPlease choose another time',
+                 'Der er et overlap med en anden opgave med fast tid.\nVælg venligst en anden tid'],
      'fixedTaskClicked': ['One of the clicked tasks is fixed. \nFixed task can not be swapped. \nPlease edit before swap.',
                           'En af de klikkede opgaver har fast tid\nOpgaver med fast tid kan ikke byttes rundt\nRet opgaven med fast tid før der byttes'],
      'jumpedTo': ['Jumped to ',
@@ -1566,7 +1566,7 @@ function apply() {
     let returnText = formatTask();
 
     if (startTime) {
-      inputFixedTask(returnText);
+      handleTaskInput(returnText);
     } else {
       document.getElementById('dayInputBox').value = returnText;
     }
@@ -1660,7 +1660,7 @@ function playButtonClicked() {
 
       let returnText = currentText + ' ' + deltaTime + 'm ' + prettifyTime(startTime_play).replace(':', '');
 
-      inputFixedTask(returnText);
+      handleTaskInput(returnText);
     } else {
       currentText = JSON.parse(localStorage.taskText_play);
     }
@@ -3112,7 +3112,7 @@ function inputAtEnter(event) {
     let contentInputBox = document.getElementById('dayInputBox').value.trim();
     // If text or emojis and no chosenTaskId
     if (chosenTaskId === '' && /[a-c, e-g, i-l, n-z, æ, ø, ǻ]/.exec(contentInputBox) != null ||  /(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])/.exec(contentInputBox) != null) {  // The latter is to allow emojis
-      inputFixedTask(contentInputBox);
+      handleTaskInput(contentInputBox);
     } else { // Just numbers
       if (/[^0-9]/.exec(contentInputBox) != null && chosenTask != '') {
         // If there is a chosen task AND text it must be an error
@@ -3144,19 +3144,19 @@ function inputAtEnter(event) {
   }
 }
 
-function inputFixedTask(contentInputBox) {
+function handleTaskInput(contentInputBox) {
   let parsedList = parseText(contentInputBox);
   let task = new Task(parsedList[0], parsedList[1], parsedList[2], parsedList[3]);
-  if (taskList.length == 1 && parsedList[0] == '') {
+  if (taskList.length == 2 && parsedList[0] == '') {
     displayMessage(languagePack['startWithFixed'][language], 5000, 'day');
   } else {
-    let succes = addTask(uniqueIdOfLastTouched, task); // Note: The unique id changes when jumping between pages...
+    let succes = addTask(uniqueIdOfLastTouched, task);
 
     if (!succes) {
       displayMessage(languagePack['notEnoughRoom'][language], 3000, 'day');
       document.getElementById('dayInputBox').value = contentInputBox;
     }
-    wakeUpOrNowClickedOnce = true; // Inserting a fixed task render the need to use upButton or nowButton to insert the first task
+    wakeUpOrNowClickedOnce = true; // Inserting a fixed task remove the need to use upButton or nowButton to insert the first task
     document.getElementById('upButton').removeEventListener('click', wakeUpButton, {once:true}); // Remove eventlisteners sat by setUp via adjuistNowAndWakeUpButtons()
     document.getElementById('nowButton').removeEventListener('click', nowButton, {once:true});
     renderTasks();
@@ -3283,8 +3283,9 @@ function isThereASoftOverlap(task) {
   let len = taskList.length;
 
   for (var n=0; n<len; n++) {
-    if ((taskList[n].date <= task.date && task.date <= taskList[n].end)
-      || (taskList[n].date <= task.end && task.end <= taskList[n].end)) {
+    if ((taskList[n].date <= task.date && task.date <= taskList[n].end) // If task start is in anoter task
+      || (taskList[n].date <= task.end && task.end <= taskList[n].end) // Or if task end is
+      || (task.date <= taskList[n].date && taskList[n].end <= task.end)) { // Or if the new task straddle an old task
         if (taskList[n].fuzzyness === 'isNotFuzzy') {
           overlap = 'hardOverlap';
           return overlap;
