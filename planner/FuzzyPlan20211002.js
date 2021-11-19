@@ -485,7 +485,7 @@ function createTimeMarker() {
 
 function makeFirstTasks() {
   // Make the first tasks. Necessary for adding new tasks
-  let startList = ['000 1m Day start', '2359 1m Day end'];
+  let startList = ['000 1m Day start', '2358 1m Day end']; // Day end can't be from 2359 because this causes Dayend.end = 0:00 on the same day, i.e. dayend.end = daystart.start
   for (const [index, text] of startList.entries()) {
     parsedList = parseText(text.trim());
     let task = new Task(parsedList[0], parsedList[1], parsedList[2], parsedList[3]);
