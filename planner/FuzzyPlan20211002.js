@@ -1086,7 +1086,8 @@ document.getElementById('inputBox_add').addEventListener('keypress',
 document.getElementById('inputDurationBox').addEventListener('focus',
         function() {document.getElementById('inputDurationBox').select();} );
 document.getElementById('inputTimeBox').addEventListener('focus',
-        function() {document.getElementById('inputTimeBox').select();} );
+        function() {document.getElementById('inputTimeBox').value = '12:00';
+          document.getElementById('inputTimeBox').select();} );
 
 document.getElementById('inputDurationBox').addEventListener('keypress',
         function () { if (event.key === 'Enter') { readDurationTime(); } });
@@ -1482,12 +1483,16 @@ function readDurationTime() {
 
 
 function readTaskStartTime() {
-  let [timeH, timeM] = readTimeBox('inputTimeBox');
-  let now = new Date();
-  taskTime_add = new Date(now.getFullYear(), now.getMonth(), now.getDate(), timeH, timeM);
-  fillTimeBox(taskTime_add);
+  if (document.getElementById('inputTimeBox').value != '') {
+    let [timeH, timeM] = readTimeBox('inputTimeBox');
+    let now = new Date();
+    taskTime_add = new Date(now.getFullYear(), now.getMonth(), now.getDate(), timeH, timeM);
+    fillTimeBox(taskTime_add);
+    return taskTime_add;
+  } else {
+    return '';
+  }
 
-  return taskTime_add;
 }
 
 function readTimeBox(whichBox) { // whichBox can be 'inputTimeBox' or 'inputBoxWakeUp'
@@ -1556,7 +1561,7 @@ function formatTask() {
 
 
 function apply() {
-  let taskText = document.getElementById('inputBox_add');
+  let taskText = document.getElementById('inputBox_add').value;
   if (taskText === '') {
     displayMessage(languagePack['taskTextMsg'][language], 3000, 'day');  // Please write a task text
   } else {
@@ -1577,7 +1582,8 @@ function apply() {
     displayClass('addView', false);
     displayClass('dayView', true);
 
-    // document.getElementById('inputBox_add').addEventListener('focusout', readInputBox_add);
+    location.hash = '#addView_dayView';
+    pushHashChangeToStack();
   }
 }
 
