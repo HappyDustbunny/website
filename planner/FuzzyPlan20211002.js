@@ -1793,7 +1793,7 @@ function fillMonthDateBar() {
   let nowPlus3Month = new Date();
   nowPlus3Month = new Date(nowPlus3Month.setMonth(nowPlus3Month.getMonth() + 3));
 
-  let thisMonth = now.getMonth();
+  let thisMonth = nowMinusSomeMonths.getMonth(); // Hepls insert monthnames just once per month
 
   for (let i = nowMinusSomeMonths; i < nowPlus3Month; i.setDate(i.getDate() + 1)) {
     // Insert monthnames before each the 1th
