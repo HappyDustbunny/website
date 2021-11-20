@@ -1930,26 +1930,35 @@ function monthInputAtEnter(event) {
     if (contentInputBox != '') {
 
       // Check if date is provided in the form 7/11
-      let dateArray = /\d+\/\d+/.exec(contentInputBox);
+      let dateArray = /\d+\/\d+ \d+\d+/.exec(contentInputBox);
+      if (!dateArray) {  // If no year information is present
+        dateArray = /\d+\/\d+/.exec(contentInputBox);
+      }
 
       if ( dateArray != null ) {
         // Is it a legit date?
-        if ( (/\d+\//.exec(dateArray[0])[0].replace('\/', '') <= 31 &&
-          /\/\d+/.exec(dateArray[0])[0].replace('\/', '') <= 12)) {
+        let now = new Date();
+        let month = (Number(/\/\d+/.exec(dateArray[0])[0].replace('\/', '')) - 1).toString();
+        let day = (/\d+\//.exec(dateArray[0])[0].replace('\/', '')).toString();
+        let year = '';
+        if (/ \d+\d+/.exec(dateArray[0])){
+          year = (/ \d+\d+/.exec(dateArray[0])).toString();
+          year = year.trim();
+        }
+        if (year == '') {
+          year = now.getFullYear();
+        }
+
+        if ( day <= 31 && month <= 11 ) {
 
             let textInputBox = contentInputBox.replace(dateArray[0], '').trim();
             // Make myId from date
             let myId = '';
 
-            let now = new Date();
-            let year = /\d+\d+/.exec(textInputBox);
-            if (year < now.getFullYear()) {
+            if (year < now.getFullYear() || month < now.getMonth() || (month == now.getMonth() && day < now.getDate())) {
               displayMessage(languagePack['noPastDates'][language], 4000, 'month');
               return;
             }
-            textInputBox = contentInputBox.replace(year[0], '').trim();
-            let month = (Number(/\/\d+/.exec(dateArray[0])[0].replace('\/', '')) - 1).toString();
-            let day = (/\d+\//.exec(dateArray[0])[0].replace('\/', '')).toString();
 
             if (year != '' && now.getFullYear() <= year) {
               myId = day + '-' + month + '-' + year;
