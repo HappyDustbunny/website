@@ -14,8 +14,8 @@ let CACHED_URLS = [
   'FuzzyPlan20211002.js',
   'instructions_dk.html',
   'instructions.html',
-  'FuzzyPlan_manifest.json',
-  'main.html'
+  'manifest.json',
+  'index.html'
 ];
 
 self.addEventListener('install', function(event) {
@@ -28,8 +28,11 @@ self.addEventListener('install', function(event) {
 
 self.addEventListener('fetch', function(event) {
   console.log('Fetch request for: ', event.request.url);
-  event.respondWith( caches.match(event.request).then( function(response) {
+  event.respondWith( caches.match(event.request).then(
+    function(response) {
       return response || fetch(event.request);
+    }).catch(function(error) {
+      return caches.match('index.html')
     })
   );
 })
