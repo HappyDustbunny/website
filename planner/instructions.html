@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>FuzzyPlan Instructions</title>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
-    
+
     <style media="screen">
       h1, h3 {
         text-align: center;
@@ -35,7 +35,7 @@
 
   <body>
     <h1>Instructions</h1>
-    <button type="button" id='goBack0'>Go back</button>
+    <button type="button" id='gotoDayFromInfo0'>Go back</button>
 
       <p>
         To add a task just write a few word in the inputBox.
@@ -63,6 +63,13 @@
         Clicking on a white area insert the task in the beginning of
         the empty area.
       </p>
+      <p>The round, green plus-button allows you to change duration, time and
+        stress level for a task if you don't like to write time or stress level yourself.
+      </p>
+      <p>The round, green button with a play-symbol register the time until pushed again
+        (In it's red-square-mode). A minium of 10 minutes is always registered in order
+        to be able to acces the task on a touch screen.
+      </p>
       <p>
         To swap two tasks, just click them one after another. Fixed tasks
         can not be swapped.
@@ -73,7 +80,7 @@
         The Clear-button will clear the textbox <em>or</em> the entire task list as
         indicated by the arrow triangles.
       </p>
-      <button type="button" id='goBack1'>Go back</button>
+      <button type="button" id='gotoDayFromInfo1'>Go back</button>
 
 
     <h3 id='stressModel'>Stress model</h3>
@@ -92,14 +99,19 @@
         drain level (1-5) by writing <kbd>d3 Pay bills</kbd> or
         <kbd>d5 Getting fired</kbd>.
         <br>
-        Defalult is 1.
+        Defalult is 1, but you can set the levels yourself by writing d2, d3, d4 or d5.
       </p>
       <p>
         When the bar to the left turn from lavender to dark blue
         you are supposed to add pauses with a gain level from 1-5
-        by writing <kbd>g3 Pause</kbd> or <kbd>g5 Meditation</kbd>.
+        by writing <kbd>g3 Walk in the wood</kbd> or <kbd>g5 Warm bath</kbd>.
         This will bring the stess level down in the model.
-        And hopefully in you too.
+        And hopefully in you too :-)
+      </p>
+      <p>You can write g2, g3, g4 or g5 yourself, or use some keywords.
+        <br>
+        <kbd>pause</kbd> is automatically g1, <kbd>rest</kbd> is g3 and
+        <kbd>relax</kbd> or <kbd>meditate</kbd> is g5.
       </p>
       <p>
         In the settings (&#x2699;) you can find additional controls for the
@@ -121,14 +133,15 @@
         <br>
         10 hearts is relaxed, zero hearts is stressed out.
       </p>
-      <button type="button" id='goBack2'>Go back</button>
+      <button type="button" id='gotoDayFromInfo2'>Go back</button>
 
       <script type="text/javascript">
-        document.getElementById('goBack0').addEventListener('click', goBack);
-        document.getElementById('goBack1').addEventListener('click', goBack);
-        document.getElementById('goBack2').addEventListener('click', goBack);
+      document.getElementById('gotoDayFromInfo0').addEventListener('click', gotoDayFromInfo);
+      document.getElementById('gotoDayFromInfo1').addEventListener('click', gotoDayFromInfo);
+      document.getElementById('gotoDayFromInfo2').addEventListener('click', gotoDayFromInfo);
 
         document.addEventListener('touchmove', function() {twoFingerNavigation(event);});
+
 
         function twoFingerNavigation(event) {
           if (sessionStorage.touchX && event.touches.length === 1) {
@@ -145,9 +158,11 @@
           }
         }
 
-        function goBack() {
-          window.location.assign(document.referrer);
+
+        function gotoDayFromInfo() {
+          window.location.assign('index.html');
         }
+
 
       </script>
   </body>

@@ -2934,7 +2934,7 @@ function updateApp() {
   //      console.log('ServiceWorker registration failed: ', err);
   // });
 
-  location.reload(true); // Maybe the true flag is the one actually doing the heavy lifting?? Before removing it I had trouble with using location.reload(true); in backupConfirm as it removed cached content
+  location.reload(true); // Before removing it I had trouble with using location.reload(true); in backupConfirm as it removed cached content
 
 }
 

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>FuzzyPlan instruktioner</title>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
-    
+
     <style media="screen">
       h1, h3 {
         text-align: center;
@@ -35,7 +35,7 @@
 
   <body>
     <h1>Instruktioner</h1>
-    <button type="button" id='goBack0'>Gå tilbage</button>
+    <button type="button" id='gotoDayFromInfo0'>Gå tilbage</button>
 
       <p>
         Skriv nogle få ord i inputboksen for at tilføje en opgave.
@@ -56,10 +56,10 @@
         <br>
         BEMÆRK: Den første opgave SKAL have en fast tid.
         <br>
-        Du kan indsætte en 15 minutters planlægningsopgave ved at trykke på "Now"
+        Du kan indsætte en 15 minutters planlægningsopgave ved at trykke på "Nu"
         knappen.
         <br>
-        Næste gang du trykker på "Now" hopper den til det nuværende tidspunkt.
+        Næste gang du trykker på "Nu" hopper den til det nuværende tidspunkt.
       </p>
       <p>
         Når du har skrevet en opgavetekst kan du indsætte opgaven lige efter
@@ -70,6 +70,13 @@
         Hvis du klikker på et tomt område indsættes opgave i starten af det
         tomme område.
       </p>
+      <p>Den runde, grønne plus-knap giver mulighed for grafisk at ændre tid, varighed og
+        stressniveau på opgaver, hvis du ikke vil skrive tider og tidspunkter selv.
+      </p>
+      <p>Den runde grønne knap med en play-trekant vil registrere tiden indtil
+        den bliver trykket på igen (I sin rød-firkant-tilstand). Registrerede opgaver
+        bliver altid mindst 10 minutter for at kunne ramme opgaver på touchskærme.
+      </p>
       <p>
         For at bytte om på to opgaver klikkes der bare på dem lige efter hinanden.
         Faste opgaver kan ikke byttes rundt.
@@ -77,11 +84,11 @@
         Dobbelklik på en opgave for at redigere den.
       </p>
       <p>
-        Slet-knappen "Clear" sletter indholdet af tekstboksen <em>eller</em> hele
-        opgavelisten afhængig af konteksten. De trekantede pile vise hvad der vil
+        Slet-knappen "Slet" sletter indholdet af tekstboksen <em>eller</em> hele
+        opgavelisten afhængig af konteksten. De trekantede pile viser hvad der vil
         blive slettet.
       </p>
-      <button type="button" id='goBack1'>Gå tilbage</button>
+      <button type="button" id='gotoDayFromInfo1'>Gå tilbage</button>
 
 
     <h3 id='stressModel'>Stress model</h3>
@@ -92,18 +99,23 @@
         (stressniveau 1).
       </p>
       <p>
-        Modellen antager at opgaver dræner dig på "dræn niveau 1" og at blank tid
+        Modellen antager at opgaver dræner dig på "drænningsniveau 1" og at blank tid
         uden opgaver får dig til at slappe af på "genopladningsniveau 1". ("gain level")
       </p>
       <p>
-        For at bruge stressmodelen mere aktivt kan du ændre drænniveau ved at
+        For at bruge stressmodelen mere aktivt kan du ændre drænningsniveau ved at
         skrive <kbd>d3 betal regninger</kbd> eller <kbd>d5 blive fyret</kbd>.
+        Man kan bruge drænningsniveauerne d2, d3, d4 og d5.
       </p>
       <p>
         Når bjælken til venstre bliver mørkere er det for at minde dig om at
         lægge en pause ind med et genopladningsniveau fra 1-5. Skriv for eksempel
-        <kbd>g3 Pause</kbd> eller <kbd>g5 Meditation</kbd>. Det vil bringe
-        stressniveauet ned i modellen - og forhåbentligt også i dig :-)
+        <kbd>g3 Gå i skoven</kbd> eller <kbd>g5 Varmt bad</kbd>. Det vil bringe
+        stressniveauet ned i modellen - og forhåbentligt også i dig :-)</p>
+      <p>
+        Igen kan man bruge genopladningsniveauerne fra 1-5 selv (g1, g2, g3, g4, g5).
+        Skriver man <kbd>pause</kbd> sættes stressniveauet automatisk til g1,
+        <kbd>hvile</kbd> giver g3 og <kbd>afspænde</kbd> eller <kbd>meditere</kbd> giver g5.
       </p>
       <p>
         I settings (&#x2699;) kan du finde yderligere kontroller for
@@ -125,12 +137,12 @@
         <br>
         10 hjerter er afslappet, 0 hjerter er vildt stresset.
       </p>
-      <button type="button" id='goBack2'>Gå tilbage</button>
+      <button type="button" id='gotoDayFromInfo2'>Gå tilbage</button>
 
       <script type="text/javascript">
-        document.getElementById('goBack0').addEventListener('click', goBack);
-        document.getElementById('goBack1').addEventListener('click', goBack);
-        document.getElementById('goBack2').addEventListener('click', goBack);
+      document.getElementById('gotoDayFromInfo0').addEventListener('click', gotoDayFromInfo);
+      document.getElementById('gotoDayFromInfo1').addEventListener('click', gotoDayFromInfo);
+      document.getElementById('gotoDayFromInfo2').addEventListener('click', gotoDayFromInfo);
 
 
         document.addEventListener('touchmove', function() {twoFingerNavigation(event);});
@@ -150,9 +162,10 @@
           }
         }
 
-        function goBack() {
-          window.location.assign(document.referrer);
+        function gotoDayFromInfo() {
+          window.location.assign('index.html');
         }
+
 
       </script>
   </body>
