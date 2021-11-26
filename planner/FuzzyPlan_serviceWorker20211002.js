@@ -8,7 +8,7 @@ let CACHED_URLS = [
   'icon.svg',
   'favicon.ico',
   'apple-touch-icon.png',
-  'favicons/favicon-192.png',
+  'favicons/maskable_192.png',
   'favicons/favicon-512.png',
   'FuzzyPlan20211002.css',
   'FuzzyPlan20211002.js',
