@@ -9,13 +9,14 @@ let CACHED_URLS = [
   'FuzzyPlan20211002.js',
   'apple-touch-icon.png',
   'favicon.ico',
+  'favicon.png',
   'icon.svg',
-  'index.html'
+  'index.html',
   'instructions_dk.html',
   'instructions.html',
   'manifest.json',
   'favicons/maskable_192.png',
-  'favicons/favicon-512.png',
+  'favicons/favicon-512.png'
 ];
 
 self.addEventListener('install', function(event) {
