@@ -33,7 +33,7 @@ self.addEventListener('fetch', function(event) {
     function(response) {
       return response || fetch(event.request);
     }).catch(function(error) {
-      console.log('FuzzyPlan serviceWorker respondWith error', error);
+      console.log('FuzzyPlan serviceWorker responded with error', error);
     })
   );
 })

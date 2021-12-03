@@ -1,5 +1,6 @@
 // TODO: Clicking while a fixed task is in the input box inserts the tasks disregarding the fixed time. Bug or feature? Same in month view.
 // TODO: Integrate the help file in main
+// TODO: Make images for gear and expand/contract
 
 let hashStack = [];
 let lastHash = '';
@@ -692,7 +693,10 @@ function retrieveLocallyStoredStuff() {
 
 function pushHashChangeToStack() {
   // Update hashStack list
-  hashStack.push(location.hash);
+  if (!location.hash.includes('add')) { // Exclude addView from entering navitation via back-arrow
+    hashStack.push(location.hash);
+  }
+
   if (10 < hashStack.length) {
     hashStack.shift();  // Pop from the begining of the array
   }
@@ -703,7 +707,6 @@ function bindNavigation() {  // Called by eventlistener on 'hashchange'
 
   // Find out where to go
   let len = hashStack.length;
-  // console.log(hashStack[len - 1], location.hash);
 
   if (0 < len && (location.hash == '' || hashStack[len - 1] != location.hash)) {
     let hashParts = hashStack[len - 1].replace('#', '').split('_');
@@ -712,8 +715,9 @@ function bindNavigation() {  // Called by eventlistener on 'hashchange'
       hashStack.pop();
     }
     navigateTo(reversedHash);
+    console.log('Location hash: ' + location.hash, hashStack);
   } else {
-
+    console.log('Location hash: ' + location.hash, hashStack);
     navigateTo(location.hash);
   }
 }
@@ -740,6 +744,8 @@ function navigateTo(thisPlace) {
     addTaskButtonClicked();
   } else if (thisPlace == '#addView_dayView') {
     gotoDayFromAdd();
+  } else {
+    console.log('Unexpected navigation event: ' + thisPlace);
   }
 }
 
@@ -4103,7 +4109,7 @@ function parseText(rawText) {
   };
 
   if (drain == 1) {
-    if (rawText.toLowerCase().includes(languagePack['pause'][language])) {drain = '-1'};
+    if (rawText.toLowerCase().includes(languagePack['pause'][language])) {drain = '-1'}; // gain is negative drain..
     if (rawText.toLowerCase().includes(languagePack['rest'][language])) {drain = '-3'};
     if (rawText.toLowerCase().includes(languagePack['relax'][language])) {drain = '-5'};
     if (rawText.toLowerCase().includes(languagePack['meditate'][language])) {drain = '-5'};
