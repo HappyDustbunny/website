@@ -1,6 +1,6 @@
 class BurgerMenuControl extends HTMLElement {
-   constructor() {
-      super();
+  constructor() {
+    super();
   }
   connectedCallback() {
     this.innerHTML = `
@@ -45,7 +45,7 @@ class BurgerMenuControl extends HTMLElement {
       </style>
 
       <div id="menuContainer">
-        <div id='FuzzyPlan' class="burgerText burgerItem"  aria-label='FuzzyPlan, a planning tool'> FuzzyPlan (beta) </div>
+        <div id='FuzzyPlan' class="burgerText burgerItem"  aria-label='FuzzyPlan, a planning tool'> FuzzyPlan </div>
         <div id='cookbook' class="burgerText burgerItem" aria-label='Step-by-step cookbook'> Step-by-step cookbook </div>
         <div class="burgerHeading">
           <div id='programming' class="burgerText">Programming</div>
