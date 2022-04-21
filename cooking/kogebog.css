@@ -102,6 +102,9 @@ button {
   border-bottom: 15px solid white; /* hack... */
 }
 
+.description {
+  font-size: 0.8em;
+}
 
 .howto {
   background-color: rgb(237,255,255);
