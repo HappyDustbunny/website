@@ -40,7 +40,8 @@ eller p&aring; https://github.com/HappyDustbunny/kogebog -->
 
 		<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 		<script>window.jQuery || document.write("<script src='jquery-3.5.1.min.js'><\/script>")</script>
-		<script src="kogebog.js"></script>
+		<script src="kogebog.js" type='text/javascript' defer></script>
+    <script src='components/rice.js' type='text/javascript' defer></script>
 
 	</head>
 
@@ -184,42 +185,7 @@ eller p&aring; https://github.com/HappyDustbunny/kogebog -->
 
 						<button class="slut">(Slut)</button>
 
-						<!-- ris inserted start -->
-						<button class="insertedRecipe">
-						 <h3>Ris</h3>
-						</button>
-
-						<div class="insertedIngredienser">
-							<p class="antal">(3 - 4 personer)		(Start &frac12; time f&oslash;r)</p>
-							<b>Ingredienser:</b>
-
-							<p><label><input type="checkbox"> &nbsp;3,75 dL vand (Altid 1,5 dL vand til 1 dL ris)</label></p>
-							<p><label><input type="checkbox"> &nbsp; 2,5 dL ris (Skriv ned et sted hvor meget ris dem du laver mad til normalt spiser)</label></p>
-							<p><label><input type="checkbox"> &nbsp; 1 tsk salt</label></p>
-							<p><label><input type="checkbox"> &nbsp; (6 kardemommekapsler)</label></p>
-							<p><label><input type="checkbox"> &nbsp; (1 stilk citrongr&aelig;s)</label></p>
-						</div>
-
-						<div class="insertedHowto"><b>Fremgangsm&aring;de:</b>
-
-							<p><label><input type="checkbox"> &nbsp; Bring 3,75 dL vand i kog i en lille gryde.</label></p>
-							<p><label><input type="checkbox"> &nbsp; Skyl imens 2,5 dL ris i en si</label></p>
-							<p><label><input type="checkbox"> &nbsp; (Gok 6 kardemomme kapsler let og kom dem oven i risene)</label></p>
-							<p><label><input type="checkbox"> &nbsp; (Rens en stilk citrongr&aelig;s og bank den flad. Sk&aelig;r den midt
-								over og kom stykkerne op til risen)</label></p>
-							<p><label><input type="checkbox"> &nbsp; Kom 1 tsk salt oven i de v&aring;de ris (for ikke at glemme salt)</label></p>
-							<p><label><input type="checkbox"> &nbsp; N&aring;r vandet koger kommes risene i, og der r&oslash;res rundt. L&aelig;g l&aring;g p&aring; </label></p>
-							<p><label><input type="checkbox"> &nbsp; S&aelig;t minuturet p&aring; 12 minutter og skru ned p&aring; 1 (ud af 9)</label></p>
-							<p><label><input type="checkbox"> &nbsp; S&aelig;t evt. tallerkenerne p&aring; l&aring;get s&aring; de kan blive varme</label></p>
-							<p><label><input type="checkbox"> &nbsp; N&aring;r minuturet ringer slukkes for blusset, og minuturet s&aelig;ttes igen p&aring; 12 minutter</label></p>
-							<p><label><input type="checkbox"> &nbsp; Risen er klar n&aring;r minuturet ringer, men de kan sagtens st&aring; et kvarter mere</label></p>
-							<p><label><input type="checkbox"> &nbsp; (Fjern citrongr&aelig;s og kardemommekapsler inden servering)</label></p>
-
-							<button class="slut">(Slut)</button>
-
-						</div>
-
-						<!-- ris inserted end -->
+						<rice-recipe></rice-recipe>
 
 					</div>
 
@@ -665,36 +631,7 @@ eller p&aring; https://github.com/HappyDustbunny/kogebog -->
 						<button class="slut">(Slut)</button>
 						<p>Der kan serveres grovbr&oslash;d i skiver til eller</p>
 
-						<!-- ris inserted start -->
-						<button class="insertedRecipe">
-						 <h3>Ris</h3>
-						</button>
-
-						<div class="insertedIngredienser">
-							<p class="antal">(3 - 4 personer)		(Start &frac12; time f&oslash;r)</p>
-							<b>Ingredienser:</b>
-
-							<p><label><input type="checkbox"> &nbsp;3,75 dL vand (Altid 1,5 dL vand til 1 dL ris)</label></p>
-							<p><label><input type="checkbox"> &nbsp; 2,5 dL ris (Skriv ned et sted hvor meget ris dem du laver mad til normalt spiser)</label></p>
-							<p><label><input type="checkbox"> &nbsp; 1 tsk salt</label></p>
-						</div>
-
-						<div class="insertedHowto"><b>Fremgangsm&aring;de:</b>
-
-							<p><label><input type="checkbox"> &nbsp; Bring 3,75 dL vand i kog i en lille gryde.</label></p>
-							<p><label><input type="checkbox"> &nbsp; Skyl imens 2,5 dL ris i en si</label></p>
-							<p><label><input type="checkbox"> &nbsp; Kom 1 tsk salt oven i de v&aring;de ris (for ikke at glemme salt)</label></p>
-							<p><label><input type="checkbox"> &nbsp; N&aring;r vandet koger kommes risene i, og der r&oslash;res rundt. L&aelig;g l&aring;g p&aring; </label></p>
-							<p><label><input type="checkbox"> &nbsp; S&aelig;t minuturet p&aring; 12 minutter og skru ned p&aring; 1 (ud af 9)</label></p>
-							<p><label><input type="checkbox"> &nbsp; S&aelig;t evt. tallerkenerne p&aring; l&aring;get s&aring; de kan blive varme</label></p>
-							<p><label><input type="checkbox"> &nbsp; N&aring;r minuturet ringer slukkes for blusset, og minuturet s&aelig;ttes igen p&aring; 12 minutter</label></p>
-							<p><label><input type="checkbox"> &nbsp; Risen er klar n&aring;r minuturet ringer, men de kan sagtens st&aring; et kvarter mere</label></p>
-
-							<button class="slut">(Slut)</button>
-
-						</div>
-
-						<!-- ris inserted end -->
+						<rice-recipe></rice-recipe>
 
 					</div>
 
@@ -768,7 +705,7 @@ eller p&aring; https://github.com/HappyDustbunny/kogebog -->
 						<p><label><input type="checkbox"> &nbsp; Kom krydderiblandingen i og r&oslash;r kort rundt</label></p>
 						<p><label><input type="checkbox"> &nbsp; Kom de vaskede linser i og r&oslash;r rundt</label></p>
 						<p><label><input type="checkbox"> &nbsp; Kom de 6 dL vand i og r&oslash;r godt rundt i bunden.
-							Skru ned til 1 (ud af 9)</label></p>
+							<br> Læg låg på og skru ned til 1 (ud af 9)</label></p>
 						<p><label><input type="checkbox"> &nbsp; S&aelig;t minuturet p&aring; 30 minutter og d&aelig;k bord</label></p>
 						<p><label><input type="checkbox"> &nbsp; Server med tortillachips eller chappaties</label></p>
 
@@ -819,6 +756,8 @@ eller p&aring; https://github.com/HappyDustbunny/kogebog -->
 
 						</div>
 						<!-- chappati inserted end -->
+
+						<rice-recipe></rice-recipe>
 
 					</div>
 
@@ -2377,36 +2316,7 @@ eller p&aring; https://github.com/HappyDustbunny/kogebog -->
 
 				<button class="slut">(Slut)</button>
 
-				<!-- ris inserted start -->
-				<button class="insertedRecipe">
-				 <h3>Ris</h3>
-				</button>
-
-				<div class="insertedIngredienser">
-					<p class="antal">(3 - 4 personer)		(Start &frac12; time f&oslash;r)</p>
-					<b>Ingredienser:</b>
-
-					<p><label><input type="checkbox"> &nbsp;3,75 dL vand (Altid 1,5 dL vand til 1 dL ris)</label></p>
-					<p><label><input type="checkbox"> &nbsp; 2,5 dL ris (Skriv ned et sted hvor meget ris dem du laver mad til normalt spiser)</label></p>
-					<p><label><input type="checkbox"> &nbsp; 1 tsk salt</label></p>
-				</div>
-
-				<div class="insertedHowto"><b>Fremgangsm&aring;de:</b>
-
-					<p><label><input type="checkbox"> &nbsp; Bring 3,75 dL vand i kog i en lille gryde.</label></p>
-					<p><label><input type="checkbox"> &nbsp; Skyl imens 2,5 dL ris i en si</label></p>
-					<p><label><input type="checkbox"> &nbsp; Kom 1 tsk salt oven i de v&aring;de ris (for ikke at glemme salt)</label></p>
-					<p><label><input type="checkbox"> &nbsp; N&aring;r vandet koger kommes risene i, og der r&oslash;res rundt. L&aelig;g l&aring;g p&aring; </label></p>
-					<p><label><input type="checkbox"> &nbsp; S&aelig;t minuturet p&aring; 12 minutter og skru ned p&aring; 1 (ud af 9)</label></p>
-					<p><label><input type="checkbox"> &nbsp; S&aelig;t evt. tallerkenerne p&aring; l&aring;get s&aring; de kan blive varme</label></p>
-					<p><label><input type="checkbox"> &nbsp; N&aring;r minuturet ringer slukkes for blusset, og minuturet s&aelig;ttes igen p&aring; 12 minutter</label></p>
-					<p><label><input type="checkbox"> &nbsp; Risen er klar n&aring;r minuturet ringer, men de kan sagtens st&aring; et kvarter mere</label></p>
-
-					<button class="slut">(Slut)</button>
-
-				</div>
-
-				<!-- ris inserted end -->
+				<rice-recipe></rice-recipe>
 
 			</div>
 
@@ -2668,36 +2578,7 @@ eller p&aring; https://github.com/HappyDustbunny/kogebog -->
 
 						<button class="slut">(Slut)</button>
 
-						<!-- ris inserted start -->
-						<button class="insertedRecipe">
-						 <h3>Ris</h3>
-						</button>
-
-						<div class="insertedIngredienser">
-							<p class="antal">(3 - 4 personer)		(Start &frac12; time f&oslash;r)</p>
-							<b>Ingredienser:</b>
-
-							<p><label><input type="checkbox"> &nbsp;3,75 dL vand (Altid 1,5 dL vand til 1 dL ris)</label></p>
-							<p><label><input type="checkbox"> &nbsp; 2,5 dL ris (Skriv ned et sted hvor meget ris dem du laver mad til normalt spiser)</label></p>
-							<p><label><input type="checkbox"> &nbsp; 1 tsk salt</label></p>
-						</div>
-
-						<div class="insertedHowto"><b>Fremgangsm&aring;de:</b>
-
-							<p><label><input type="checkbox"> &nbsp; Bring 3,75 dL vand i kog i en lille gryde.</label></p>
-							<p><label><input type="checkbox"> &nbsp; Skyl imens 2,5 dL ris i en si</label></p>
-							<p><label><input type="checkbox"> &nbsp; Kom 1 tsk salt oven i de v&aring;de ris (for ikke at glemme salt)</label></p>
-							<p><label><input type="checkbox"> &nbsp; N&aring;r vandet koger kommes risene i, og der r&oslash;res rundt. L&aelig;g l&aring;g p&aring; </label></p>
-							<p><label><input type="checkbox"> &nbsp; S&aelig;t minuturet p&aring; 12 minutter og skru ned p&aring; 1 (ud af 9)</label></p>
-							<p><label><input type="checkbox"> &nbsp; S&aelig;t evt. tallerkenerne p&aring; l&aring;get s&aring; de kan blive varme</label></p>
-							<p><label><input type="checkbox"> &nbsp; N&aring;r minuturet ringer slukkes for blusset, og minuturet s&aelig;ttes igen p&aring; 12 minutter</label></p>
-							<p><label><input type="checkbox"> &nbsp; Risen er klar n&aring;r minuturet ringer, men de kan sagtens st&aring; et kvarter mere</label></p>
-
-							<button class="slut">(Slut)</button>
-
-						</div>
-
-						<!-- ris inserted end -->
+						<rice-recipe></rice-recipe>
 
 					</div>
 
@@ -2978,36 +2859,7 @@ eller p&aring; https://github.com/HappyDustbunny/kogebog -->
 
 						<button class="slut">(Slut)</button>
 
-						<!-- ris inserted start -->
-						<button class="insertedRecipe">
-						 <h3>Ris</h3>
-						</button>
-
-						<div class="insertedIngredienser">
-							<p class="antal">(3 - 4 personer)		(Start &frac12; time f&oslash;r)</p>
-							<b>Ingredienser:</b>
-
-							<p><label><input type="checkbox"> &nbsp;3,75 dL vand (Altid 1,5 dL vand til 1 dL ris)</label></p>
-							<p><label><input type="checkbox"> &nbsp; 2,5 dL ris (Skriv ned et sted hvor meget ris dem du laver mad til normalt spiser)</label></p>
-							<p><label><input type="checkbox"> &nbsp; 1 tsk salt</label></p>
-						</div>
-
-						<div class="insertedHowto"><b>Fremgangsm&aring;de:</b>
-
-							<p><label><input type="checkbox"> &nbsp; Bring 3,75 dL vand i kog i en lille gryde.</label></p>
-							<p><label><input type="checkbox"> &nbsp; Skyl imens 2,5 dL ris i en si</label></p>
-							<p><label><input type="checkbox"> &nbsp; Kom 1 tsk salt oven i de v&aring;de ris (for ikke at glemme salt)</label></p>
-							<p><label><input type="checkbox"> &nbsp; N&aring;r vandet koger kommes risene i, og der r&oslash;res rundt. L&aelig;g l&aring;g p&aring; </label></p>
-							<p><label><input type="checkbox"> &nbsp; S&aelig;t minuturet p&aring; 12 minutter og skru ned p&aring; 1 (ud af 9)</label></p>
-							<p><label><input type="checkbox"> &nbsp; S&aelig;t evt. tallerkenerne p&aring; l&aring;get s&aring; de kan blive varme</label></p>
-							<p><label><input type="checkbox"> &nbsp; N&aring;r minuturet ringer slukkes for blusset, og minuturet s&aelig;ttes igen p&aring; 12 minutter</label></p>
-							<p><label><input type="checkbox"> &nbsp; Risen er klar n&aring;r minuturet ringer, men de kan sagtens st&aring; et kvarter mere</label></p>
-
-							<button class="slut">(Slut)</button>
-
-						</div>
-
-						<!-- ris inserted end -->
+						<rice-recipe></rice-recipe>
 
 					</div>		<!-- class recipe -->
 
@@ -3091,36 +2943,7 @@ eller p&aring; https://github.com/HappyDustbunny/kogebog -->
 
 						<button class="slut">(Slut)</button>
 
-						<!-- ris inserted start -->
-						<button class="insertedRecipe">
-						 <h3>Ris</h3>
-						</button>
-
-						<div class="insertedIngredienser">
-							<p class="antal">(3 - 4 personer)		(Start &frac12; time f&oslash;r)</p>
-							<b>Ingredienser:</b>
-
-							<p><label><input type="checkbox"> &nbsp;3,75 dL vand (Altid 1,5 dL vand til 1 dL ris)</label></p>
-							<p><label><input type="checkbox"> &nbsp; 2,5 dL ris (Skriv ned et sted hvor meget ris dem du laver mad til normalt spiser)</label></p>
-							<p><label><input type="checkbox"> &nbsp; 1 tsk salt</label></p>
-						</div>
-
-						<div class="insertedHowto"><b>Fremgangsm&aring;de:</b>
-
-							<p><label><input type="checkbox"> &nbsp; Bring 3,75 dL vand i kog i en lille gryde.</label></p>
-							<p><label><input type="checkbox"> &nbsp; Skyl imens 2,5 dL ris i en si</label></p>
-							<p><label><input type="checkbox"> &nbsp; Kom 1 tsk salt oven i de v&aring;de ris (for ikke at glemme salt)</label></p>
-							<p><label><input type="checkbox"> &nbsp; N&aring;r vandet koger kommes risene i, og der r&oslash;res rundt. L&aelig;g l&aring;g p&aring; </label></p>
-							<p><label><input type="checkbox"> &nbsp; S&aelig;t minuturet p&aring; 12 minutter og skru ned p&aring; 1 (ud af 9)</label></p>
-							<p><label><input type="checkbox"> &nbsp; S&aelig;t evt. tallerkenerne p&aring; l&aring;get s&aring; de kan blive varme</label></p>
-							<p><label><input type="checkbox"> &nbsp; N&aring;r minuturet ringer slukkes for blusset, og minuturet s&aelig;ttes igen p&aring; 12 minutter</label></p>
-							<p><label><input type="checkbox"> &nbsp; Risen er klar n&aring;r minuturet ringer, men de kan sagtens st&aring; et kvarter mere</label></p>
-
-							<button class="slut">(Slut)</button>
-
-						</div>
-
-						<!-- ris inserted end -->
+						<rice-recipe></rice-recipe>
 
 					</div>
 
@@ -3292,35 +3115,7 @@ eller p&aring; https://github.com/HappyDustbunny/kogebog -->
 
 						<button class="slut">(Slut)</button>
 
-						<!-- ris inserted start -->
-						<button class="insertedRecipe">
-						 <h3>Ris</h3>
-						</button>
-
-						<div class="insertedIngredienser">
-							<p class="antal">(3 - 4 personer)		(Start &frac12; time f&oslash;r)</p>
-							<b>Ingredienser:</b>
-							<p><label><input type="checkbox"> &nbsp;3,75 dL vand (Altid 1,5 dL vand til 1 dL ris)</label></p>
-							<p><label><input type="checkbox"> &nbsp; 2,5 dL ris (Skriv ned et sted hvor meget ris dem du laver mad til normalt spiser)</label></p>
-							<p><label><input type="checkbox"> &nbsp; 1 tsk salt</label></p>
-						</div>
-
-						<div class="insertedHowto"><b>Fremgangsm&aring;de:</b>
-
-							<p><label><input type="checkbox"> &nbsp; Bring 3,75 dL vand i kog i en lille gryde.</label></p>
-							<p><label><input type="checkbox"> &nbsp; Skyl imens 2,5 dL ris i en si</label></p>
-							<p><label><input type="checkbox"> &nbsp; Kom 1 tsk salt oven i de v&aring;de ris (for ikke at glemme salt)</label></p>
-							<p><label><input type="checkbox"> &nbsp; N&aring;r vandet koger kommes risene i, og der r&oslash;res rundt. L&aelig;g l&aring;g p&aring; </label></p>
-							<p><label><input type="checkbox"> &nbsp; S&aelig;t minuturet p&aring; 12 minutter og skru ned p&aring; 1 (ud af 9)</label></p>
-							<p><label><input type="checkbox"> &nbsp; S&aelig;t evt. tallerkenerne p&aring; l&aring;get s&aring; de kan blive varme</label></p>
-							<p><label><input type="checkbox"> &nbsp; N&aring;r minuturet ringer slukkes for blusset, og minuturet s&aelig;ttes igen p&aring; 12 minutter</label></p>
-							<p><label><input type="checkbox"> &nbsp; Risen er klar n&aring;r minuturet ringer, men de kan sagtens st&aring; et kvarter mere</label></p>
-
-							<button class="slut">(Slut)</button>
-
-						</div>
-
-						<!-- ris inserted end -->
+						<rice-recipe></rice-recipe>
 
 					</div>
 				</div>   <!-- <div class="opskrifter"> -->
@@ -3563,36 +3358,7 @@ eller p&aring; https://github.com/HappyDustbunny/kogebog -->
 
 				<button class="slut">(Slut)</button>
 
-				<!-- ris inserted start -->
-				<button class="insertedRecipe">
-				 <h3>Ris</h3>
-				</button>
-
-				<div class="insertedIngredienser">
-					<p class="antal">(3 - 4 personer)		(Start &frac12; time f&oslash;r)</p>
-					<b>Ingredienser:</b>
-
-					<p><label><input type="checkbox"> &nbsp;3,75 dL vand (Altid 1,5 dL vand til 1 dL ris)</label></p>
-					<p><label><input type="checkbox"> &nbsp; 2,5 dL ris (Skriv ned et sted hvor meget ris dem du laver mad til normalt spiser)</label></p>
-					<p><label><input type="checkbox"> &nbsp; 1 tsk salt</label></p>
-				</div>
-
-				<div class="insertedHowto"><b>Fremgangsm&aring;de:</b>
-
-					<p><label><input type="checkbox"> &nbsp; Bring 3,75 dL vand i kog i en lille gryde.</label></p>
-					<p><label><input type="checkbox"> &nbsp; Skyl imens 2,5 dL ris i en si</label></p>
-					<p><label><input type="checkbox"> &nbsp; Kom 1 tsk salt oven i de v&aring;de ris (for ikke at glemme salt)</label></p>
-					<p><label><input type="checkbox"> &nbsp; N&aring;r vandet koger kommes risene i, og der r&oslash;res rundt. L&aelig;g l&aring;g p&aring; </label></p>
-					<p><label><input type="checkbox"> &nbsp; S&aelig;t minuturet p&aring; 12 minutter og skru ned p&aring; 1 (ud af 9)</label></p>
-					<p><label><input type="checkbox"> &nbsp; S&aelig;t evt. tallerkenerne p&aring; l&aring;get s&aring; de kan blive varme</label></p>
-					<p><label><input type="checkbox"> &nbsp; N&aring;r minuturet ringer slukkes for blusset, og minuturet s&aelig;ttes igen p&aring; 12 minutter</label></p>
-					<p><label><input type="checkbox"> &nbsp; Risen er klar n&aring;r minuturet ringer, men de kan sagtens st&aring; et kvarter mere</label></p>
-
-					<button class="slut">(Slut)</button>
-
-				</div>
-
-				<!-- ris inserted end -->
+				<rice-recipe></rice-recipe>
 
 
 			</div>
@@ -4007,36 +3773,7 @@ eller p&aring; https://github.com/HappyDustbunny/kogebog -->
 
 			<button class="slut">(Slut)</button>
 
-			<!-- ris inserted start -->
-			<button class="insertedRecipe">
-			 <h3>Ris</h3>
-			</button>
-
-			<div class="insertedIngredienser">
-				<p class="antal">(3 - 4 personer)		(Start &frac12; time f&oslash;r)</p>
-				<b>Ingredienser:</b>
-
-				<p><label><input type="checkbox"> &nbsp;3,75 dL vand (Altid 1,5 dL vand til 1 dL ris)</label></p>
-				<p><label><input type="checkbox"> &nbsp; 2,5 dL ris (Skriv ned et sted hvor meget ris dem du laver mad til normalt spiser)</label></p>
-				<p><label><input type="checkbox"> &nbsp; 1 tsk salt</label></p>
-			</div>
-
-			<div class="insertedHowto"><b>Fremgangsm&aring;de:</b>
-
-				<p><label><input type="checkbox"> &nbsp; Bring 3,75 dL vand i kog i en lille gryde.</label></p>
-				<p><label><input type="checkbox"> &nbsp; Skyl imens 2,5 dL ris i en si</label></p>
-				<p><label><input type="checkbox"> &nbsp; Kom 1 tsk salt oven i de v&aring;de ris (for ikke at glemme salt)</label></p>
-				<p><label><input type="checkbox"> &nbsp; N&aring;r vandet koger kommes risene i, og der r&oslash;res rundt. L&aelig;g l&aring;g p&aring; </label></p>
-				<p><label><input type="checkbox"> &nbsp; S&aelig;t minuturet p&aring; 12 minutter og skru ned p&aring; 1 (ud af 9)</label></p>
-				<p><label><input type="checkbox"> &nbsp; S&aelig;t evt. tallerkenerne p&aring; l&aring;get s&aring; de kan blive varme</label></p>
-				<p><label><input type="checkbox"> &nbsp; N&aring;r minuturet ringer slukkes for blusset, og minuturet s&aelig;ttes igen p&aring; 12 minutter</label></p>
-				<p><label><input type="checkbox"> &nbsp; Risen er klar n&aring;r minuturet ringer, men de kan sagtens st&aring; et kvarter mere</label></p>
-
-				<button class="slut">(Slut)</button>
-
-			</div>
-
-			<!-- ris inserted end -->
+			<rice-recipe></rice-recipe>
 
 		</div>
 	</div>   <!-- <div class="opskrifter"> -->
@@ -5976,14 +5713,14 @@ eller p&aring; https://github.com/HappyDustbunny/kogebog -->
 							&aelig;g ikke f&aring;r sm&oslash;rret til at stivne igen, og &aelig;g og sm&oslash;r kan holde sig mere end en
 							dag p&aring; k&oslash;kkenbordet</label></p>
 						<p><label><input type="checkbox"> &nbsp; Sm&oslash;r et fad p&aring; ca. 20&times;30 cm (som en halv bradepande.
-							Den ubagte dej fylder ca. 1,3 L og den skal n&aring; ca. &frac13; op, n&aring;r den h&aelig;ldes i. H&aelig;ld eventuelt 1,3 L
-							vand i formen, f&oslash;r du sm&oslash;rer den, for at vurdere om der er plads nok. Hvis formen bliver for fuld
-							l&oslash;ber dej eller topping ud i ovnen)</label></p>
+							Den ubagte dej fylder ca. 1,3 L og den skal n&aring; ca. &frac13; op, n&aring;r den h&aelig;ldes i. Brug eventuelt to forme.
+							<br> H&aelig;ld eventuelt 1,3 L vand i formen, f&oslash;r du sm&oslash;rer den, for at vurdere om der
+							er plads nok. Hvis formen bliver for fuld l&oslash;ber dej eller topping ud i ovnen)</label></p>
 						<p><label><input type="checkbox"> &nbsp; Drys mel i den smurte form og ryst det rundt til sider
 							og bund er d&aelig;kket. Overskydenden mel bruges i n&aelig;ste trin</label></p>
 						<p><label><input type="checkbox"> &nbsp; Vej 250 g mel af og kom det i en sk&aring;l eller et literm&aring;l</label></p>
-						<p><label><input type="checkbox"> &nbsp; Kom 3 tsk bagepulver i melet. Evt. gennem en si,
-							hvis der er klumper i bagepulveret</label></p>
+						<p><label><input type="checkbox"> &nbsp; Kom 3 tsk bagepulver i melet. (Evt. gennem en si,
+							hvis der er klumper i bagepulveret)</label></p>
 						<p><label><input type="checkbox"> &nbsp; Fl&aelig;k en halv stang vanilje med en urtekniv, og skrab de
 							sm&aring; sorte korn ud med kniven. Gnid kornene ud i melet og r&oslash;r rundt s&aring; bagepulveret
 							bliver fordelt j&aelig;vnt. Kom den tomme vaniljestang i et glas med &half; dL sukker, s&aring;
@@ -6000,14 +5737,16 @@ eller p&aring; https://github.com/HappyDustbunny/kogebog -->
 						<p><label><input type="checkbox"> &nbsp; R&oslash;r resten af melblandingen i</label></p>
 						<p><label><input type="checkbox"> &nbsp; R&oslash;r resten af m&aelig;lken i</label></p>
 						<p><label><input type="checkbox"> &nbsp; H&aelig;ld dejen i den smurte form, og f&aring; det sidste dej
-							med ved at bruge en dejskraber</label></p>
+							med ved at bruge en dejskraber. (Vip og drej formene hvis du bruger to små forme, så dejen kommer op ad
+							kanten. Jeg håber at det forhindrer kagen i at bule op i midten, men er ikke sikker)</label></p>
 						<p><label><input type="checkbox"> &nbsp; S&aelig;t kagen ind midt i den varme ovn og bag den i 25
 							minutter. Husk at s&aelig;tte et minutur</label></p>
 						<p><label><input type="checkbox"> &nbsp; N&aring;r kagen er sat ind, kommes 125 g sm&oslash;r i en lille gryde</label></p>
 						<p><label><input type="checkbox"> &nbsp; Tils&aelig;t 100 g kokosmel </label></p>
 						<p><label><input type="checkbox"> &nbsp; Kom 250 g brunt sukker i gryden (Halvdelen kan evt. v&aelig;re muscovadosukker)</label></p>
-						<p><label><input type="checkbox"> &nbsp; Tils&aelig;t 0,5 dL s&oslash;dm&aelig;lk og bring gryden i kog under omr&oslash;ring</label></p>
-						<p><label><input type="checkbox"> &nbsp; N&aring;r det hele er smeltet godt sammen og lige er begyndt at syde,
+						<p><label><input type="checkbox"> &nbsp; Tils&aelig;t 0,5 dL s&oslash;dm&aelig;lk og r&oslash;r rundt med et piskeris</label></p>
+						<p><label><input type="checkbox"> &nbsp; T&aelig;nd blusset på 9 (ud af 9) og rør rundt hele tiden</label></p>
+						<p><label><input type="checkbox"> &nbsp; N&aring;r det hele er smeltet godt sammen og måske lige er begyndt at syde,
 							tages gryden af blusset</label></p>
 						<p><label><input type="checkbox"> &nbsp; N&aring;r minuturet ringer tages kagen ud og der skrues op til 220&deg;</label></p>
 						<p><label><input type="checkbox"> &nbsp; Fordel kokos-toppingen p&aring; hele kagens overflade og s&aelig;t
