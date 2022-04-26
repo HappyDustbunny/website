@@ -38,6 +38,10 @@ button {
   font-size: initial;
 }
 
+input {
+  margin-right: 1em;
+}
+
 #controlButtonContainer {
   display: grid;
   /* grid-template-columns: auto auto auto; */
