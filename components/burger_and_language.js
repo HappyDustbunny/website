@@ -40,22 +40,24 @@ $(function() {
     $('.burgerControl').attr('aria-expanded', ariaExpanded);
   });
 
-  $('.controlContainer').on('click', '.languageDa', function(event) {
+  // $('.controlContainer').on('click', '.languageDa', function(event) {
+  $('.controlContainer').on('click', '.languageDa', function() {
     language = 1;
     localStorage.language = language;
     updateLanguage();
   });
 
-  $('.controlContainer').on('click', '.languageEng', function(event) {
+  // $('.controlContainer').on('click', '.languageEng', function(event) {
+  $('.controlContainer').on('click', '.languageEng', function() {
     language = 0;
     localStorage.language = language;
     updateLanguage();
   });
 
-  $(document).on('keydown', function(event) {
-    if (event.which === 68) {
+  $(document).on('keydown', function(event) { // English 0, Danish 1
+    if (event.which === 68) { // 68 is the key d
       language = 1;
-    } else if (event.which === 69) {
+    } else if (event.which === 69) { // 69 is the key e
       language = 0;
     }
     localStorage.language = language;
@@ -68,9 +70,9 @@ $(function() {
 
   $('#cookbook').on('click', function() {
     if (language) {
-      window.location = '/cooking/kogebog.html';
+      window.location = 'https://kogebog.madshorn.dk/kogebog.html';
     } else {
-      window.location = '/cooking/kogebog.html'; // TODO: Translate kogebog.html
+      window.location = 'https://kogebog.madshorn.dk/kogebog.html'; // TODO: Translate kogebog.html
     }
   });
 
@@ -167,6 +169,8 @@ $(function() {
       $('.languageEng').css({ opacity: 1 });
       $('.languageDa').attr('aria-pressed', 'false');
       $('.languageEng').attr('aria-pressed', 'true');
+      $('.languageDa').removeClass('animateIt');
+      $('.languageEng').addClass('animateIt');
     } else {
       $('.danish').show()
       $('.english').hide()
@@ -174,6 +178,8 @@ $(function() {
       $('.languageEng').css({ opacity: 0.3 });
       $('.languageDa').attr('aria-pressed', 'true');
       $('.languageEng').attr('aria-pressed', 'false');
+      $('.languageDa').addClass('animateIt');
+      $('.languageEng').removeClass('animateIt');
     };
   }
 });

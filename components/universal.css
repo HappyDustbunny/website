@@ -27,6 +27,17 @@ burger-menu-content {
   grid-column-start: 1;
 }
 
+@keyframes zoomInOut {
+  0% {font-size: 1em;}
+  50% {font-size: 2em; color: magenta}
+  100% {font-size: 1em;}
+}
+
+.animateIt {
+  animation-name: zoomInOut;
+  animation-duration: 0.2s;
+}
+
 :focus {
   outline: none; /* Make arrowkeys move text ogether with $('.content').focus(); in universal.css*/
 }
