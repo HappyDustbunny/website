@@ -23,7 +23,8 @@ $(function() {
     language = localStorage.language;
   }
 
-  updateLanguage();
+  // updateLanguage();
+  setTimeout(updateLanguage, 300);
 
   $('.content').focus();
 
@@ -178,8 +179,8 @@ $(function() {
       $('.languageEng').css({ opacity: 0.3 });
       $('.languageDa').attr('aria-pressed', 'true');
       $('.languageEng').attr('aria-pressed', 'false');
-      $('.languageDa').addClass('animateIt');
       $('.languageEng').removeClass('animateIt');
+      $('.languageDa').addClass('animateIt');
     };
   }
 });
