@@ -66,7 +66,7 @@ $(function() {
   });
 
   $('#FuzzyPlan').on('click', function() {
-    window.location = '/planner/index.html';
+    window.location = 'https://madshorn.dk/planner/index.html';
   });
 
   $('#cookbook').on('click', function() {
@@ -85,23 +85,22 @@ $(function() {
       $('#cooking').siblings().not('animated').slideToggle();
       toggleCooking()
     };
-    // window.location = '/programming/index.html';
   });
 
   $('#journey').on('click', function() {
-    window.location = '../programming/index.html';
+    window.location = 'https://madshorn.dk/programming/index.html';
   });
 
   $('#python').on('click', function() {
-    window.location = '../programming/python.html';
+    window.location = 'https://madshorn.dk/programming/python.html';
   });
 
   $('#rust').on('click', function() {
-    window.location = '../programming/rust.html';
+    window.location = 'https://madshorn.dk/programming/rust.html';
   });
 
   $('#git').on('click', function() {
-    window.location = '../programming/git.html';
+    window.location = 'https://madshorn.dk/programming/git.html';
   });
 
   $('#myGithub').on('click', function() {
@@ -115,7 +114,6 @@ $(function() {
       $('#programming').siblings().not('animated').slideToggle();
       toggleProgramming()
     };
-    // window.location = '/cooking/index.html';
   });
 
   $('#cookbooks').on('click', function() {
@@ -123,10 +121,10 @@ $(function() {
   });
 
   $('#baking').on('click', function() {
-    window.location = '../baking/index.html';
+    window.location = 'https://madshorn.dk/baking/index.html';
   });
   $('#tempMix').on('click', function() {
-    window.location = '../baking/tempmix/index.html';
+    window.location = 'https://madshorn.dk/baking/tempmix/index.html';
   });
 
   function toggleProgramming() {
@@ -142,11 +140,11 @@ $(function() {
   }
 
   $('#home').on('click', function() {
-    window.location = '../index.html';
+    window.location = 'https://madshorn.dk/index.html';
   });
 
   $('#about').on('click', function() {
-    window.location = '/about/about.html';
+    window.location = 'https://madshorn.dk/about/about.html';
   });
 
   $('img').on('dragstart', false);
