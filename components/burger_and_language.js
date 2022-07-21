@@ -103,6 +103,10 @@ $(function() {
     window.location = 'https://madshorn.dk/programming/git.html';
   });
 
+  $('#cmdline').on('click', function() {
+    window.location = 'https://madshorn.dk/programming/cmdline.html';
+  });
+
   $('#myGithub').on('click', function() {
     window.location = 'https://github.com/HappyDustbunny?tab=repositories';
   });

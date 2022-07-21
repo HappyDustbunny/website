@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bash command line tricks</title>
+
+    <my-favicons></my-favicons>
+
+    <link rel="stylesheet" href="../components/universal.css">
+
+    <script src='../components/favicon.js' type='text/javascript' defer></script>
+    <script src='../components/header.js' type='text/javascript' defer></script>
+    <script src='../components/main-controls.js' type='text/javascript' defer></script>
+    <script src='../components/burger-menu-content.js' type='text/javascript' defer></script>
+    <script src='../components/footer.js' type='text/javascript' defer></script>
+    <script src="../components/burger_and_language.js" type="text/javascript" defer> </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+      window.jQuery || document.write("<script src='../components/jquery-3.6.0.slim.min.js'><\/script>")
+    </script>
+
+  </head>
+
+  <body>
+
+    <my-header></my-header>
+
+    <noscript>
+      <a href="http://madshorn.dk/index.html">Home</a>
+    </noscript>
+
+    <div class="headContainer">
+      <main-controls></main-controls>
+      <burger-menu-content></burger-menu-content>
+
+      <main>
+        <div class="content">
+          &nbsp;
+        </div>
+        <div class="content english" lang="en">
+          <h1>Linux command line (Bash) cheat sheet</h1>
+          <p> This is a overview over useful Bash commands and shortcuts I probably will forget. </p>
+          <p> Bash is a Linux shell, but is also part of the Git tools on Windows (Git Bash). </p>
+          <p> Apart from the first command these tricks should work here too. </p>
+
+
+          <h2> Command line tricks</h2>
+
+          <h3> General </h3>
+          <p> <kbd> ctrl+alt+t</kbd> Start a new terminal</p>
+          <p> <kbd> ctrl+c</kbd> Stop command and return to prompt (Alternatively try <kbd>Esc, ctrl+d, :q</kbd> ) </p>
+
+          <h3> Navigation in directory tree </h3>
+          <p> <kbd> cd</kbd> Always go to home directory when no arguments is present </p>
+          <p> <kbd> cd ..</kbd> Go a level up in the directory tree </p>
+          <p> <kbd> cd -</kbd> Go to last directory </p>
+          <p> <kbd> ~</kbd> Represent path to home directory </p>
+          <p> <kbd> &lt;Tab&gt;</kbd> Autocomplete path names. Write a couple
+            of characters and press &lt;Tab&gt; </p>
+
+          <h3> Reuse commands </h3>
+          <p> <kbd>history</kbd> Lists used commands </p>
+          <p> <kbd>history n</kbd> List the <em>n</em> last commands </p>
+          <p> <kbd>ctrl+p</kbd> Show the last command (ctrl+o to run the command). Ctrl+p is repeatable</p>
+          <p> <kbd> !!</kbd> Reuse entire line (sudo !!)</p>
+          <p> <kbd> !stri</kbd> Reuse line starting with <em>stri</em> </p>
+          <p> <kbd> !-<em>n</em></kbd> Rerun the <em>n</em>th-last line </p>
+          <p> <kbd>&uparrow;&sol;&downarrow;</kbd> Navigate last commands </p>
+          <p> <kbd> ctrl+r</kbd> Search history (Repeat for next match of search string) Ctrl+c to stop search. </p>
+          <p> <kbd> alt+.</kbd> Reuse previous argument (Repeat for earlier arguments) </p>
+
+          <h3> Navigate command line </h3>
+          <p> <kbd>ctrl+&leftarrow;&sol;&rightarrow;</kbd> Jump word </p>
+          <p> <kbd>ctrl+a&sol;e</kbd> Jump to start&sol;end of line </p>
+          <p> <kbd>ctrl+shift+c</kbd> Copy text selected with mouse </p>
+          <p> <kbd>ctrl+shift+v</kbd> Paste text selected with mouse </p>
+          <p> <kbd>ctrl+f&sol;b</kbd> Jump word (Keeping hands on keyboard)</p>
+          <p> <kbd>ctrl+f</kbd> Move right (&rightarrow;) (Keeping hands on keyboard)</p>
+          <p> <kbd>ctrl+b</kbd> Move left (&leftarrow;) (Keeping hands on keyboard)</p>
+          <p> <kbd>ctrl+xx</kbd> Jump to beginning of line - and back</p>
+
+          <h3> Delete and insert </h3>
+          <p> <kbd>ctrl+k&sol;u</kbd> Clear to end&sol;start of line </p>
+          <p> <kbd>ctrl+w</kbd> Delete word backwards </p>
+          <p> <kbd>alt+d</kbd> Delete to end of word </p>
+          <p> <kbd>ctrl+d</kbd> Delete character under cursor (Keeping hands on keyboard)</p>
+          <p> <kbd>ctrl+h</kbd> Delete character before cursor ((Backspace) Keeping hands on keyboard)</p>
+          <p> <kbd>ctrl+y</kbd> Insert deletetion at cursor position (Not regular ctrl+z!)</p>
+
+          <h3> Change case </h3>
+          <p> <kbd>alt+u</kbd> Make uppercase from cursor til end of word</p>
+          <p> <kbd>alt+l</kbd> Make lowercase from cursor til end of word</p>
+          <p> <kbd>alt+c</kbd> Capitalize from cursor til end of word </p>
+
+          <h3> Other </h3>
+          <p> <kbd>clear</kbd> Clear terminal</p>
+          <p> <kbd>alt+t</kbd> Swap word with previous word </p>
+          <p> <kbd>ctrl+s</kbd> Freeze flow if screen is scrolling. Relict form
+            teleprinters. Only mentioned to note that <kbd>ctrl+q</kbd> will resume flow </p>
+
+          <!-- <p> <kbd></kbd> </p> -->
+
+        </div>
+
+        <div class="content danish" lang="da">
+          <h1>Huskeliste for Linux terminalkomandoer (Bash)</h1>
+          <p> Programmering foregår mest på engelsk, så jeg oversætter ikke mine
+          sider om programmering til dansk. </p>
+          <p> Skift sprog øverst til venstre</p>
+        </div>
+      </main>
+    </div>
+
+    <my-footer></my-footer>
+
+  </body>
+</html>
