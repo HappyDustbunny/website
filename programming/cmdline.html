@@ -21,6 +21,57 @@
     <script>
       window.jQuery || document.write("<script src='../components/jquery-3.6.0.slim.min.js'><\/script>")
     </script>
+    <script type="text/javascript">
+      $(function() {
+        $('#hideAdvanced').on('click', function() {
+          if ($(this)[0].value == 'allIsUnfolded') {
+            foldAll();
+          } else if ($(this)[0].value == 'allIsFolded') {
+            foldNerdy();
+          } else {
+            unfoldAll();
+          }
+        })
+
+        function foldAll() {
+          $('.niceToKnow').hide();
+          $('.niceToKnow1').hide(); // niceToKnow1 er next level
+
+          $('#hideAdvanced')[0].value = 'allIsFolded';
+          $('#hideAdvanced')[0].textContent = 'Press here to show more advanced shortcuts';
+          $('#level').css('color', 'rgb(54, 157, 54)');
+          $('#level')[0].textContent = 'Need to know';
+        }
+
+        function foldNerdy() {
+          $('.niceToKnow').show();
+          $('.niceToKnow1').hide();
+
+          $('#hideAdvanced')[0].value = 'nerdyIsFolded';
+          $('#hideAdvanced')[0].textContent = 'Press here to show advanced shortcuts';
+          $('#level').css('color', 'rgb(176, 168, 42)');
+          $('#level')[0].textContent = 'Nice to know';
+        }
+
+        function unfoldAll() {
+          $('.niceToKnow').show();
+          $('.niceToKnow1').show();
+
+          $('#hideAdvanced')[0].value = 'allIsUnfolded';
+          $('#hideAdvanced')[0].textContent = 'Press here to hide all but the most important shortcuts';
+          $('#level').css('color', 'rgb(176, 40, 40)');
+          $('#level')[0].textContent = 'Nerdy';
+        }
+
+      })
+    </script>
+
+    <style media="screen">
+      #hideAdvanced {
+        border-radius: 10px;
+        background-color: #d0d0ff;
+      }
+    </style>
 
   </head>
 
@@ -45,64 +96,87 @@
           <p> This is a overview over useful Bash commands and shortcuts I probably will forget. </p>
           <p> Bash is a Linux shell, but is also part of the Git tools on Windows (Git Bash). </p>
           <p> Apart from the first command these tricks should work here too. </p>
+          <p> Don't loose heart because there is so many shortcuts. <br> Use the button to filter
+            the list and choose a couple that will improve your life. <br>
+            Then come back regularly (set an alarm ;-) and discover new ways to improve
+            your mastery of the dark screen. </p>
+          <button id="hideAdvanced" value="allIsUnfolded" type="button"> Press here to hide
+            all but the most important shortcuts</button>
+          <p> Current level: <span id="level" style="color: #ff0000;">Nerdy</span> </p>
 
 
           <h2> Command line tricks</h2>
 
           <h3> General </h3>
-          <p> <kbd> ctrl+alt+t</kbd> Start a new terminal</p>
+          <p> <kbd> ctrl+alt+t</kbd> Start a new terminal (Only defalult in Ubuntu and Mint)</p>
           <p> <kbd> ctrl+c</kbd> Stop command and return to prompt (Alternatively try <kbd>Esc, ctrl+d, :q</kbd> ) </p>
+          <p class="niceToKnow"> <kbd>ctrl++</kbd> Enlarge terminal and text </p>
+          <p class="niceToKnow"> <kbd>ctrl+-</kbd> Shrink terminal and text </p>
 
           <h3> Navigation in directory tree </h3>
-          <p> <kbd> cd</kbd> Always go to home directory when no arguments is present </p>
+          <p class="niceToKnow"> <kbd> cd</kbd> Always go to home directory when no arguments is present </p>
           <p> <kbd> cd ..</kbd> Go a level up in the directory tree </p>
           <p> <kbd> cd -</kbd> Go to last directory </p>
-          <p> <kbd> ~</kbd> Represent path to home directory </p>
-          <p> <kbd> &lt;Tab&gt;</kbd> Autocomplete path names. Write a couple
-            of characters and press &lt;Tab&gt; </p>
+          <p> <kbd> ~</kbd> Represents path to home directory (Ex: cd ~/Documents)</p>
+          <p class="niceToKnow"> <kbd> &lt;Tab&gt;</kbd> Autocomplete path names. Write a couple
+            of characters and press &lt;Tab&gt;. <br>
+            If nothing happens there is multiple options for Autocompletion. <br>
+            Press <kbd>(shift+)alt+?</kbd> to see possible options <br>
+            Press <kbd>(shift+)alt+*</kbd> to use all possible options <br>
+            &lt;Tab&gt; autocompletion also works on commands and variables </p>
 
           <h3> Reuse commands </h3>
-          <p> <kbd>history</kbd> Lists used commands </p>
-          <p> <kbd>history n</kbd> List the <em>n</em> last commands </p>
-          <p> <kbd>ctrl+p</kbd> Show the last command (ctrl+o to run the command). Ctrl+p is repeatable</p>
-          <p> <kbd> !!</kbd> Reuse entire line (sudo !!)</p>
-          <p> <kbd> !stri</kbd> Reuse line starting with <em>stri</em> </p>
-          <p> <kbd> !-<em>n</em></kbd> Rerun the <em>n</em>th-last line </p>
+          <p class="niceToKnow"> <kbd>history</kbd> Lists used commands </p>
+          <p class="niceToKnow"> <kbd>history n</kbd> List the <em>n</em> last commands </p>
           <p> <kbd>&uparrow;&sol;&downarrow;</kbd> Navigate last commands </p>
-          <p> <kbd> ctrl+r</kbd> Search history (Repeat for next match of search string) Ctrl+c to stop search. </p>
-          <p> <kbd> alt+.</kbd> Reuse previous argument (Repeat for earlier arguments) </p>
+          <p class="niceToKnow1"> <kbd>ctrl+p</kbd> Show the last command in history. Same as up arrow, but keeping hands on keyboard</p>
+          <p class="niceToKnow1"> <kbd>ctrl+n</kbd> Show the next command in history. Same as down arrow  </p>
+          <p class="niceToKnow1"> <kbd>ctrl+o</kbd> Run current command in history and bring the next
+            command up. Repeat ctrl+o to re-run a command sequence </p>
+          <p class="niceToKnow"> <kbd> !!</kbd> Reuse entire line (Ex: sudo !!)</p>
+          <p> <kbd> !string</kbd> Reuse line starting with <em>string</em> </p>
+          <p class="niceToKnow1"> <kbd> !?string</kbd> Reuse line containing <em>string</em> </p>
+          <p class="niceToKnow1"> <kbd> !<em>n</em></kbd> Re-run the <em>n</em>th line in history </p>
+          <p class="niceToKnow1"> <kbd> !-<em>n</em></kbd> Re-run the <em>n</em>th-last line in history</p>
+          <p class="niceToKnow1"> <kbd> ctrl+r</kbd> Search history (Repeat for next match of search string)
+            <kbd>Ctrl+g</kbd> to stop search. Use <kbd>ctrl+j</kbd> to be able to edit command </p>
+          <p class="niceToKnow"> <kbd> alt+.</kbd> Insert previous argument (Repeat for earlier arguments) </p>
 
           <h3> Navigate command line </h3>
           <p> <kbd>ctrl+&leftarrow;&sol;&rightarrow;</kbd> Jump word </p>
-          <p> <kbd>ctrl+a&sol;e</kbd> Jump to start&sol;end of line </p>
-          <p> <kbd>ctrl+shift+c</kbd> Copy text selected with mouse </p>
-          <p> <kbd>ctrl+shift+v</kbd> Paste text selected with mouse </p>
-          <p> <kbd>ctrl+f&sol;b</kbd> Jump word (Keeping hands on keyboard)</p>
-          <p> <kbd>ctrl+f</kbd> Move right (&rightarrow;) (Keeping hands on keyboard)</p>
-          <p> <kbd>ctrl+b</kbd> Move left (&leftarrow;) (Keeping hands on keyboard)</p>
-          <p> <kbd>ctrl+xx</kbd> Jump to beginning of line - and back</p>
+          <p class="niceToKnow1"> <kbd>ctrl+f</kbd> Move right (&rightarrow;) (Keeping hands on keyboard)</p>
+          <p class="niceToKnow1"> <kbd>ctrl+b</kbd> Move left (&leftarrow;) (Keeping hands on keyboard)</p>
+          <p class="niceToKnow1"> <kbd>alt+f</kbd> Jump after current word </p>
+          <p class="niceToKnow1"> <kbd>alt+b</kbd> Jump to beginning of word </p>
+          <p class="niceToKnow"> <kbd>ctrl+a&sol;e</kbd> Jump to start&sol;end of line </p>
+          <p class="niceToKnow1"> <kbd>ctrl+xx</kbd> Jump to beginning of line - and back</p>
+          <p class="niceToKnow"> <kbd>ctrl+shift+c</kbd> Copy text selected with mouse </p>
+          <p class="niceToKnow"> <kbd>ctrl+shift+v</kbd> Paste text selected with mouse </p>
 
-          <h3> Delete and insert </h3>
-          <p> <kbd>ctrl+k&sol;u</kbd> Clear to end&sol;start of line </p>
-          <p> <kbd>ctrl+w</kbd> Delete word backwards </p>
-          <p> <kbd>alt+d</kbd> Delete to end of word </p>
-          <p> <kbd>ctrl+d</kbd> Delete character under cursor (Keeping hands on keyboard)</p>
-          <p> <kbd>ctrl+h</kbd> Delete character before cursor ((Backspace) Keeping hands on keyboard)</p>
-          <p> <kbd>ctrl+y</kbd> Insert deletetion at cursor position (Not regular ctrl+z!)</p>
+          <h3 class="niceToKnow"> Delete and insert </h3>
+          <p class="niceToKnow"> <kbd>ctrl+k&sol;u</kbd> Clear to end&sol;start of line </p>
+          <p class="niceToKnow"> <kbd>ctrl+w</kbd> Delete word backwards </p>
+          <p class="niceToKnow"> <kbd>alt+d</kbd> Delete to end of word </p>
+          <p class="niceToKnow1"> <kbd>ctrl+d</kbd> Delete character under cursor (Keeping hands on keyboard)</p>
+          <p class="niceToKnow1"> <kbd>ctrl+h</kbd> Delete character before cursor ((Backspace) Keeping hands on keyboard)</p>
+          <p class="niceToKnow1"> <kbd>ctrl+y</kbd> Insert deletetion at cursor position (Not regular ctrl+z!)</p>
 
-          <h3> Change case </h3>
-          <p> <kbd>alt+u</kbd> Make uppercase from cursor til end of word</p>
-          <p> <kbd>alt+l</kbd> Make lowercase from cursor til end of word</p>
-          <p> <kbd>alt+c</kbd> Capitalize from cursor til end of word </p>
+          <h3 class="niceToKnow1"> Change case </h3>
+          <p class="niceToKnow1"> <kbd>alt+u</kbd> Make uppercase from cursor til end of word</p>
+          <p class="niceToKnow1"> <kbd>alt+l</kbd> Make lowercase from cursor til end of word</p>
+          <p class="niceToKnow1"> <kbd>alt+c</kbd> Capitalize letter under cursor and jump to end of word </p>
 
           <h3> Other </h3>
           <p> <kbd>clear</kbd> Clear terminal</p>
-          <p> <kbd>alt+t</kbd> Swap word with previous word </p>
+          <p class="niceToKnow1"> <kbd>alt+t</kbd> Swap word with previous word </p>
+          <p class="niceToKnow1"> <kbd>ctrl+t</kbd> Swap letter under cursor with previous letter and move one character right </p>
           <p> <kbd>ctrl+s</kbd> Freeze flow if screen is scrolling. Relict form
             teleprinters. Only mentioned to note that <kbd>ctrl+q</kbd> will resume flow </p>
 
           <!-- <p> <kbd></kbd> </p> -->
-
+          <p>The free pdf <a href="https://www.dbooks.org/the-linux-command-line-1593279523/">The
+             Linux Command Line</a> is a more in-depth presentation of do's and don'ts of the
+              Linux command line</p>
         </div>
 
         <div class="content danish" lang="da">
