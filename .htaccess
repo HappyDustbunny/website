@@ -7,4 +7,8 @@ RewriteCond %{HTTP_HOST} ^kogebog\.madshorn\.dk$
 RewriteCond %{REQUEST_URI} !^/kogebog\.madshorn\.dk
 RewriteRule ^(.*)$ kogebog.madshorn.dk/$1 [L]
 
+RewriteCond %{HTTP_HOST} ^cookbook\.madshorn\.dk$
+RewriteCond %{REQUEST_URI} !^/cookbook\.madshorn\.dk
+RewriteRule ^(.*)$ cookbook.madshorn.dk/$1 [L]
+
 ErrorDocument 404 /error/404.html

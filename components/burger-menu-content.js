@@ -54,6 +54,7 @@ class BurgerMenuControl extends HTMLElement {
           <div id='rust' class='secondLevelBurgerText' lang='en' style='display: none' aria-label='Rust'>Rust</div>
           <div id='git' class='secondLevelBurgerText' lang='en' style='display: none' aria-label='Git'>Intro to Git</div>
           <div id='cmdline' class='secondLevelBurgerText' lang='en' style='display: none' aria-label='Bash command line tricks'>Bash command line</div>
+          <div id='key' class='secondLevelBurgerText' lang='en' style='display: none' aria-label='Git'>Remapping keys</div>
           <div id='myGithub' class='secondLevelBurgerText' lang='en' style='display: none' aria-label='My Github repos'>My Github repos</div>
         </div>
         <div class="burgerHeading">

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Remap keys in Linux</title>
+
+    <my-favicons></my-favicons>
+
+    <link rel="stylesheet" href="../components/universal.css">
+
+    <script src='../components/favicon.js' type='text/javascript' defer></script>
+    <script src='../components/header.js' type='text/javascript' defer></script>
+    <script src='../components/main-controls.js' type='text/javascript' defer></script>
+    <script src='../components/burger-menu-content.js' type='text/javascript' defer></script>
+    <script src='../components/footer.js' type='text/javascript' defer></script>
+    <script src="../components/burger_and_language.js" type="text/javascript" defer> </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+      window.jQuery || document.write("<script src='../components/jquery-3.6.0.slim.min.js'><\/script>")
+    </script>
+  </head>
+
+  <body>
+
+    <my-header></my-header>
+
+    <noscript>
+      <a href="http://madshorn.dk/index.html">Home</a>
+    </noscript>
+
+    <div class="headContainer">
+      <main-controls></main-controls>
+      <burger-menu-content></burger-menu-content>
+
+      <main>
+        <div class="content">
+          &nbsp;
+        </div>
+        <div class="content english" lang="en">
+          <h1>How to remap keys in Linux</h1>
+          <p> It is easy to change the behaviour of keys in Linux if you have a dead key or want a different layout. </p>
+          <p> To see the current keymap open a terminal and write <kbd>xmodmap -pke</kbd> </p>
+          <p> Scroll up to find the keycode of the keys you want to remap.</p>
+          <p> In case you wan to revert later maybe store a copy of your old keymap by using the command <kbd>xmodmap -pke > oldkeymap</kbd> </p>
+          <br>
+          <h3>Eksample</h3>
+          <p> To swap the function of the <em>Escape</em>-key and the <em>CapsLock</em>-key just give the following commands</p>
+          <p> <kbd>xmodmap -e "keycode 9 = Caps_Lock"</kbd> and</p>
+          <p> <kbd>xmodmap -e "keycode 66 = Escape"</kbd></p>
+          <p> (NOTE: The keycodes may be different for your keyboard! I use a danish layout)</p>
+          <p> Confirm the changes by writing <kbd>xmodmap -pke</kbd> - or just try the keys ;-)</p>
+        </div>
+
+        <div class="content danish" lang="da">
+          <h1>Hvordan man ændrer tasters opførsel i Linux</h1>
+          <p> Programmering foregår mest på engelsk, så jeg oversætter ikke mine
+          sider om programmering til dansk. </p>
+          <p> Skift sprog øverst til venstre</p>
+        </div>
+      </main>
+    </div>
+
+    <my-footer></my-footer>
+
+  </body>
+</html>

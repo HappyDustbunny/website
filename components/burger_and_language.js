@@ -107,6 +107,10 @@ $(function() {
     window.location = 'https://madshorn.dk/programming/cmdline.html';
   });
 
+  $('#key').on('click', function() {
+    window.location = 'https://madshorn.dk/programming/keymap.html';
+  });
+
   $('#myGithub').on('click', function() {
     window.location = 'https://github.com/HappyDustbunny?tab=repositories';
   });
