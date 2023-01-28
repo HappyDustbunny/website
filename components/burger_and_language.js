@@ -73,7 +73,7 @@ $(function() {
     if (language) {
       window.location = 'https://kogebog.madshorn.dk/kogebog.html';
     } else {
-      window.location = 'https://kogebog.madshorn.dk/kogebog.html'; // TODO: Translate kogebog.html
+      window.location = 'https://cookbook.madshorn.dk/cookbook.html';
     }
   });
 
@@ -166,6 +166,7 @@ $(function() {
         text[index].textContent = languagePack[id][language][0];
         text[index].title = languagePack[id][language][1];
         text[index].lang = lang[language]; // lang = ['en', 'da']
+        text[index].ariaLabel = languagePack[id][language][0];
       }
     }
 
