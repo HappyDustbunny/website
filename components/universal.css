@@ -50,6 +50,7 @@ burger-menu-content {
 	grid-template-rows: auto auto;
 	height: min-content;
 	row-gap: 1em;
+  column-gap: 2em;
 }
 
 .content {

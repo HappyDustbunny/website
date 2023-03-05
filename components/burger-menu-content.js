@@ -6,7 +6,7 @@ class BurgerMenuControl extends HTMLElement {
     this.innerHTML = `
       <style>
         .burgerItem {
-          display: none;
+          /*display: none;*/
           border: 3px ridge;
           border-radius: 15px;
           padding: 6px;
@@ -19,7 +19,7 @@ class BurgerMenuControl extends HTMLElement {
         }
 
         .burgerHeading {
-          display: none;
+          /*display: none;*/
           border: 3px ridge;
           border-radius: 15px 15px 5px 5px;
           padding: 6px;

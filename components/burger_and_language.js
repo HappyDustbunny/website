@@ -41,15 +41,13 @@ $(function() {
     $('.burgerControl').attr('aria-expanded', ariaExpanded);
   });
 
-  // $('.controlContainer').on('click', '.languageDa', function(event) {
-  $('.controlContainer').on('click', '.languageDa', function() {
+  $('.controlContainer').on('click', '#languageDa', function() {
     language = 1;
     localStorage.language = language;
     updateLanguage();
   });
 
-  // $('.controlContainer').on('click', '.languageEng', function(event) {
-  $('.controlContainer').on('click', '.languageEng', function() {
+  $('.controlContainer').on('click', '#languageEng', function() {
     language = 0;
     localStorage.language = language;
     updateLanguage();
@@ -168,26 +166,29 @@ $(function() {
         text[index].lang = lang[language]; // lang = ['en', 'da']
         text[index].ariaLabel = languagePack[id][language][0];
       }
+      if(localStorage.language) {
+        $('#languageReminder').hide()
+        }
     }
 
     if (language == 0) {
       $('.danish').hide()
       $('.english').show()
-      $('.languageDa').css({ opacity: 0.3 });
-      $('.languageEng').css({ opacity: 1 });
-      $('.languageDa').attr('aria-pressed', 'false');
-      $('.languageEng').attr('aria-pressed', 'true');
-      $('.languageDa').removeClass('animateIt');
-      $('.languageEng').addClass('animateIt');
+      $('#languageDa').css({ opacity: 0.3 });
+      $('#languageEng').css({ opacity: 1 });
+      $('#languageDa').attr('aria-pressed', 'false');
+      $('#languageEng').attr('aria-pressed', 'true');
+      $('#languageDa').removeClass('animateIt');
+      $('#languageEng').addClass('animateIt');
     } else {
       $('.danish').show()
       $('.english').hide()
-      $('.languageDa').css({ opacity: 1 });
-      $('.languageEng').css({ opacity: 0.3 });
-      $('.languageDa').attr('aria-pressed', 'true');
-      $('.languageEng').attr('aria-pressed', 'false');
-      $('.languageEng').removeClass('animateIt');
-      $('.languageDa').addClass('animateIt');
+      $('#languageDa').css({ opacity: 1 });
+      $('#languageEng').css({ opacity: 0.3 });
+      $('#languageDa').attr('aria-pressed', 'true');
+      $('#languageEng').attr('aria-pressed', 'false');
+      $('#languageEng').removeClass('animateIt');
+      $('#languageDa').addClass('animateIt');
     };
   }
 });

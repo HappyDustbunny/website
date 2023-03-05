@@ -29,43 +29,62 @@
     <my-header></my-header>
 
 <!-- TODO: Update Fallback. Test with Chrome: Open dev tools ctrl+shift+i and run command by ctrl+shift+p and run "enable/disable javascript" -->
-    <!-- Fall back navigation without JavaScript below -->
-    <noscript>
-      <a href="planner/main.html" aria-label='FuzzyPlan, a planning tool'>FuzzyPlan</a> <br>
-      <a href="https://kogebog.madshorn.dk/kogebog.html" aria-label='Trin for trin kogebog'>Trin for trin kogebog</a> <br>
-      <br>
-      <div>Programming</div>
-      <a href="programming/python.html" aria-label='Python'>Python</a> <br>
-      <a href="programming/rust.html" aria-label='Rust'>Rust</a> <br>
-      <a href="programming/rust.html" aria-label='Git'>Git</a> <br>
-      <br>
-      <div>Madlavning</div>
-      <a href="https://kogebog.madshorn.dk/kogebog.html" aria-label='Trin for trin kogebog'>Trin for trin kogebog</a> <br>
-      <a href="cooking/baking/index.html" aria-label='Bagning'>Bagning</a> <br>
-      <a href="cooking/baking/tempmix/index.html" aria-label='Temperature mixer
-      for getting 37&deg; hot water for baking'>Temperature mixer</a>
-    </noscript>
-    <!-- Fall back navigation without JavaScript above-->
+<!-- This may be a dumb idea as footers and headers rely on JavaScript -->
+    <!-- <div> -->
+      <!-- Fall back navigation without JavaScript below -->
+      <!-- <noscript>
+        <div>
+          <a href="planner/main.html" aria-label='FuzzyPlan, a planning tool'>FuzzyPlan</a> <br>
+          <a href="https://kogebog.madshorn.dk/kogebog.html" aria-label='Trin for trin kogebog'>Trin for trin kogebog</a> <br>
+        </div>
+        <br>
+        <div>Programming</div>
+        <div>
+          <a href="programming/python.html" aria-label='Python'>Python</a> <br>
+          <a href="programming/rust.html" aria-label='Rust'>Rust</a> <br>
+          <a href="programming/rust.html" aria-label='Git'>Git</a> <br>
+        </div>
+        <br>
+        <div>Madlavning</div>
+        <div>
+          <a href="https://kogebog.madshorn.dk/kogebog.html" aria-label='Trin for trin kogebog'>Trin for trin kogebog</a> <br>
+          <a href="cooking/baking/index.html" aria-label='Bagning'>Bagning</a> <br>
+          <a href="cooking/baking/tempmix/index.html" aria-label='Temperature mixer
+          for getting 37&deg; hot water for baking'>Temperature mixer</a>
+        </div>
+      </noscript> -->
+      <!-- Fall back navigation without JavaScript above-->
+    <!-- </div> -->
 
     <div class="headContainer">
       <main-controls></main-controls>
       <burger-menu-content></burger-menu-content>
 
       <main>
-        <div class="content">
-          <br>
-          <br>
+        <!-- <br>
+        <br> -->
+        <div class="content"> &nbsp; </div>
+        <div class="content english" lang="en">
+          <div id="languageReminder">
+            <br>
+            <p> &#x1F1E9;&#x1F1F0; Skift sprog øverst til venstre </p>
+            <p>&#x1F1EC;&#x1F1E7; Change language in upper left corner. <br>&nbsp;&nbsp;&nbsp;&nbsp; Confirm English to loose this reminder </p>
+          </div>
           <div>
-            <a href="/planner/index.html">FuzzyPlan</a>
+            <a href="/planner/index.html">FuzzyPlan</a> is a free, trackerless planner for those of us who hate rigid plans - but who know we need plans
           </div>
           <br>
-          <br>
           <div>
-            <a href="https://cookbook.madshorn.dk/cookbook.html" aria-label="Step-by-Step Cookbook"> Step-by-Step Cookbook</a>
+            <a href="https://cookbook.madshorn.dk/cookbook.html" aria-label="Step-by-Step Cookbook"> Step-by-Step Cookbook</a> for beginners and neurodiverse people having trouble using regular recipes
+          </div>
+        </div>
+        <div class="content danish" lang="da">
+          <div>
+            <a href="/planner/index.html">FuzzyPlan</a> er et gratis planlægningsværktøj uden tracking for de af os der hader stive planer - men som godt ved at vi har brug for dem
           </div>
           <br>
           <div>
-            <a href="https://kogebog.madshorn.dk/kogebog.html"aria-label="Trin-for-Trin Kogebog"> Trin-for-Trin Kogebog</a>
+            <a href="https://kogebog.madshorn.dk/kogebog.html"aria-label="Trin-for-Trin Kogebog"> Trin-for-Trin Kogebog</a> for begyndere og neurodiverse der har problemer med at overskue almindelige opskrifter
           </div>
         </div>
       </main>
