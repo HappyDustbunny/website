@@ -105,6 +105,10 @@ $(function() {
     window.location = 'https://madshorn.dk/programming/cmdline.html';
   });
 
+  $('#vscode').on('click', function() {
+    window.location = 'https://madshorn.dk/programming/vscode.html';
+  });
+
   $('#key').on('click', function() {
     window.location = 'https://madshorn.dk/programming/keymap.html';
   });

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VSCode shortcuts</title>
+
+    <my-favicons></my-favicons>
+
+    <link rel="stylesheet" href="../components/universal.css">
+    <style>
+        .custom {
+            color: gray;
+        }
+    </style>
+
+    <script src='../components/favicon.js' type='text/javascript' defer></script>
+    <script src='../components/header.js' type='text/javascript' defer></script>
+    <script src='../components/main-controls.js' type='text/javascript' defer></script>
+    <script src='../components/burger-menu-content.js' type='text/javascript' defer></script>
+    <script src='../components/footer.js' type='text/javascript' defer></script>
+    <script src="../components/burger_and_language.js" type="text/javascript" defer> </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+      window.jQuery || document.write("<script src='../components/jquery-3.6.0.slim.min.js'><\/script>")
+    </script>
+
+  </head>
+
+  <body>
+
+    <my-header></my-header>
+
+    <noscript>
+      <a href="http://madshorn.dk/index.html">Home</a>
+    </noscript>
+
+    <div class="headContainer">
+      <main-controls></main-controls>
+      <burger-menu-content></burger-menu-content>
+
+      <main>
+        <div class="content">
+          &nbsp;
+        </div>
+        <div class="content english" lang="en">
+          <h1> Shortcuts to VSCode </h1>
+          <p> These shortcuts are the ones I use regularly in VSCode on a keyboard with 
+            Danish layout. I hope some will help others, but I mostly made this page to 
+            help myself remember the basics between sessions. </p>
+          <p> Some shortcuts are not defalult (Shown in grey). These are added by going to 
+            <em>File/Preferences/Keyboard Shorcuts</em> and searching for the desired 
+            action (for example 'join lines'). <br>
+            Hover over the line and click the + sign. Choose the shortcut and confirm with <kbd>Enter</kbd></p>  
+          <p> <kbd> ctrl+d</kbd> Make an extra cursor after highlighted word </p>
+          <p> <kbd> shift+alt+&lt;arrow up/down&gt;</kbd> Add extra cursor (Use <kbd>End</kbd> 
+            to bring cursors to same point <br>and then jump words with <kbd>ctrl+&lt;arrow up/down&gt;</kbd> ) </p>
+          <p> <kbd> ctrl+shift+alt+&lt;arrow down (Num keypad)&gt;</kbd> Copy line down </p>
+          <p class="custom"> <kbd> ctrl+shift+d</kbd> Copy line down </p>
+          <p class="custom"> <kbd> ctrl+shift+q</kbd> Split screen down </p>
+          <p class="custom"> <kbd> ctrl+j</kbd> Join lines </p>
+          <p> <kbd> ctrl+k ctrl+q </kbd> Jump to last change </p>
+          <p> <kbd> alt+&lt;arrow up/down&gt;</kbd> Move highligted lines </p>
+          <p> <kbd> ctrl+&lt;arrow up/down&gt;</kbd> Scroll text </p>
+          <p> <kbd> ctrl+shift+k</kbd> Delete current line/highligted lines </p>
+          <p> <kbd> ctrl+shift+7</kbd> Toggle commenting out current line/highligthed lines </p>
+          <p> <kbd> </kbd>  </p>
+          <p> <kbd> </kbd>  </p>
+          <p> <kbd> </kbd>  </p>
+          <p> <kbd> </kbd>  </p>
+        </div>
+
+        <div class="content danish" lang="da">
+          <h1>Genveje til VSCode</h1>
+          <p> Programmering foregår mest på engelsk, så jeg oversætter ikke mine
+          sider om programmering til dansk. </p>
+          <p> Skift sprog øverst til venstre</p>
+        </div>
+      </main>
+    </div>
+
+    <my-footer></my-footer>
+
+  </body>
+</html>
+
