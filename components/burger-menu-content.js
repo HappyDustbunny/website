@@ -30,6 +30,10 @@ class BurgerMenuControl extends HTMLElement {
           border: 4px groove;
           margin: 3px 0px;
         }
+        
+        .burgerHeading:has(details[open]) {
+          border-radius: 15px;
+        }
 
         .secondLevelBurgerText {
           display: grid;
@@ -45,30 +49,36 @@ class BurgerMenuControl extends HTMLElement {
       </style>
 
       <div id="menuContainer">
-        <div id='FuzzyPlan' class="burgerText burgerItem"  aria-label='FuzzyPlan, a planning tool'> FuzzyPlan </div>
+        <div id='FuzzyPlan' class="burgerText burgerItem" aria-label='FuzzyPlan, a planning tool'> FuzzyPlan </div>
         <div id='cookbook' class="burgerText burgerItem" aria-label='Step-by-step cookbook'> Step-by-step cookbook </div>
         <div class="burgerHeading">
-          <div id='programming' class="burgerText">Programming</div>
-          <div id='journey' class='secondLevelBurgerText' lang='en' style='display: none' aria-label='My journey into programming'>My journey</div>
-          <div id='python' class='secondLevelBurgerText' lang='en' style='display: none' aria-label='Python'>Pyton</div>
-          <div id='rust' class='secondLevelBurgerText' lang='en' style='display: none' aria-label='Rust'>Rust</div>
-          <div id='git' class='secondLevelBurgerText' lang='en' style='display: none' aria-label='Git'>Intro to Git</div>
-          <div id='cmdline' class='secondLevelBurgerText' lang='en' style='display: none' aria-label='Bash command line tricks'>Bash command line</div>
-          <div id='vscode' class='secondLevelBurgerText' lang='en' style='display: none' aria-label='VSCode shortcuts'>VSCode shortcuts</div>
-          <div id='key' class='secondLevelBurgerText' lang='en' style='display: none' aria-label='Git'>Remapping keys</div>
-          <div id='myGithub' class='secondLevelBurgerText' lang='en' style='display: none' aria-label='My Github repos'>My Github repos</div>
+          <details name="menuItem">
+            <summary id='programming' class="burgerText">Programming</summary>
+            <div id='journey' class='secondLevelBurgerText' lang='en' aria-label='My journey into programming'>My journey</div>
+            <div id='python' class='secondLevelBurgerText' lang='en' aria-label='Python'>Pyton</div>
+            <div id='rust' class='secondLevelBurgerText' lang='en' aria-label='Rust'>Rust</div>
+            <div id='git' class='secondLevelBurgerText' lang='en' aria-label='Git'>Intro to Git</div>
+            <div id='cmdline' class='secondLevelBurgerText' lang='en' aria-label='Bash command line tricks'>Bash command line</div>
+            <div id='vscode' class='secondLevelBurgerText' lang='en' aria-label='VSCode shortcuts'>VSCode shortcuts</div>
+            <div id='key' class='secondLevelBurgerText' lang='en' aria-label='Git'>Remapping keys</div>
+            <div id='myGithub' class='secondLevelBurgerText' lang='en' aria-label='My Github repos'>My Github repos</div>
+          </details>
         </div>
         <div class="burgerHeading">
-          <div id='cooking' class="burgerText">Cooking</div>
-          <div id='cookbooks' class='secondLevelBurgerText burgerText' lang='en' style='display: none' aria-label='Cookbooks'>Cookbooks</div>
-          <div id='baking' class='secondLevelBurgerText burgerText' lang='en' style='display: none'  aria-label='Baking'>Baking</div>
-          <div id='tempMix' class='secondLevelBurgerText burgerText' lang='en' style='display: none'
-           aria-label='Temperature mixer for getting 37&deg; hot water for baking'>Temperature mixer</div>
+          <details name="menuItem">
+            <summary id='cooking' class="burgerText">Cooking</summary>
+            <div id='cookbooks' class='secondLevelBurgerText burgerText' lang='en' aria-label='Cookbooks'>Cookbooks</div>
+            <div id='baking' class='secondLevelBurgerText burgerText' lang='en' aria-label='Baking'>Baking</div>
+            <div id='tempMix' class='secondLevelBurgerText burgerText' lang='en'
+            aria-label='Temperature mixer for getting 37&deg; hot water for baking'>Temperature mixer</div>
+          </details>
         </div>
         <div class="burgerHeading">
-          <div id='psychEd' class="burgerText">Psychoeducation</div>
-          <div id='dementia' class='secondLevelBurgerText burgerText' lang='en' style='display: none' aria-label='Dementia'>Dementia</div>
-          <div id='autismADHD' class='secondLevelBurgerText burgerText' lang='en' style='display: none'  aria-label='AutismAndADHD'>Autism and ADHD</div>
+          <details name="menuItem">
+            <summary id='psychEd' class="burgerText">Psychoeducation</summary>
+            <div id='dementia' class='secondLevelBurgerText burgerText' lang='en' aria-label='Dementia'>Dementia</div>
+            <div id='autismADHD' class='secondLevelBurgerText burgerText' lang='en' aria-label='AutismAndADHD'>Autism and ADHD</div>
+          </details>
         </div>
         <div id='home' class="burgerText burgerItem" aria-label='Home'> Home </div>
         <div id='about' class="burgerText burgerItem" aria-label='About'> About </div>

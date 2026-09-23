@@ -78,17 +78,17 @@ $(function() {
     }
   });
 
-  $('#programming').on('click', function() {
-    // $('#programming > *').not('animated').slideToggle();
-    $('#programming').siblings().not('animated').slideToggle();
-    toggleProgramming();
-    if (toggleVar1 < 0) {
-      $('#cooking').siblings().not('animated').slideToggle();
-      $('#psychEd').siblings().not('animated').slideToggle();
-      toggleCooking();
-      togglepsychEd();
-    };
-  });
+  // $('#programming').on('click', function() {
+  //   // $('#programming > *').not('animated').slideToggle();
+  //   $('#programming').siblings().not('animated').slideToggle();
+  //   toggleProgramming();
+  //   if (toggleVar1 < 0) {
+  //     $('#cooking').siblings().not('animated').slideToggle();
+  //     $('#psychEd').siblings().not('animated').slideToggle();
+  //     toggleCooking();
+  //     togglepsychEd();
+  //   };
+  // });
 
   $('#journey').on('click', function() {
     window.location = 'https://madshorn.dk/programming/index.html';
@@ -122,19 +122,19 @@ $(function() {
     window.location = 'https://github.com/HappyDustbunny?tab=repositories';
   });
 
-  $('#cooking').on('click', function() {
-    $('#cooking').siblings().not('animated').slideToggle();
-    toggleCooking();
-    if (toggleVar0 < 0) {
-      $('#programming').siblings().not('animated').slideToggle();
-      $('#psychEd').siblings().not('animated').slideToggle();
-      toggleProgramming();
-      togglepsychEd();
-    };
-  });
+  // $('#cooking').on('click', function() {
+  //   $('#cooking').siblings().not('animated').slideToggle();
+  //   toggleCooking();
+  //   if (toggleVar0 < 0) {
+  //     $('#programming').siblings().not('animated').slideToggle();
+  //     $('#psychEd').siblings().not('animated').slideToggle();
+  //     toggleProgramming();
+  //     togglepsychEd();
+  //   };
+  // });
 
   $('#cookbooks').on('click', function() {
-    window.location = '/cooking/cookbooks.html';
+    window.location = 'https://madshorn.dk/cooking/cookbooks.html';
   });
 
   $('#baking').on('click', function() {
@@ -145,16 +145,16 @@ $(function() {
   });
 
 
-  $('#psychEd').on('click', function() {
-    $('#psychEd').siblings().not('animated').slideToggle();
-    togglepsychEd();
-    if (toggleVar0 < 0) {
-      $('#programming').siblings().not('animated').slideToggle();
-      $('#cooking').siblings().not('animated').slideToggle();
-      toggleProgramming();
-      toggleCooking();
-    };
-  });
+  // $('#psychEd').on('click', function() {
+  //   $('#psychEd').siblings().not('animated').slideToggle();
+  //   togglepsychEd();
+  //   if (toggleVar0 < 0) {
+  //     $('#programming').siblings().not('animated').slideToggle();
+  //     $('#cooking').siblings().not('animated').slideToggle();
+  //     toggleProgramming();
+  //     toggleCooking();
+  //   };
+  // });
 
   $('#dementia').on('click', function() {
     window.location = '/psychEd/dementia.html';
@@ -164,23 +164,23 @@ $(function() {
     window.location = '/psychEd/autismADHD.html';
   });
 
-  function toggleProgramming() {
-    radius0 = radius0 + toggleVar0;
-    toggleVar0 = -toggleVar0;
-    $('#programming').parent().css('border-radius', '15px 15px ' + radius0 + 'px ' + radius0 + 'px');
-  }
+  // function toggleProgramming() {
+  //   radius0 = radius0 + toggleVar0;
+  //   toggleVar0 = -toggleVar0;
+  //   $('#programming').parent().css('border-radius', '15px 15px ' + radius0 + 'px ' + radius0 + 'px');
+  // }
 
-  function toggleCooking() {
-    radius1 = radius1 + toggleVar1;
-    toggleVar1 = -toggleVar1;
-    $('#cooking').parent().css('border-radius', '15px 15px ' + radius1 + 'px ' + radius1 + 'px');
-  }
+  // function toggleCooking() {
+  //   radius1 = radius1 + toggleVar1;
+  //   toggleVar1 = -toggleVar1;
+  //   $('#cooking').parent().css('border-radius', '15px 15px ' + radius1 + 'px ' + radius1 + 'px');
+  // }
 
-  function togglepsychEd() {
-    radius2 = radius2 + toggleVar1;
-    toggleVar1 = -toggleVar1;
-    $('#psychEd').parent().css('border-radius', '15px 15px ' + radius2 + 'px ' + radius2 + 'px');
-  }
+  // function togglepsychEd() {
+  //   radius2 = radius2 + toggleVar1;
+  //   toggleVar1 = -toggleVar1;
+  //   $('#psychEd').parent().css('border-radius', '15px 15px ' + radius2 + 'px ' + radius2 + 'px');
+  // }
 
   $('#home').on('click', function() {
     window.location = 'https://madshorn.dk/index.html';

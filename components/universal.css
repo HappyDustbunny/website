@@ -27,6 +27,10 @@ burger-menu-content {
   grid-column-start: 1;
 }
 
+summary::marker {
+  content: none;
+}
+
 @keyframes zoomInOut {
   0% {font-size: 1em;}
   50% {font-size: 1.1em; color: magenta}
