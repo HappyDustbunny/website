@@ -19,4 +19,8 @@ RewriteCond %{HTTP_HOST} ^fryser\.madshorn\.dk$
 RewriteCond %{REQUEST_URI} !^/fryser\.madshorn\.dk
 RewriteRule ^(.*)$ fryser.madshorn.dk/$1 [L]
 
+RewriteCond %{HTTP_HOST} ^taichi\.madshorn\.dk$
+RewriteCond %{REQUEST_URI} !^/taichi\.madshorn\.dk
+RewriteRule ^(.*)$ taichi.madshorn.dk/$1 [L]
+
 ErrorDocument 404 /error/404.html

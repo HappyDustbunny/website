@@ -3,6 +3,8 @@ $(function() {
   let radius0 = 5; // Used to toggle border-radius for the burger menu
   let toggleVar1 = 10; // Used to toggle border-radius for the burger menu
   let radius1 = 5; // Used to toggle border-radius for the burger menu
+  let toggleVar2 = 10; // Used to toggle border-radius for the burger menu
+  let radius2 = 5; // Used to toggle border-radius for the burger menu
   let ariaExpanded = false; // Used to toggle aria expandedness of burger-button
 
   let lang = ['en', 'da'];
@@ -14,6 +16,7 @@ $(function() {
     'cookbooks': [['Cookbooks', ''], ['Kogebøger', '']],
     'baking': [['Baking', ''], ['Bagning', '']],
     'tempMix': [['37\u00B0 mixer', ''], ['37\u00B0 blander', '']],
+    'psychEd': [['psychEducation', ''], ['Selvforståelse', '']],
     'home': [['Home', ''], ['Hjem', '']],
     'about': [['About', ''], ['Om', '']],
     // '': [['', ''], ['', '']],
@@ -81,7 +84,9 @@ $(function() {
     toggleProgramming();
     if (toggleVar1 < 0) {
       $('#cooking').siblings().not('animated').slideToggle();
-      toggleCooking()
+      $('#psychEd').siblings().not('animated').slideToggle();
+      toggleCooking();
+      togglepsychEd();
     };
   });
 
@@ -122,7 +127,9 @@ $(function() {
     toggleCooking();
     if (toggleVar0 < 0) {
       $('#programming').siblings().not('animated').slideToggle();
-      toggleProgramming()
+      $('#psychEd').siblings().not('animated').slideToggle();
+      toggleProgramming();
+      togglepsychEd();
     };
   });
 
@@ -137,6 +144,26 @@ $(function() {
     window.location = 'https://madshorn.dk/baking/tempmix/index.html';
   });
 
+
+  $('#psychEd').on('click', function() {
+    $('#psychEd').siblings().not('animated').slideToggle();
+    togglepsychEd();
+    if (toggleVar0 < 0) {
+      $('#programming').siblings().not('animated').slideToggle();
+      $('#cooking').siblings().not('animated').slideToggle();
+      toggleProgramming();
+      toggleCooking();
+    };
+  });
+
+  $('#dementia').on('click', function() {
+    window.location = '/psychEd/dementia.html';
+  });
+
+  $('#autismADHD').on('click', function() {
+    window.location = '/psychEd/autismADHD.html';
+  });
+
   function toggleProgramming() {
     radius0 = radius0 + toggleVar0;
     toggleVar0 = -toggleVar0;
@@ -147,6 +174,12 @@ $(function() {
     radius1 = radius1 + toggleVar1;
     toggleVar1 = -toggleVar1;
     $('#cooking').parent().css('border-radius', '15px 15px ' + radius1 + 'px ' + radius1 + 'px');
+  }
+
+  function togglepsychEd() {
+    radius2 = radius2 + toggleVar1;
+    toggleVar1 = -toggleVar1;
+    $('#psychEd').parent().css('border-radius', '15px 15px ' + radius2 + 'px ' + radius2 + 'px');
   }
 
   $('#home').on('click', function() {
