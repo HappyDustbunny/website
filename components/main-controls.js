@@ -31,8 +31,8 @@ class MainControl extends HTMLElement {
         <button type="button" aria-expanded='false' class='burgerControl' alt='Navigation'>
           <img src="../images/burger.svg" alt="Navigation burger" width="20px" height="20">
         </button>
-        <button type="button" id="languageDa" aria-pressed='false' lang="da">Dansk</button>
-        <button type="button" id="languageEng" aria-pressed='true' lang="en">English</button>
+        <button type="button" id="languageDa" aria-pressed='false' lang="da"><span class='underline'>D</span>ansk</button>
+        <button type="button" id="languageEng" aria-pressed='true' lang="en"><span class='underline'>E</span>nglish</button>
       </div>
     `;
   }

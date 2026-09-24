@@ -39,7 +39,7 @@ summary::marker {
 
 .animateIt {
   animation-name: zoomInOut;
-  animation-duration: 0.05s;
+  animation-duration: 0.07s;
 }
 
 :focus {
@@ -66,6 +66,10 @@ summary::marker {
 
 .goHome {
   margin-left: 15px;
+}
+
+.underline {
+  text-decoration: underline;
 }
 
 #topImg {
