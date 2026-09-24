@@ -37,9 +37,14 @@ summary::marker {
   100% {font-size: 1em;}
 }
 
+.languagePick {
+  opacity: 1.0;
+}
+
 .animateIt {
   animation-name: zoomInOut;
   animation-duration: 0.07s;
+  opacity: 0.3;
 }
 
 :focus {

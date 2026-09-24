@@ -1,11 +1,11 @@
-$(function() {
-  let toggleVar0 = 10; // Used to toggle border-radius for the burger menu
-  let radius0 = 5; // Used to toggle border-radius for the burger menu
-  let toggleVar1 = 10; // Used to toggle border-radius for the burger menu
-  let radius1 = 5; // Used to toggle border-radius for the burger menu
-  let toggleVar2 = 10; // Used to toggle border-radius for the burger menu
-  let radius2 = 5; // Used to toggle border-radius for the burger menu
-  let ariaExpanded = false; // Used to toggle aria expandedness of burger-button
+// $(function() {
+  // let toggleVar0 = 10; // Used to toggle border-radius for the burger menu
+  // let radius0 = 5; // Used to toggle border-radius for the burger menu
+  // let toggleVar1 = 10; // Used to toggle border-radius for the burger menu
+  // let radius1 = 5; // Used to toggle border-radius for the burger menu
+  // let toggleVar2 = 10; // Used to toggle border-radius for the burger menu
+  // let radius2 = 5; // Used to toggle border-radius for the burger menu
+  // let ariaExpanded = false; // Used to toggle aria expandedness of burger-button
 
   let lang = ['en', 'da'];
   let language = 0; // English 0, Danish 1
@@ -36,13 +36,13 @@ $(function() {
   //   console.log(event.which);
   // });
 
-  $('.controlContainer').on('click', '.burgerControl', function(event) {
-    event.preventDefault();
-    $('.burgerItem').not('animated').slideToggle();
-    $('.burgerHeading').not('animated').slideToggle();
-    ariaExpanded = !ariaExpanded;
-    $('.burgerControl').attr('aria-expanded', ariaExpanded);
-  });
+  // $('.controlContainer').on('click', '.burgerControl', function(event) {
+  //   event.preventDefault();
+  //   $('.burgerItem').not('animated').slideToggle();
+  //   $('.burgerHeading').not('animated').slideToggle();
+  //   ariaExpanded = !ariaExpanded;
+  //   $('.burgerControl').attr('aria-expanded', ariaExpanded);
+  // });
 
   document.getElementById('languageDa').addEventListener('click', function() {
     language = 1;
@@ -214,7 +214,8 @@ $(function() {
   $('img').on('dragstart', false);
 
   function updateLanguage() {
-    let text = $('.burgerText');
+    // let text = $('.burgerText');
+    let text = document.getElementsByClassName('burgerText');
 
     text[1].href = languagePack['cookbook'][language][1]; // Change href target for Cookbook
 
@@ -227,28 +228,37 @@ $(function() {
         text[index].ariaLabel = languagePack[id][language][0];
       }
       if(localStorage.language) {
-        $('#languageReminder').hide()
-        }
+        document.getElementById('languageReminder').hidden = true;
+        // $('#languageReminder').hide()
+      }
     }
 
+    let danishDOMList = document.getElementsByClassName('danish');
+    let englishDomList = document.getElementsByClassName('english');
     if (language == 0) {
-      $('.danish').hide()
-      $('.english').show()
-      $('#languageDa').css({ opacity: 0.3 });
-      $('#languageEng').css({ opacity: 1 });
-      $('#languageDa').attr('aria-pressed', 'false');
-      $('#languageEng').attr('aria-pressed', 'true');
-      $('#languageDa').removeClass('animateIt');
-      $('#languageEng').addClass('animateIt');
+      [...danishDOMList].forEach( item => item.hidden = true);
+      [...englishDomList].forEach( item => item.hidden = false); 
+      // $('.danish').hide()
+      // $('.english').show()
+      // $('#languageDa').css({ opacity: 0.3 });
+      // $('#languageEng').css({ opacity: 1 });
+      document.getElementById('languageDa').classList.add('animateIt');
+      document.getElementById('languageEng').classList.remove('animateIt');
+      // $('#languageDa').removeClass('animateIt');
+      // $('#languageEng').addClass('animateIt');
     } else {
-      $('.danish').show()
-      $('.english').hide()
-      $('#languageDa').css({ opacity: 1 });
-      $('#languageEng').css({ opacity: 0.3 });
-      $('#languageDa').attr('aria-pressed', 'true');
-      $('#languageEng').attr('aria-pressed', 'false');
-      $('#languageEng').removeClass('animateIt');
-      $('#languageDa').addClass('animateIt');
+      [...danishDOMList].forEach( item => item.hidden = false);
+      [...englishDomList].forEach( item => item.hidden = true); 
+      // document.getElementById('danish').show();
+      // document.getElementById('english').hide();
+      // $('.danish').show()
+      // $('.english').hide()
+      // $('#languageDa').css({ opacity: 1 });
+      // $('#languageEng').css({ opacity: 0.3 });
+      document.getElementById('languageDa').classList.remove('animateIt');
+      document.getElementById('languageEng').classList.add('animateIt');
+      // $('#languageEng').removeClass('animateIt');
+      // $('#languageDa').addClass('animateIt');
     };
   }
-});
+// });
