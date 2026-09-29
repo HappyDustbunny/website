@@ -21,6 +21,16 @@
     <script>
       window.jQuery || document.write("<script src='../components/jquery-3.6.0.slim.min.js'><\/script>")
     </script>
+
+    <script>
+        function changeTitle() {
+          if (Number(localStorage.language) === 0) {
+            document.getElementsByTagName('title')[0].innerText = 'Linux Keymap';
+          } else {
+            document.getElementsByTagName('title')[0].innerText = 'Linux Tastaturgenveje';
+          }
+        }
+    </script>
   </head>
 
   <body>
@@ -40,6 +50,12 @@
           &nbsp;
         </div>
         <div class="content english" lang="en">
+          <div id="languageReminder">
+            <br>
+            <p> &#x1F1E9;&#x1F1F0; Skift sprog øverst til venstre </p>
+            <p>&#x1F1EC;&#x1F1E7; Change language in upper left corner. <br>&nbsp;&nbsp;&nbsp;&nbsp; Confirm English to
+              loose this reminder </p>
+          </div>
           <h1>How to remap keys in Linux</h1>
           <p> It is easy to change the behaviour of keys in Linux if you have a dead key or want a different layout. </p>
           <p> To see the current keymap open a terminal and write <kbd>xmodmap -pke</kbd> </p>

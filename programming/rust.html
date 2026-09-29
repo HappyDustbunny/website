@@ -22,6 +22,16 @@
       window.jQuery || document.write("<script src='../components/jquery-3.6.0.slim.min.js'><\/script>")
     </script>
 
+    <script>
+        function changeTitle() {
+          if (Number(localStorage.language) === 0) {
+            document.getElementsByTagName('title')[0].innerText = 'Rust';
+          } else {
+            document.getElementsByTagName('title')[0].innerText = 'Rust';
+          }
+        }
+    </script>
+
   </head>
 
   <body>
@@ -41,6 +51,12 @@
           &nbsp;
         </div>
         <div class="content english" lang="en">
+          <div id="languageReminder">
+            <br>
+            <p> &#x1F1E9;&#x1F1F0; Skift sprog øverst til venstre </p>
+            <p>&#x1F1EC;&#x1F1E7; Change language in upper left corner. <br>&nbsp;&nbsp;&nbsp;&nbsp; Confirm English to
+              loose this reminder </p>
+          </div>
           <h1>Rust</h1>
             <p> After about one and a half year of Python Toke thought we ought to move on.</p>
             <p> I looked around and found that Rust was up and comming, so we bought the book

@@ -22,6 +22,16 @@
       window.jQuery || document.write("<script src='../components/jquery-3.6.0.slim.min.js'><\/script>")
     </script>
 
+    <script>
+        function changeTitle() {
+          if (Number(localStorage.language) === 0) {
+            document.getElementsByTagName('title')[0].innerText = 'Python';
+          } else {
+            document.getElementsByTagName('title')[0].innerText = 'Python';
+          }
+        }
+    </script>
+
   </head>
 
   <body>
@@ -41,6 +51,12 @@
           &nbsp;
         </div>
         <div class="content english" lang="en">
+          <div id="languageReminder">
+            <br>
+            <p> &#x1F1E9;&#x1F1F0; Skift sprog øverst til venstre </p>
+            <p>&#x1F1EC;&#x1F1E7; Change language in upper left corner. <br>&nbsp;&nbsp;&nbsp;&nbsp; Confirm English to
+              loose this reminder </p>
+          </div>
           <h1>Python</h1>
           <p> While teaching math and physics I made a lot of animations using Python to
             illustrate concepts. When time permits maybe I'll dust them off and upload them here. </p>

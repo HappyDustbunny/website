@@ -25,9 +25,9 @@
     <script>
       function changeTitle() {
         if (Number(localStorage.language) === 0) {
-          document.getElementsByTagName('title')[0].innerText = 'Programming';
+          document.getElementsByTagName('title')[0].innerText = 'My journey';
         } else {
-          document.getElementsByTagName('title')[0].innerText = 'Programmering';
+          document.getElementsByTagName('title')[0].innerText = 'Min vej ind i programmering';
         }
       }
     </script>
@@ -51,6 +51,12 @@
           &nbsp;
         </div>
         <div class="content english" lang="en">
+          <div id="languageReminder">
+            <br>
+            <p> &#x1F1E9;&#x1F1F0; Skift sprog øverst til venstre </p>
+            <p>&#x1F1EC;&#x1F1E7; Change language in upper left corner. <br>&nbsp;&nbsp;&nbsp;&nbsp; Confirm English to
+              loose this reminder </p>
+          </div>
           <a href="python.html" title="Python">Python</a>
           <a href="rust.html" title="Rust">Rust</a>
           <a href="git.html" title="Introduction to the Git commandline">Introduction to the Git commandline</a>

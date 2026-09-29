@@ -64,6 +64,14 @@
         }
 
       })
+
+        function changeTitle() {
+          if (Number(localStorage.language) === 0) {
+            document.getElementsByTagName('title')[0].innerText = 'Linux Commandline';
+          } else {
+            document.getElementsByTagName('title')[0].innerText = 'Linux Kommandolinje';
+          }
+        }
     </script>
 
     <style media="screen">
@@ -92,6 +100,12 @@
           &nbsp;
         </div>
         <div class="content english" lang="en">
+          <div id="languageReminder">
+            <br>
+            <p> &#x1F1E9;&#x1F1F0; Skift sprog øverst til venstre </p>
+            <p>&#x1F1EC;&#x1F1E7; Change language in upper left corner. <br>&nbsp;&nbsp;&nbsp;&nbsp; Confirm English to
+              loose this reminder </p>
+          </div>
           <h1>Linux command line (Bash) cheat sheet</h1>
           <p> This is a overview over useful Bash commands and shortcuts I probably will forget. </p>
           <p> Bash is a Linux shell, but is also part of the Git tools on Windows (Git Bash). </p>
