@@ -22,6 +22,16 @@
       window.jQuery || document.write("<script src='components/jquery-3.6.0.slim.min.js'><\/script>")
     </script>
 
+    <script>
+      function changeTitle() {
+        if (Number(localStorage.language) === 0) {
+          document.getElementsByTagName('title')[0].innerText = "Mads Horn's hobby projects";
+        } else {
+          document.getElementsByTagName('title')[0].innerText = "Mads Horn's hobby projekter";
+        }
+      }
+    </script>
+
   </head>
 
   <body>
@@ -33,8 +43,6 @@
       <burger-menu-content></burger-menu-content>
 
       <main>
-        <!-- <br>
-        <br> -->
         <div class="content"> &nbsp; </div>
         <div class="content english" lang="en">
           <div id="languageReminder">

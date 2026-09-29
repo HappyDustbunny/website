@@ -22,6 +22,16 @@
       window.jQuery || document.write("<script src='../components/jquery-3.6.0.slim.min.js'><\/script>")
     </script>
 
+    <script>
+      function changeTitle() {
+        if (Number(localStorage.language) === 0) {
+          document.getElementsByTagName('title')[0].innerText = 'Programming';
+        } else {
+          document.getElementsByTagName('title')[0].innerText = 'Programmering';
+        }
+      }
+    </script>
+
   </head>
 
   <body>
