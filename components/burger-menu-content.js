@@ -59,9 +59,9 @@ class BurgerMenuControl extends HTMLElement {
         <div class="burgerHeading">
           <details name="menuItem">
             <summary id='cooking' class="burgerText">Cooking</summary>
-            <a href='cooking/cookbooks.html' id='cookbooks' class='secondLevelBurgerText burgerText' lang='en' aria-label='Cookbooks'>Cookbooks</a>
-            <a href='baking/index.html' id='baking' class='secondLevelBurgerText burgerText' lang='en' aria-label='Baking'>Baking</a>
-            <a href='baking/tempmix/index.html' id='tempMix' class='secondLevelBurgerText burgerText' lang='en'
+            <a href='/cooking/cookbooks.html' id='cookbooks' class='secondLevelBurgerText burgerText' lang='en' aria-label='Cookbooks'>Cookbooks</a>
+            <a href='/baking/index.html' id='baking' class='secondLevelBurgerText burgerText' lang='en' aria-label='Baking'>Baking</a>
+            <a href='/baking/tempmix/index.html' id='tempMix' class='secondLevelBurgerText burgerText' lang='en'
             aria-label='Temperature mixer for getting 37&deg; hot water for baking'>Temperature mixer</a>
           </details>
         </div>

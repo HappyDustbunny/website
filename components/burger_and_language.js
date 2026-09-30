@@ -8,6 +8,8 @@ let languagePack = { // {'id': [['text', 'title'], ['tekst', 'titel']]} The vari
   'baking': [['Baking', ''], ['Bagning', '']],
   'tempMix': [['37\u00B0 mixer', ''], ['37\u00B0 blander', '']],
   'psychEd': [['Psychoeducation', ''], ['Selvforståelse', '']],
+  'dementia': [['Dementia', ''], ['Demens', '']],
+  'autismADHD': [['Autism and ADHD', ''], ['Autisme og ADHD', '']],
   'home': [['Home', ''], ['Hjem', '']],
   'about': [['About', ''], ['Om', '']],
   // '': [['', ''], ['', '']],

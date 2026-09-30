@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Dementia</title>
+
+  <my-favicons></my-favicons>
+
+  <link rel="stylesheet" href="../components/universal.css">
+
+  <script src='../components/favicon.js' type='text/javascript' defer></script>
+  <script src='../components/header.js' type='text/javascript' defer></script>
+  <script src='../components/main-controls.js' type='text/javascript' defer></script>
+  <script src='../components/burger-menu-content.js' type='text/javascript' defer></script>
+  <script src='../components/footer.js' type='text/javascript' defer></script>
+  <script src="../components/burger_and_language.js" type="text/javascript" defer> </script>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script>
+    window.jQuery || document.write("<script src='../components/jquery-3.6.0.slim.min.js'><\/script>")
+  </script>
+
+  <script>
+    function changeTitle() {
+      if (Number(localStorage.language) === 0) {
+        document.getElementsByTagName('title')[0].innerText = 'Autism and ADHD';
+      } else {
+        document.getElementsByTagName('title')[0].innerText = 'Autisme og ADHD';
+      }
+    }
+  </script>
+
+</head>
+
+<body>
+
+  <my-header></my-header>
+
+  <noscript>
+    <a href="http://madshorn.dk/index.html">Home</a>
+  </noscript>
+
+  <div class="headContainer">
+    <main-controls></main-controls>
+    <burger-menu-content></burger-menu-content>
+
+    <main>
+      <div class="content"> &nbsp; </div>
+      <div class="content english" lang="en">
+        <div id="languageReminder">
+          <br>
+          <p> &#x1F1E9;&#x1F1F0; Skift sprog øverst til venstre </p>
+          <p>&#x1F1EC;&#x1F1E7; Change language in upper left corner. <br>&nbsp;&nbsp;&nbsp;&nbsp; Confirm English to
+            loose this reminder </p>
+        </div>
+
+        <div>
+          <p> The notes from a psychoeducation course I once took is only
+            available in Danish. Sorry. </p>
+          <p> Change language in the upper left corner.</p>
+        </div>
+      </div>
+
+      <div class="content danish" lang="da">
+        <p> Her er noterne fra et selvforståelseskursus jeg engang tog. </p>
+        <p> Jeg håber at få tid til at opdatere og formattere dem bedre </p>
+        <p> Det var ikke alle kursusgangene, der gav gode noter, da
+            nogle af kursusgangene bestod af var øvelser.</p>
+        <br>
+        <a href="/psychEd/psychEdCourse/Selvforståelseskursus del 0.pdf">Selvforståelseskursus del 0</a> <br>
+        <a href="/psychEd/psychEdCourse/Selvforståelseskursus del 1.pdf">Selvforståelseskursus del 1</a> <br>
+        <a href="/psychEd/psychEdCourse/Selvforståelseskursus del 2.pdf">Selvforståelseskursus del 2</a> <br>
+        <a href="/psychEd/psychEdCourse/Selvforståelseskursus del 3.pdf">Selvforståelseskursus del 3</a> <br>
+        <a href="/psychEd/psychEdCourse/Selvforståelseskursus del 4.pdf">Selvforståelseskursus del 4</a> <br>
+        <a href="/psychEd/psychEdCourse/Selvforståelseskursus del 5.pdf">Selvforståelseskursus del 5</a> <br>
+        <a href="/psychEd/psychEdCourse/Selvforståelseskursus del 6.pdf">Selvforståelseskursus del 6</a> <br>
+        <a href="/psychEd/psychEdCourse/Selvforståelseskursus del 8.pdf">Selvforståelseskursus del 8</a> <br>
+        <a href="/psychEd/psychEdCourse/Selvforståelseskursus del 9.pdf">Selvforståelseskursus del 9</a> <br>
+        <a href="/psychEd/psychEdCourse/Selvforståelseskursus del 13.pdf">Selvforståelseskursus del 13</a> <br>
+        <a href="/psychEd/psychEdCourse/Selvforståelseskursus del 16.pdf">Selvforståelseskursus del 16</a>
+      </div>
+    </main>
+  </div>
+
+  <my-footer></my-footer>
+
+</body>
+
+</html>

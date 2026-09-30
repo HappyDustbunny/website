@@ -22,6 +22,17 @@
       window.jQuery || document.write("<script src='../components/jquery-3.6.0.slim.min.js'><\/script>")
     </script>
 
+
+    <script>
+        function changeTitle() {
+          if (Number(localStorage.language) === 0) {
+            document.getElementsByTagName('title')[0].innerText = 'Baking';
+          } else {
+            document.getElementsByTagName('title')[0].innerText = 'Bagning';
+          }
+        }
+    </script>
+
   </head>
 
   <body>
@@ -41,11 +52,17 @@
           &nbsp;
         </div>
         <div class="content english" lang="en">
+          <div id="languageReminder">
+            <br>
+            <p> &#x1F1E9;&#x1F1F0; Skift sprog øverst til venstre </p>
+            <p>&#x1F1EC;&#x1F1E7; Change language in upper left corner. <br>&nbsp;&nbsp;&nbsp;&nbsp; Confirm English to
+              loose this reminder </p>
+          </div>
           <h1>Baking</h1>
           <p> Here I'll put anything relating to baking. </p>
           <p> At the moment all I have is a temperature mixer for getting the correct
-            temperatue when baking without a thermometer. (Personally I find thermoeters
-            to be too bothersome to use :-)</p>
+            temperatue when baking without a thermometer. (Personally I find this
+            quicker than thermoeters)</p>
           <a href="../baking/tempmix/index.html">Temperature Mixer for getting the
             liquid in the recipe to be 37&deg;</a>
         </div>
